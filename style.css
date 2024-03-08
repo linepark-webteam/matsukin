@@ -1,4 +1,9 @@
 /*
+Theme Name: 松金工業
+Author: LiNEPARKWebTeam
+Author URI: https://www.linepark.co.jp/
+Description: 東北松金工業様HP用のテーマです。
+Version: 1.0
 */
 
 /* フェードインアニメーションのスタイル */
@@ -14,7 +19,7 @@
 .hero-section {
   position: relative;
   width: 100%;
-  height: 500px; /* 必要に応じて調整 */
+  height: 500px; /*必要に応じて調整*/
 }
 
 .slides {
@@ -50,7 +55,38 @@
   text-align: center;
 }
 
+/* Topへスクロールボタン全体 */
+#page_top{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: fixed;
+  right: 10px;
+  bottom: 15px;
+  background: #22a4c4;
+  border: 3px rgb(0, 80, 54) solid;
+  }
 
-h1 {
+  /* Font Awesomeを使用 */
+  #page_top::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f077';
+    font-size: 16px;
+    color: #ffffff;
+    position: absolute;
+    width: 50px;
+    height: 16px;
+    top: 0;
+    bottom: 5px;
+    right: 0;
+    left: -2px;
+    margin: auto;
+    text-align: center;
+    text-decoration: none;
+  }
+
+
+h2 {
   color: green; /*test*/
 }

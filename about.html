@@ -14,7 +14,7 @@
 
 <body>
 
-  <header>
+  <header class="fixed-top">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid px-4">
         <a class="navbar-brand" href="./">東北松金工業株式会社</a>
@@ -24,17 +24,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <!-- <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 会社紹介
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">会社概要</a></li>
-                <li><a class="dropdown-item" href="#">代表挨拶</a></li>
+                <li><a class="dropdown-item" href="about.html">会社概要</a></li>
+                <li><a class="dropdown-item" href="message.html">代表挨拶</a></li>
               </ul>
-            </li> -->
-            <li class="nav-item">
+            </li>
+            <!-- <li class="nav-item">
               <a class="nav-link" href="#">会社情報</a>
             </li>
             <li class="nav-item">
@@ -42,7 +42,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="message.html">代表挨拶</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="#">お問い合わせ</a>
             </li>
@@ -66,24 +66,29 @@
       <!-- さらに画像がある場合は、ここに追加 -->
     </div>
     <div class="hero-text">
-      <h1>見出しテキスト</h1>
+      <h2>見出しテキスト</h2>
       <p>ここに説明テキストを入れます。</p>
     </div>
   </div>
 
   <div class="container mt-5 fade-in-content">
-    <h1 class="">会社概要</h1>
+    <h2 class="">会社概要</h2>
     <p>ここにコンテンツを追加します。</p>
   </div>
 </main>
 
 <footer>
+  <!-- TOPへスクロールボタン -->
+  <a href="#" id="page_top"></a>
 
 </footer>
 
-  <!-- Bootstrap 5 JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-  <script src="./js/app.js"></script>
+<!-- Bootstrap 5 JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<!-- MyScript -->
+<script src="./js/app.js"></script>
+<!-- FontAwesome -->
+<script src="https://kit.fontawesome.com/e7eaec89a2.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
