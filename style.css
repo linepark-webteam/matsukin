@@ -5,6 +5,20 @@ Author URI: https://www.linepark.co.jp/
 Description: 東北松金工業様HP用のテーマです。
 Version: 1.0
 */
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* フォントサイズ */
+p, span, a, li {
+  font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
 /* フェードインアニメーションのスタイル */
 .fade-in-content {
@@ -85,6 +99,7 @@ Version: 1.0
     text-align: center;
     text-decoration: none;
   }
+
 
 
 h2 {
