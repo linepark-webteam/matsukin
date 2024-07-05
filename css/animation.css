@@ -1,0 +1,9 @@
+/* フェードインアニメーションのスタイル */
+.fade-in-content {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+.fade-in-content.visible {
+  opacity: 1 !important;
+}
