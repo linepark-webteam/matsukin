@@ -1,9 +1,13 @@
 /* フェードインアニメーションのスタイル */
-.fade-in-content {
-  opacity: 0;
-  transition: opacity 1s ease-out;
+.u-fade-in {
+  animation: fadeIn 2s ease-in-out;
 }
 
-.fade-in-content.visible {
-  opacity: 1 !important;
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
 }
