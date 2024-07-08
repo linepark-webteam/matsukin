@@ -4,30 +4,6 @@
   height: 100svh;
 }
 
-.slides {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-}
-
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 2s ease-in-out;
-}
-
-.slide.active {
-  opacity: 1;
-}
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .hero-text {
   position: absolute;
   top: 80%;
@@ -105,33 +81,3 @@
   color: #333;
 }
 
-/* Topへスクロールボタン全体 */
-#page_top {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: fixed;
-  right: 10px;
-  bottom: 15px;
-  background: #22a4c4;
-  border: 3px rgb(0, 80, 54) solid;
-}
-
-/* Font Awesomeを使用 */
-#page_top::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f077";
-  font-size: 16px;
-  color: #ffffff;
-  position: absolute;
-  width: 50px;
-  height: 16px;
-  top: 0;
-  bottom: 5px;
-  right: 0;
-  left: -2px;
-  margin: auto;
-  text-align: center;
-  text-decoration: none;
-}

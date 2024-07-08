@@ -1,5 +1,4 @@
 /* ダウンロードフォント */
-/* ダウンロードフォント */
 @font-face {
   font-family: "Apple Chancery";
   src: url("./fonts/AppleChancery.eot"); /* IE9 Compatibility */
@@ -44,14 +43,20 @@ header.fixed-top.scrolled {
 .navbar-brand-box {
   display: flex;
   align-items: center;
-  padding-left: 100px; /* 左の余白を追加 */
 }
 
 .navbar-nav-box {
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
-  padding-right: 100px; /* 右の余白を追加 */
+}
+@media (min-width: 960px) {
+  .navbar-brand-box {
+    padding-left: 100px; /* 左の余白 */
+  }
+  .navbar-nav-box {
+    padding-right: 100px; /* 右の余白 */
+  }
 }
 
 .navbar-brand-box a.navbar-brand {
@@ -60,18 +65,51 @@ header.fixed-top.scrolled {
 }
 
 .navbar-brand-box a.navbar-brand img {
-  margin-right: 10px; /* ロゴとテキストの間のスペース */
+  margin-right: 5px; /* ロゴとテキストの間のスペース */
 }
 
 .navbar-toggler {
-  margin-left: auto;
+  justify-content: left;
 }
 
-@media (max-width: 991.98px) {
-  .navbar-nav-box {
-      justify-content: center; /* 小さな画面では中央揃え */
+@media (min-width: 991.98px) {
+  .navbar-toggler {
+    margin-left: auto;
   }
 }
+
+/* Topへスクロールボタン */
+/* スクロールボタン全体 */
+#page_top {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: fixed;
+  right: 10px;
+  bottom: 15px;
+  background: #22a4c4;
+  border: 3px rgb(0, 80, 54) solid;
+}
+
+/* Font Awesomeを使用 */
+#page_top::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f077";
+  font-size: 16px;
+  color: #ffffff;
+  position: absolute;
+  width: 50px;
+  height: 16px;
+  top: 0;
+  bottom: 5px;
+  right: 0;
+  left: -2px;
+  margin: auto;
+  text-align: center;
+  text-decoration: none;
+}
+/* Topへスクロールボタン */
 
 
 /* 下層ページのherosection */
