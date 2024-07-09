@@ -16,6 +16,7 @@
 
 body {
   font-family: "Zen Kaku Gothic New","Apple Chancery",  sans-serif;
+  color: #333;
 }
 
 /* フォントサイズ */
@@ -46,7 +47,6 @@ header.fixed-top.scrolled {
   display: flex;
   align-items: center;
 }
-
 .navbar-nav-box {
   display: flex;
   justify-content: flex-end;
@@ -54,11 +54,18 @@ header.fixed-top.scrolled {
 }
 @media (min-width: 960px) {
   .navbar-brand-box {
-    padding-left: 100px; /* 左の余白 */
+    padding-left: 100px;
   }
   .navbar-nav-box {
-    padding-right: 100px; /* 右の余白 */
+    padding-right: 100px;
   }
+}
+.navbar-brand-items h1 span {
+  font-weight: bold;
+  color: #333;
+}
+.navbar-nav-box li {
+  font-weight: bold;
 }
 
 .navbar-brand-box a.navbar-brand {
