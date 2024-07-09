@@ -6,3 +6,18 @@
   padding-left: 0;
   padding-right: 0;
 }
+
+/* ボタン プライマリの色を変更 */
+.btn-primary {
+  color: #333;
+  font-weight: bold;
+  background-color: #c6af28 !important; /* 背景色 */
+  border-color: #c6af28 !important; /* ボーダー色 */
+  border-radius: 15px;
+}
+
+.btn-primary:hover {
+  color: #333;
+  background-color: #afa223 !important; /* ホバー時の背景色 */
+  border-color: #9d9120 !important; /* ホバー時のボーダー色 */
+}

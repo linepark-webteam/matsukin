@@ -3,8 +3,10 @@
   font-family: "Apple Chancery";
   src: url("./fonts/AppleChancery.eot"); /* IE9 Compatibility */
   src: url("./fonts/AppleChancery.eot?#iefix") format("embedded-opentype"),
-       url("./fonts/AppleChancery.woff2") format("woff2"), /* Super Modern Browsers */
-       url("./fonts/AppleChancery.woff") format("woff"), /* Modern Browsers */
+       /* url("./fonts/AppleChancery.woff2") format("woff2"), */
+      /* Super Modern Browsers */
+       /* url("./fonts/AppleChancery.woff") format("woff"), */
+        /* Modern Browsers */
        url("./fonts/AppleChancery.ttf") format("truetype"), /* Safari, Android, iOS */
        url("./fonts/AppleChancery.svg#AppleChancery") format("svg"); /* Legacy iOS */
   font-weight: normal;
@@ -110,6 +112,32 @@ header.fixed-top.scrolled {
   text-decoration: none;
 }
 /* Topへスクロールボタン */
+
+/* フッターのスタイル */
+.footer-brand {
+  font-weight: bold;
+}
+
+/* .brand-container {
+  border-right: 1px solid #333;
+} */
+@media screen and (min-width: 960px) {
+  .brand-container {
+    border-right: 1px solid #333;
+  }
+}
+.brand-container p {
+  /* border-right: 1px solid #333; */
+  font-weight: bold;
+}
+
+.conntact-container {
+
+}
+.fa-brands, .fab {
+    margin-right: 10px;
+}
+/* フッターのスタイル */
 
 
 /* 下層ページのherosection */

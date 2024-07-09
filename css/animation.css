@@ -27,7 +27,7 @@ svg {
 path {
   fill: none; /* 初期状態では塗りつぶし無し */
   stroke: #C6AF28; /* 線の色 */
-  stroke-width: 2; /* 線の太さ */
+  stroke-width: 4; /* 線の太さ */
 }
 
 /* スライドアニメーションの為のスタイル */

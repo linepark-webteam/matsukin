@@ -1,10 +1,10 @@
 console.log("test");
 
 
-// SVGアニメーション
+// TOP HERO SVGアニメーション
 new Vivus('house', {
   duration: 500,
-  type: 'oneByOne',
+  type: 'async',
   animTimingFunction: Vivus.EASE
 }, function (obj) {
   obj.el.classList.add('finished'); // アニメーション完了を示すクラスを追加
@@ -49,15 +49,17 @@ window.onload = function () {
   });
 
   // スライドショーの初期化と設定
-  const slides = document.querySelectorAll(".slide");
-  let index = 0;
+  // const slides = document.querySelectorAll(".slide");
+  // let index = 0;
 
-  function changeSlide() {
-    slides.forEach((slide) => slide.classList.remove("active")); // すべてのスライドから 'active' クラスを削除
-    slides[index].classList.add("active"); // 現在のスライドに 'active' クラスを追加
-    index = (index + 1) % slides.length; // 次のスライドのインデックスを計算
+  // function changeSlide() {
+  //   slides.forEach((slide) => slide.classList.remove("active"));
+    // すべてのスライドから 'active' クラスを削除
+    // slides[index].classList.add("active"); // 現在のスライドに 'active' クラスを追加
+    // index = (index + 1) % slides.length;
+    // 次のスライドのインデックスを計算
   }
 
   // 5秒ごとにスライドを切り替え
-  setInterval(changeSlide, 5000);
-};
+//   setInterval(changeSlide, 5000);
+// };
