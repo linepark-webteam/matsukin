@@ -36,6 +36,30 @@
   }
 }
 
+/* Swipper Sliderの為のスタイル */
+.swiper-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Swipper Sliderの為のスタイル */
+
 .c-section-content.first,
 .c-section-content.products {
   display: flex;

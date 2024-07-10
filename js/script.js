@@ -48,6 +48,36 @@ window.onload = function () {
     });
   });
 
+// Swipper ライブラリの為のScript
+const swiper = new Swiper('.swiper-container', {
+  loop: true,
+  spaceBetween: 10,
+  speed: 5000,
+  autoplay: {
+      delay: 1,
+      disableOnInteraction: false,
+      // reverseDirection: true,
+  },
+  allowTouchMove: false,
+  breakpoints: {
+      320: {
+          slidesPerView: 3,
+      },
+      480: {
+          slidesPerView: 3,
+      },
+      768: {
+          slidesPerView: 5,
+      },
+      1024: {
+          slidesPerView: 5,
+      },
+      1200: {
+          slidesPerView: 5,
+      }
+  }
+});
+
   // スライドショーの初期化と設定
   // const slides = document.querySelectorAll(".slide");
   // let index = 0;

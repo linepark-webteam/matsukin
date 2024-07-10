@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>SVG Fill Animation with GSAP</title>
+  <style>
+    #my-svg {
+      width: 800px;
+      height: auto;
+    }
+    .st0 {
+      fill: none; /* 初期状態では塗りなし */
+      stroke: #C6AF28;
+      stroke-width: 5; /* 適切な線の太さを設定 */
+    }
+  </style>
+</head>
+<body>
+  <svg
+    id="my-svg"
+    version="1.1"
+    viewBox="0 0 1412 382"
+    style="enable-background:new 0 0 1412 382;"
+    xml:space="preserve"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:svg="http://www.w3.org/2000/svg">
+    <g id="g3">
+      <g id="g2">
+        <g id="g1">
+          <path class="st0"
+            d="M 0 0 H 1412 V 382 H 0 Z"
+            id="path1" />
+        </g>
+      </g>
+    </g>
+  </svg>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/DrawSVGPlugin.min.js"></script>
+  <script>
+    // GSAPアニメーションの定義
+    gsap.to("#path1", { duration: 5, drawSVG: "100%", ease: "none" });
+  </script>
+</body>
+</html>
