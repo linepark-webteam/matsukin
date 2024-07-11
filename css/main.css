@@ -4,6 +4,10 @@
   height: 100svh;
 }
 
+.hero-svg {
+  margin-top: 20px;
+}
+
 .hero-text {
   position: absolute;
   top: 80%;
@@ -15,7 +19,7 @@
 
 .hero-text h2 {
   font-family: "Apple Chancery";
-  font-size: calc((100vw - 320px) / 140 + 24px);
+  font-size: calc((100vw - 320px) / 140 + 18px);
   font-weight: bold;
   letter-spacing: 2px;
 }
@@ -107,3 +111,13 @@
   color: #333;
 }
 
+/* 製造・作品 */
+.swiper-container.products, 
+.swiper-container.works {
+  width: 100vw;  /* 画面幅いっぱいに表示 */
+  height: 300px;  /* 固定の高さ */
+  margin: 0;  /* 余白をリセット */
+  padding: 0;  /* 余白をリセット */
+  box-sizing: border-box;  /* ボーダーとパディングを幅に含める */
+  overflow: inherit;
+}

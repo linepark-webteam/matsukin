@@ -122,6 +122,9 @@ header.fixed-top.scrolled {
 
 /* フッターのスタイル */
 .footer-brand {
+  display: flex;
+  justify-content: center;
+  font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
   font-weight: bold;
 }
 
@@ -133,16 +136,22 @@ header.fixed-top.scrolled {
     border-right: 1px solid #333;
   }
 }
-.brand-container p {
-  /* border-right: 1px solid #333; */
+
+.footer-link {
   font-weight: bold;
+  margin-right: 30px;
+}
+@media screen and (min-width: 960px) {
+  .footer-link {
+    font-size: 1rem;
+  }
 }
 
 .conntact-container {
 
 }
 .fa-brands, .fab {
-    margin-right: 10px;
+    margin-right: 20px;
 }
 /* フッターのスタイル */
 

@@ -13,7 +13,7 @@
   font-weight: bold;
   background-color: #c6af28 !important; /* 背景色 */
   border-color: #c6af28 !important; /* ボーダー色 */
-  border-radius: 15px;
+  border-radius: 16px;
 }
 
 .btn-primary:hover {
