@@ -78,25 +78,10 @@ const swiper1 = new Swiper('.swiper-container.top', {
     delay: 3000,
     disableOnInteraction: false,
   },
-  allowTouchMove: false,
-  breakpoints: {
-    320: {
-      slidesPerView: 3,
-    },
-    480: {
-      slidesPerView: 3,
-    },
-    768: {
-      slidesPerView: 5,
-    },
-    1024: {
-      slidesPerView: 5,
-    },
-    1200: {
-      slidesPerView: 5,
-    }
-  }
+  allowTouchMove: true,
+  slidesPerView: 5
 });
+
 const swiper2 = new Swiper('.swiper-container.products', {
   loop: true,
   spaceBetween: 25,

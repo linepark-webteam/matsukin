@@ -1,24 +1,24 @@
 .top-hero-section {
-  position: relative;
   width: 100%;
-  height: 100svh;
+  height: 78svh;
+}
+@media screen and (min-width: 960px) {
+  .top-hero-section {
+    width: 100%;
+    height: 78svh;
+  }
 }
 
 .hero-svg {
   margin-top: 100px;
 }
 .hero-text {
-  position: absolute;
-  /* top: 80%;
-  left: 50%; */
-  transform: translate(-50%, -50%);
   color: #333; /* テキストの色 */
   text-align: center;
 }
 @media screen and (min-width: 960px) {
   .hero-text {
-    top: 400px;
-    left: 50%;
+    margin-top: 50px;
   }
 }
 
@@ -48,14 +48,22 @@
 /* SVG背景の為のスタイル */
 .svg-background {
   position: absolute;
-  top: 1100px;
+  top: 110svh;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -1; /* 背景に配置 */
 }
+@media screen and (min-width: 960px) {
+  .svg-background {
+    top: 980px;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* 背景に配置 */
+  }
+}
 
-/* Swipper Sliderの為のスタイル */
+/* 1番上の Swipper Sliderの為のスタイル */
 .swiper-container.top {
   width: 100%;
   height: 300px;
@@ -64,7 +72,7 @@
 .swiper-wrapper {
   transition-timing-function: linear !important;
 }
-.swiper-slide {
+.swiper-slide.top {
   /* text-align: center;
   font-size: 18px;
   background: #fff; */
@@ -72,13 +80,21 @@
   justify-content: center;
   align-items: center;
 }
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
+.swiper-slide.top img {
+  width: 240px;
+  height: 300px;
+  border-radius: 20px;
   object-fit: cover;
 }
-/* Swipper Sliderの為のスタイル */
+@media screen and (min-width: 960px) {
+  .swiper-slide.top img {
+    width: 240px;
+    height: 280px;
+    object-fit: cover;
+  }
+}
 
+/* first products section共通のスタイル */
 .c-section-content.first,
 .c-section-content.products {
   display: flex;
@@ -108,7 +124,7 @@
   text-align: center;
 }
 
-/* Component classes */
+/* section共通のスタイル */
 .c-section-content {
   padding: 20px;
   font-weight: bold;
@@ -119,11 +135,66 @@
   margin-bottom: 16px;
   color: #333;
   font-weight: bold;
+  text-align: center;
 }
 
 .c-section-paragraph {
   font-size: 16px;
   color: #333;
+}
+
+/* 会社概要 */
+.company {
+  /* margin-top: ; */
+}
+@media screen and (min-width: 960px) {
+  .company {
+    margin-top: 150px;
+  }
+}
+.company-img {
+  /* margin-top: ; */
+}
+@media screen and (min-width: 960px) {
+  .company-img {
+    width: 500px;
+    height: 500px;
+    border-radius: 20px;
+  }
+}
+
+/* 事業紹介 */
+.introduction {
+  /* margin-top: ; */
+}
+@media screen and (min-width: 960px) {
+  .introduction {
+    margin-top: 50px;
+  }
+}
+.introduction-img {
+  /* margin-top: ; */
+}
+@media screen and (min-width: 960px) {
+  .introduction-img {
+    width: 500px;
+    height: 500px;
+    border-radius: 20px;
+  }
+}
+
+/* 取扱製品 */
+.products-container {
+
+}
+.products-container {
+  /* margin-top: ; */
+}
+@media screen and (min-width: 960px) {
+  .products-container {
+    margin-top: 150px;
+    margin-bottom: 50px;
+  }
 }
 
 /* 製造・作品 */
@@ -135,4 +206,31 @@
   padding: 0;  /* 余白をリセット */
   box-sizing: border-box;  /* ボーダーとパディングを幅に含める */
   overflow: inherit;
+}
+.swiper-slide.products,
+.swiper-slide.works
+{
+  /* text-align: center;
+  font-size: 18px;
+  background: #fff; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide.products img,
+.swiper-slide.works img
+{
+  width: 240px;
+  height: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+@media screen and (min-width: 960px) {
+  .swiper-slide.products img,
+  .swiper-slide.works img
+  {
+    width: 360px;
+    height: 360px;
+    object-fit: cover;
+  }
 }
