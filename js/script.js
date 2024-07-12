@@ -9,6 +9,9 @@ new Vivus('house', {
 }, function (obj) {
   obj.el.classList.add('finished'); // アニメーション完了を示すクラスを追加
   document.querySelectorAll('#house path').forEach(function(path) {
+
+      // path.style.fill = '#C6AF28';
+      // アニメーション終了後にfillを適用
   });
 });
 
