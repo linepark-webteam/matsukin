@@ -11,9 +11,9 @@
 .btn-primary {
   color: #333;
   font-weight: bold;
-  background-color: #c6af28 !important; /* 背景色 */
-  border-color: #c6af28 !important; /* ボーダー色 */
-  border-radius: 15px;
+  background-color: #c6af28 !important;
+  border-color: #c6af28 !important;
+  border-radius: 16px;
 }
 
 .btn-primary:hover {
@@ -21,3 +21,13 @@
   background-color: #afa223 !important; /* ホバー時の背景色 */
   border-color: #9d9120 !important; /* ホバー時のボーダー色 */
 }
+
+/* バッジ プライマリの色を変更 */
+.text-bg-primary {
+  /* color: #333 !important; */
+  font-weight: bold;
+  background-color: #c6af28 !important;
+  border-color: #c6af28 !important; /* ボーダー色 */
+  border-radius: 5px;
+}
+

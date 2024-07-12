@@ -4,18 +4,28 @@
   height: 100svh;
 }
 
+.hero-svg {
+  margin-top: 100px;
+}
+
 .hero-text {
   position: absolute;
-  top: 80%;
-  left: 50%;
+  /* top: 80%;
+  left: 50%; */
   transform: translate(-50%, -50%);
   color: #333; /* テキストの色 */
   text-align: center;
 }
+@media screen and (min-width: 960px) {
+  .hero-text {
+    top: 400px;
+    left: 50%;
+  }
+}
 
 .hero-text h2 {
   font-family: "Apple Chancery";
-  font-size: calc((100vw - 320px) / 140 + 24px);
+  font-size: calc((100vw - 320px) / 140 + 18px);
   font-weight: bold;
   letter-spacing: 2px;
 }
@@ -36,8 +46,18 @@
   }
 }
 
+/* SVG背景の為のスタイル */
+.svg-background {
+  position: absolute;
+  top: 1100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 背景に配置 */
+}
+
 /* Swipper Sliderの為のスタイル */
-.swiper-container {
+.swiper-container.top {
   width: 100%;
   height: 300px;
   overflow: hidden;
@@ -46,9 +66,9 @@
   transition-timing-function: linear !important;
 }
 .swiper-slide {
-  text-align: center;
+  /* text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: #fff; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,3 +127,13 @@
   color: #333;
 }
 
+/* 製造・作品 */
+.swiper-container.products,
+.swiper-container.works {
+  width: 100vw;  /* 画面幅いっぱいに表示 */
+  height: 300px;  /* 固定の高さ */
+  margin: 0;  /* 余白をリセット */
+  padding: 0;  /* 余白をリセット */
+  box-sizing: border-box;  /* ボーダーとパディングを幅に含める */
+  overflow: inherit;
+}

@@ -9,11 +9,29 @@ new Vivus('house', {
 }, function (obj) {
   obj.el.classList.add('finished'); // アニメーション完了を示すクラスを追加
   document.querySelectorAll('#house path').forEach(function(path) {
-      path.style.fill = '#C6AF28'; // アニメーション終了後にfillを適用
   });
 });
 
+// TOP SVG背景アニメーション
+        // Vivusインスタンスを作成
+        let vivus = new Vivus('my-svg', {
+          type: 'delayed',
+          duration: 200,
+          start: 'manual', // 手動でアニメーションを開始
+          dashGap: 20
+      });
 
+      // スクロールイベントに基づいて描画を制御
+      document.addEventListener('scroll', function() {
+          let scrollPosition = window.scrollY;
+          let documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+          let progress = scrollPosition / documentHeight;
+
+          // Vivusの進行状況を設定
+          vivus.setFrameProgress(progress);
+      });
+
+// プリローダーアニメーション
 window.onload = function () {
   // プリローダーアニメーション非表示（存在する場合）
   let preloader = document.getElementById("preloader");
@@ -48,35 +66,89 @@ window.onload = function () {
     });
   });
 
-// Swipper ライブラリの為のScript
-const swiper = new Swiper('.swiper-container', {
+// Swipperライブラリ(スライドアニメーション)の為のScript
+const swiper1 = new Swiper('.swiper-container.top', {
   loop: true,
-  spaceBetween: 10,
+  spaceBetween: 45,
   speed: 5000,
   autoplay: {
-      delay: 1,
-      disableOnInteraction: false,
-      // reverseDirection: true,
+    delay: 3000,
+    disableOnInteraction: false,
   },
   allowTouchMove: false,
   breakpoints: {
-      320: {
-          slidesPerView: 3,
-      },
-      480: {
-          slidesPerView: 3,
-      },
-      768: {
-          slidesPerView: 5,
-      },
-      1024: {
-          slidesPerView: 5,
-      },
-      1200: {
-          slidesPerView: 5,
-      }
+    320: {
+      slidesPerView: 3,
+    },
+    480: {
+      slidesPerView: 3,
+    },
+    768: {
+      slidesPerView: 5,
+    },
+    1024: {
+      slidesPerView: 5,
+    },
+    1200: {
+      slidesPerView: 5,
+    }
   }
 });
+const swiper2 = new Swiper('.swiper-container.products', {
+  loop: true,
+  spaceBetween: 25,
+  speed: 5000,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  allowTouchMove: false,
+  breakpoints: {
+    320: {
+      slidesPerView: 3.5,
+    },
+    480: {
+      slidesPerView: 3.5,
+    },
+    768: {
+      slidesPerView: 3.5,
+    },
+    1024: {
+      slidesPerView: 3.5,
+    },
+    1200: {
+      slidesPerView: 3.5,
+    }
+  }
+});
+const swiper3 = new Swiper('.swiper-container.works', {
+  loop: true,
+  spaceBetween: 25,
+  speed: 5000,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  allowTouchMove: false,
+  breakpoints: {
+    320: {
+      slidesPerView: 3.5,
+    },
+    480: {
+      slidesPerView: 3.5,
+    },
+    768: {
+      slidesPerView: 3.5,
+    },
+    1024: {
+      slidesPerView: 3.5,
+    },
+    1200: {
+      slidesPerView: 3.5,
+    }
+  }
+});
+}
 
   // スライドショーの初期化と設定
   // const slides = document.querySelectorAll(".slide");
@@ -88,7 +160,7 @@ const swiper = new Swiper('.swiper-container', {
     // slides[index].classList.add("active"); // 現在のスライドに 'active' クラスを追加
     // index = (index + 1) % slides.length;
     // 次のスライドのインデックスを計算
-  }
+  // }
 
   // 5秒ごとにスライドを切り替え
 //   setInterval(changeSlide, 5000);
