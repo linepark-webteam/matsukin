@@ -9,12 +9,11 @@ if (empty($_SESSION['name']) || empty($_SESSION['email'])) {
 }
 
 // セッションからデータを取得
-$inquiryType = $_SESSION['inquiryType'] ?? '';
 $name = $_SESSION['name'] ?? '';
+$kana = $_SESSION['kana'] ?? '';
 $companyName = $_SESSION['companyName'] ?? '';
 $email = $_SESSION['email'] ?? '';
 $confirmEmail = $_SESSION['confirmEmail'] ?? '';
-$callbackPreference = $_SESSION['callbackPreference'] ?? '';
 $inquiry = $_SESSION['inquiry'] ?? '';
 $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
 
@@ -22,24 +21,52 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/head.php'; ?>
-<meta name="keywords" content="みどり保険, 相模原, 保険, 濱島一志, 神奈川">
-  <title>お問い合わせ｜株式会社みどり総合保険事務所</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ↓↓↓↓ 完成後に作成 ↓↓↓↓ -->
+  <!-- ↓ サイト説明文 -->
+  <meta name="description" content="">
+  <!-- ↓ 検索キーワード -->
+  <meta name="keywords" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="東北松金工業株式会社">
+  <meta property="og:description" content="＊">
+
+  <!-- Favicon -->
+  <link rel="icon" href="./img/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="./img/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="./img/favicon-32x32.png" type="image/png" sizes="48x48">
+  <!-- AppleIcon -->
+  <link rel="apple-touch-icon" href="./img/apple-touch-icon.png" sizes="180x180">
+
+  <!-- Zen Kaku Gothic New Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+
+  <!-- ↓ リセットCSS -->
+  <link rel="stylesheet" href="../css/ress.min.css">
+
+  <!-- ↓ BootStrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <!-- ↓ BootStrapのスタイルを上書き -->
+  <link rel="stylesheet" href="../css/mybootstrap.css">
+
+  <link rel="stylesheet" href="../css/common.css">
+  <!-- ↓ アニメーション用のスタイルシート -->
+  <link rel="stylesheet" href="../css/animation.css">
+
+  <link rel="stylesheet" href="../css/contact.css">
+  <title>お問い合わせ内容の確認</title>
 </head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K07XZCD6JK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-K07XZCD6JK');
-</script>
 
 <body>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.html'; ?>
 
   <section class="hero mb-5">
     <div class="image-section position-relative masked">
@@ -66,13 +93,13 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
     <form action="sendmail.php" method="post">
 
         <div class="mb-4">
-          <h5>お問い合わせ項目</h5>
-          <h4><?php echo htmlspecialchars($inquiryType); ?></h4>
+          <h5>お名前</h5>
+          <h4><?php echo htmlspecialchars($name); ?></h4>
         </div>
 
         <div class="mb-4">
-          <h5>お名前</h5>
-          <h4><?php echo htmlspecialchars($name); ?></h4>
+          <h5>お名前（フリガナ）</h5>
+          <h4><?php echo htmlspecialchars($kana); ?></h4>
         </div>
 
         <div class="mb-4">
@@ -83,11 +110,6 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
         <div class="mb-4">
           <h5>メールアドレス</h5>
           <h4><?php echo htmlspecialchars($email); ?></h4>
-        </div>
-
-        <div class="mb-4">
-          <h5>担当者からの折り返し方法</h5>
-          <h4><?php echo htmlspecialchars($callbackPreference); ?></h4>
         </div>
 
         <div class="mb-4">

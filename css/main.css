@@ -13,7 +13,7 @@
   margin-top: 100px;
 }
 .hero-text {
-  color: #333; /* テキストの色 */
+  color: #4c3a2c; /* テキストの色 */
   text-align: center;
 }
 @media screen and (min-width: 960px) {
@@ -113,14 +113,14 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 16px;
-  color: #333;
+  color: #4c3a2c;
 }
 
 .c-section-paragraph.first,
 .c-section-paragraph.products {
   font-size: 16px;
   font-weight: bold;
-  color: #333;
+  color: #4c3a2c;
   text-align: center;
 }
 
@@ -133,14 +133,14 @@
 .c-section-title {
   font-size: 24px;
   margin-bottom: 16px;
-  color: #333;
+  color: #4c3a2c;
   font-weight: bold;
   text-align: center;
 }
 
 .c-section-paragraph {
   font-size: 16px;
-  color: #333;
+  color: #4c3a2c;
 }
 
 /* 会社概要 */

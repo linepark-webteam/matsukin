@@ -17,7 +17,7 @@
 body {
   background-color: #e8e8e8;
   font-family: "Zen Kaku Gothic New","Apple Chancery",  sans-serif;
-  color: #333;
+  color: #4c3a2c;
   letter-spacing: 3px;
 }
 
@@ -69,7 +69,7 @@ header.fixed-top.transparent {
 }
 .navbar-brand-items h1 span {
   font-weight: bold;
-  color: #333;
+  color: #4c3a2c;
 }
 
 .navbar-nav-box li {
@@ -153,7 +153,7 @@ footer {
 } */
 @media screen and (min-width: 960px) {
   .brand-container {
-    border-right: 1px solid #333;
+    border-right: 1px solid #4c3a2c;
   }
 }
 

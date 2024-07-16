@@ -15,11 +15,10 @@ if (empty($_SESSION['name']) || empty($_SESSION['email'])) {
 }
 
 // セッションからデータを取得
-$inquiryType = $_SESSION['inquiryType'] ?? '';
 $name = $_SESSION['name'] ?? '';
+$kana = $_SESSION['kana'] ?? '';
 $companyName = $_SESSION['companyName'] ?? '';
 $email = $_SESSION['email'] ?? '';
-$callbackPreference = $_SESSION['callbackPreference'] ?? '';
 $inquiry = $_SESSION['inquiry'] ?? '';
 
 // PHPMailerを使用してメールを送信
@@ -28,35 +27,31 @@ $mail = new PHPMailer(true);
 try {
     // PHPMailerの設定
     $mail->CharSet = 'UTF-8';
-    $mail->setFrom('noreply@midori-hoken.com', '株式会社みどり総合保険事務所');
+    $mail->setFrom('＊＊＊＊＊', '東北松金工業株式会社');
     $mail->addAddress($email, $name);
     $mail->isHTML(true); // HTML形式のメール
     $mail->Subject = 'お問い合わせありがとうございます';
 
     // メール本文の設定
     $mail->Body = "以下の内容でお問い合わせを受け付けました。<br><br>" .
-        "お問い合わせ項目：" . htmlspecialchars($inquiryType) . "<br>" .
         "お名前：" . htmlspecialchars($name) . "<br>" .
         "会社名：" . htmlspecialchars($companyName) . "<br>" .
         "メールアドレス：" . htmlspecialchars($email) . "<br>" .
-        "担当者からの折り返し方法：" . htmlspecialchars($callbackPreference) . "<br>" .
         "お問い合わせ内容：<br>" . nl2br(htmlspecialchars($inquiry));
 
     $mail->send();
 
     // 送信元メールアドレスと名前を設定
-    $mail->setFrom('info@midori-hoken.com', 'HP問い合わせフォーム');
+    $mail->setFrom('＊＊＊＊＊', 'HP問い合わせフォーム');
     // 指定したアドレスに送るメール
     $mail->clearAddresses();
     $mail->addAddress('ko.nagai.0801@gmail.com', '管理者');
-    $mail->addAddress('l77mmidori@nifty.com', '管理者');
-    $mail->Subject = '新しいお問い合わせがあります';
+    $mail->addAddress('＊＊＊＊＊', '管理者');
+    $mail->Subject = 'HPよりお問い合わせを受け付けました';
     $mail->Body = "新しいお問い合わせがあります。<br><br>" .
-        "お問い合わせ項目：" . htmlspecialchars($inquiryType) . "<br>" .
         "お名前：" . htmlspecialchars($name) . "<br>" .
         "会社名：" . htmlspecialchars($companyName) . "<br>" .
         "メールアドレス：" . htmlspecialchars($email) . "<br>" .
-        "担当者からの折り返し方法：" . htmlspecialchars($callbackPreference) . "<br>" .
         "お問い合わせ内容：<br>" . nl2br(htmlspecialchars($inquiry));
 
     $mail->send();

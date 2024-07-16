@@ -7,9 +7,47 @@
   padding-right: 0;
 }
 
+/* ナビゲーションバー(ハンバーガーメニュー)のカスタマイズ */
+.navbar-toggler {
+  border: none; /* 枠線を削除 */
+  outline: none; /* フォーカス時のアウトラインを削除 */
+  padding: 0; /* パディングを削除 */
+  box-shadow: none; /* 任意のシャドウを削除 */
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' d='M4 7h22M4 15h22' /%3E%3C/svg%3E"); /* 初期状態（2本線） */
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' d='M7 7l16 16M23 7L7 23' /%3E%3C/svg%3E"); /* メニュー展開時（バツ印） */
+}
+
+
+/* ナビゲーションバーの背景とシャドウを消す設定 */
+.bg-body-tertiary {
+  background: transparent !important;
+  box-shadow: none !important; /* シャドウを削除 */
+}
+
+.navbar-collapse {
+  border: none; /* 展開時の枠線を削除 */
+  box-shadow: none; /* 展開時のシャドウを削除 */
+}
+.navbar-toggler:focus {
+  outline: none !important; /* フォーカス時のアウトラインを削除 */
+  box-shadow: none !important; /* フォーカス時のボックスシャドウを削除 */
+}
+
+.navbar-toggler:active, .navbar-toggler:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
 /* ボタン プライマリの色を変更 */
 .btn-primary {
-  color: #333;
+  color: #4c3a2c;
   font-weight: bold;
   background-color: #c6af28 !important;
   border-color: #c6af28 !important;
@@ -17,7 +55,7 @@
 }
 
 .btn-primary:hover {
-  color: #333;
+  color: #4c3a2c;
   background-color: #afa223 !important; /* ホバー時の背景色 */
   border-color: #9d9120 !important; /* ホバー時のボーダー色 */
 }
@@ -43,6 +81,11 @@
 .btn-outline-primary:disabled {
   color: #c6af28; /* 無効時の文字色 */
   background-color: transparent; /* 無効時の背景色を透明に設定 */
+}
+
+/* ボタン セカンダリのスタイルを微調整（問い合わせで使用） */
+.btn-secondary {
+  border-radius: 16px;
 }
 
 

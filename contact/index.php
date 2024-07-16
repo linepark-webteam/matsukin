@@ -3,10 +3,10 @@ session_start();
 
 $errors = [];
 $name = $_SESSION['name'] ?? '';
+$kana = $_SESSION['kana'] ?? '';
 $companyName = $_SESSION['companyName'] ?? '';
 $email = $_SESSION['email'] ?? '';
 $confirmEmail = $_SESSION['confirmEmail'] ?? '';
-$callbackPreference = $_SESSION['callbackPreference'] ?? '';
 $inquiry = $_SESSION['inquiry'] ?? '';
 $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
 
@@ -14,6 +14,9 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $name = $_POST['name'] ?? '';
   $_SESSION['name'] = $name;
+
+  $kana = $_POST['kana'] ?? '';
+  $_SESSION['kana'] = $kana;
 
   $companyName = $_POST['companyName'] ?? '';
   $_SESSION['companyName'] = $companyName;
@@ -23,9 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $confirmEmail = $_POST['confirmEmail'] ?? '';
   $_SESSION['confirmEmail'] = $confirmEmail;
-
-  $callbackPreference = $_POST['callbackPreference'] ?? '';
-  $_SESSION['callbackPreference'] = $callbackPreference;
 
   $inquiry = $_POST['inquiry'] ?? '';
   $_SESSION['inquiry'] = $inquiry;
@@ -37,6 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors['name'] = '<span class="text-danger fs-6">お名前は必須です。</span>';
   } elseif (strlen($name) > 32) {
     $errors['name'] = '<span class="text-danger fs-6">お名前は32文字以内で入力してください。</span>';
+  }
+
+  if (empty($kana)) {
+    $errors['kana'] = '<span class="text-danger fs-6">お名前（フリガナ）は必須です。</span>';
+  } elseif (strlen($kana) > 32) {
+    $errors['kana'] = '<span class="text-danger fs-6">お名前（フリガナ）は32文字以内で入力してください。</span>';
   }
 
   // 会社名
@@ -238,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="d-flex flex-column align-items-center col-lg-12">
                   <div class="d-flex">
                     <input type="checkbox" name="privacyPolicy" class="form-check-input fs-6 fw-bold" id="privacyPolicy" value="accepted" <?php echo (!empty($privacyPolicy) ? 'checked' : ''); ?>>
-                    <label class="form-check-label fs-6 fw-bold" for="privacyPolicy">「<a href="../privacy-policy/">個人情報保護方針</a>」に同意の上、チェックを入れて送信してください。</label>
+                    <label class="form-check-label fs-6 fw-bold" for="privacyPolicy"><span class="fs-6 text-decoration-underline"><a href="../privacy-policy/">「個人情報保護方針」</a></span>に同意の上、チェックを入れて送信してください。</label>
                   </div>
                   <?php if (!empty($errors['privacyPolicy'])) : ?>
                     <div class="error"><?php echo $errors['privacyPolicy']; ?></div>
@@ -249,7 +255,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- 送信ボタン -->
             <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-outline-primary col-4 px-4  py-3"><span class="fs-4 fw-bold">入力内容を確認する</span></button>
+              <button type="submit" class="btn btn-outline-primary col-4 px-lg-3 px-1  py-3"><span class="fs-lg-6 fs-6 fw-bold">入力内容を確認する</span></button>
             </div>
           </form>
 
