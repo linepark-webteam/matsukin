@@ -140,23 +140,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.html'; ?>
 
-  <section class="hero mb-5">
+  <!-- <section class="hero mb-5">
         <div>
           <h2>お問い合わせ</h2>
         </div>
-  </section>
+  </section> -->
 
   <section class="mb-5 py-5">
-    <div class="container">
-          <div class="section-header col-lg-12">
-            <h2>お問合せ</h2>
+
+
+
+
+        <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+      <div class="section-header col-lg-12 my-5">
+            <h2 class="fs-4 fw-bold">お問合せフォーム</h2>
+            <p class="ms-5 mt-3 fs-6 fw-bold">弊社に関するご質問、商品やサービスなどお気軽にお問い合わせください。</p>
           </div>
-        </div>
-        <div class="container row">
-          <form action="" method="post">
+        <form action="" method="post">
+
             <!-- お名前 -->
-            <div class="form-group d-lg-flex mt-3">
-              <label for="name" class="col-lg-3 mb-2 me-5">お名前 <span class="badge text-bg-primary">必須</span></label>
+            <div class="form-group d-lg-flex justify-content-center mt-3">
+              <label for="name" class="col-lg-4 fs-4 fw-bold mb-2">お名前 <span class="text-danger fs-4 fw-bold">*</span></label>
               <div class="d-flex flex-column col-lg-8">
                 <input type="text" name="name" class="form-control d-block" id="name" placeholder="お名前を入力してください" maxlength="32" value="<?php echo htmlspecialchars($name); ?>">
                 <span class="small">（32文字以内）</span>
@@ -166,9 +172,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </div>
             </div>
 
+            <!-- お名前（フリガナ） -->
+            <div class="form-group d-lg-flex justify-content-center mt-3">
+              <label for="kana" class="col-lg-4 fs-4 fw-bold mb-2">お名前（フリガナ）<span class="text-danger fs-3 fw-bold">*</span></label>
+              <div class="d-flex flex-column col-lg-8">
+                <input type="text" name="kana" class="form-control d-block" id="kana" placeholder="フリガナを入力してください" maxlength="32" value="<?php echo htmlspecialchars($kana); ?>">
+                <span class="small">（32文字以内）</span>
+                <?php if (!empty($errors['kana'])) : ?>
+                  <div class="error"><?php echo $errors['kana']; ?></div>
+                <?php endif; ?>
+              </div>
+            </div>
+
             <!-- 会社名 -->
-            <div class="form-group d-lg-flex mt-3">
-              <label for="companyName" class="col-lg-3 mb-2 me-5">会社名 <span class="badge text-bg-secondary">任意</span></label>
+            <div class="form-group d-lg-flex justify-content-center mt-3">
+              <label for="companyName" class="col-lg-4 fs-4 fw-bold mb-2">会社名</label>
               <div class="d-flex flex-column col-lg-8">
                 <input type="text" name="companyName" class="form-control d-block" id="companyName" placeholder="会社名を入力してください" maxlength="64" value="<?php echo htmlspecialchars($companyName); ?>">
                 <span class="small">（64文字以内）</span>
@@ -179,8 +197,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <!-- メールアドレス -->
-            <div class="form-group d-lg-flex mt-3">
-              <label for="email" class="col-lg-3 mb-2 me-5">メールアドレス <span class="badge text-bg-primary">必須</span></label>
+            <div class="form-group d-lg-flex justify-content-center mt-3">
+              <label for="email" class="col-lg-4 fs-4 fw-bold mb-2">メールアドレス<span class="text-danger fs-4 fw-bold">*</span></label>
               <div class="d-flex flex-column col-lg-8">
                 <input type="email" name="email" class="form-control d-block" id="email" placeholder="メールアドレスを入力してください" maxlength="64" value="<?php echo htmlspecialchars($email); ?>">
                 <span class="small">（64文字以内）</span>
@@ -191,8 +209,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <!-- メールアドレス（確認用） -->
-            <div class="form-group d-lg-flex mt-3">
-              <label for="confirmEmail" class="col-lg-3 mb-2 me-5">メールアドレス（確認用） <span class="badge text-bg-primary">必須</span></label>
+            <div class="form-group d-lg-flex justify-content-center mt-3">
+              <label for="confirmEmail" class="col-lg-4 fs-6 fw-bold mb-2">メールアドレス（確認）<span class="text-danger fs-4 fw-bold">*</span></label>
               <div class="d-flex flex-column col-lg-8">
                 <input type="email" name="confirmEmail" class="form-control d-block" id="confirmEmail" placeholder="確認用メールアドレスを入力してください" maxlength="64" value="<?php echo htmlspecialchars($confirmEmail); ?>">
                 <span class="small">（上記と同じメールアドレスを入力してください）</span>
@@ -203,8 +221,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <!-- お問合せ内容 -->
-            <div class="form-group d-lg-flex mt-3">
-              <label for="inquiry" class="col-lg-3 mb-2 me-5">お問合せ内容 <span class="badge text-bg-primary">必須</span></label>
+            <div class="form-group d-lg-flex justify-content-center mt-3">
+              <label for="inquiry" class="col-lg-4 fs-4 fw-bold mb-2">お問い合わせ内容<span class="text-danger fs-4 fw-bold">*</span></label>
               <div class="d-flex flex-column col-lg-8">
                 <textarea name="inquiry" class="form-control" id="inquiry" rows="10" placeholder="お問い合わせ内容を入力してください" maxlength="1000"><?php echo htmlspecialchars($inquiry); ?></textarea>
                 <span class="small">（1000文字以内）</span>
@@ -217,10 +235,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- 「個人情報保護方針」 -->
             <div class="form-group my-5">
               <div class="form-check d-flex justify-content-center">
-                <div class="d-flex flex-column align-items-center col-lg-8">
+                <div class="d-flex flex-column align-items-center col-lg-12">
                   <div class="d-flex">
-                    <input type="checkbox" name="privacyPolicy" class="form-check-input" id="privacyPolicy" value="accepted" <?php echo (!empty($privacyPolicy) ? 'checked' : ''); ?>>
-                    <label class="form-check-label" for="privacyPolicy">「<a href="../privacy-policy/">個人情報保護方針</a>」に同意の上、チェックを入れて送信してください。</label>
+                    <input type="checkbox" name="privacyPolicy" class="form-check-input fs-6 fw-bold" id="privacyPolicy" value="accepted" <?php echo (!empty($privacyPolicy) ? 'checked' : ''); ?>>
+                    <label class="form-check-label fs-6 fw-bold" for="privacyPolicy">「<a href="../privacy-policy/">個人情報保護方針</a>」に同意の上、チェックを入れて送信してください。</label>
                   </div>
                   <?php if (!empty($errors['privacyPolicy'])) : ?>
                     <div class="error"><?php echo $errors['privacyPolicy']; ?></div>
@@ -231,14 +249,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- 送信ボタン -->
             <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-primary col-4">確認ページへ <i
-              class="fa-solid fa-angles-right"></i></button>
+              <button type="submit" class="btn btn-outline-primary col-4 px-4  py-3"><span class="fs-4 fw-bold">入力内容を確認する</span></button>
             </div>
           </form>
 
         </div>
-      </div>
-    </div>
+        </div>
+
   </section>
 
 

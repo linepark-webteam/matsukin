@@ -22,6 +22,30 @@
   border-color: #9d9120 !important; /* ホバー時のボーダー色 */
 }
 
+/* ボタン アウトラインプライマリの色を変更 */
+.btn-outline-primary {
+  color: #c6af28;
+  border-color: #c6af28;
+  border-radius: 50px;
+  border-width: 3px;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #c6af28;
+  border-color: #c6af28;
+}
+
+.btn-outline-primary:focus, .btn-outline-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(198, 175, 40, 0.5); /* フォーカス時のシャドウを設定 */
+}
+
+.btn-outline-primary:disabled {
+  color: #c6af28; /* 無効時の文字色 */
+  background-color: transparent; /* 無効時の背景色を透明に設定 */
+}
+
+
 /* バッジ プライマリの色を変更 */
 .text-bg-primary {
   /* color: #333 !important; */
