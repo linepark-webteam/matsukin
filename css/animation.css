@@ -15,7 +15,7 @@
 /* SVGアニメーションの為のスタイル */
 .svg {
   width: 100%;
-  /* max-width: 960px; */
+  /* max-width: 992px; */
   /* SVGの最大幅を設定 */
   margin: 0 auto; /* 中央揃え */
   display: block;

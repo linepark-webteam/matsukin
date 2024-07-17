@@ -72,14 +72,30 @@ window.onload = function () {
 // Swipperライブラリ(スライドアニメーション)の為のScript
 const swiper1 = new Swiper('.swiper-container.top', {
   loop: true,
-  spaceBetween: 45,
+  spaceBetween: 50,
   speed: 5000,
   autoplay: {
     delay: 3000,
     disableOnInteraction: false,
   },
   allowTouchMove: true,
-  slidesPerView: 5
+  breakpoints: {
+    320: {
+      slidesPerView: 3.5,
+    },
+    480: {
+      slidesPerView: 3.5,
+    },
+    768: {
+      slidesPerView: 3.5,
+    },
+    1024: {
+      slidesPerView: 4,
+    },
+    1200: {
+      slidesPerView: 5,
+    }
+  }
 });
 
 const swiper2 = new Swiper('.swiper-container.products', {
@@ -105,7 +121,7 @@ const swiper2 = new Swiper('.swiper-container.products', {
       slidesPerView: 3.5,
     },
     1200: {
-      slidesPerView: 3.5,
+      slidesPerView: 4.5,
     }
   }
 });
@@ -132,7 +148,7 @@ const swiper3 = new Swiper('.swiper-container.works', {
       slidesPerView: 3.5,
     },
     1200: {
-      slidesPerView: 3.5,
+      slidesPerView: 4.5,
     }
   }
 });

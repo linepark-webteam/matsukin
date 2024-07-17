@@ -27,7 +27,7 @@ $mail = new PHPMailer(true);
 try {
     // PHPMailerの設定
     $mail->CharSet = 'UTF-8';
-    $mail->setFrom('＊＊＊＊＊', '東北松金工業株式会社');
+    $mail->setFrom('ko.nagai.0801@gmail.com', '東北松金工業株式会社');
     $mail->addAddress($email, $name);
     $mail->isHTML(true); // HTML形式のメール
     $mail->Subject = 'お問い合わせありがとうございます';
@@ -42,11 +42,11 @@ try {
     $mail->send();
 
     // 送信元メールアドレスと名前を設定
-    $mail->setFrom('＊＊＊＊＊', 'HP問い合わせフォーム');
+    $mail->setFrom('ko.nagai.0801@gmail.com', 'HP問い合わせフォーム');
     // 指定したアドレスに送るメール
     $mail->clearAddresses();
     $mail->addAddress('ko.nagai.0801@gmail.com', '管理者');
-    $mail->addAddress('＊＊＊＊＊', '管理者');
+    // $mail->addAddress('＊＊＊＊＊', '管理者');
     $mail->Subject = 'HPよりお問い合わせを受け付けました';
     $mail->Body = "新しいお問い合わせがあります。<br><br>" .
         "お名前：" . htmlspecialchars($name) . "<br>" .

@@ -59,7 +59,7 @@ header.fixed-top.transparent {
   justify-content: flex-end;
   flex-grow: 1;
 }
-@media (min-width: 960px) {
+@media (min-width: 992px) {
   .navbar-brand-box {
     padding-left: 100px;
   }
@@ -132,7 +132,7 @@ header.fixed-top.transparent {
 footer {
 
 }
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 992px) {
   footer {
     margin-top: 150px;
   }
@@ -140,6 +140,7 @@ footer {
 .footer-brand {
   display: flex;
   justify-content: center;
+  align-items: center;
   font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
   font-weight: bold;
 }
@@ -151,7 +152,7 @@ footer {
 /* .brand-container {
   border-right: 1px solid #333;
 } */
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 992px) {
   .brand-container {
     border-right: 1px solid #4c3a2c;
   }
@@ -161,7 +162,7 @@ footer {
   font-weight: bold;
   margin-right: 30px;
 }
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 992px) {
   .footer-link {
     font-size: 1rem;
   }
@@ -172,6 +173,12 @@ footer {
 }
 .fa-brands, .fab {
     margin-right: 20px;
+}
+
+.copyright {
+  font-family: "Shippori Antique B1", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 /* フッターのスタイル */
 
