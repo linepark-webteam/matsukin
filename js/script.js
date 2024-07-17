@@ -9,30 +9,56 @@ new Vivus('house', {
 }, function (obj) {
   obj.el.classList.add('finished'); // アニメーション完了を示すクラスを追加
   document.querySelectorAll('#house path').forEach(function(path) {
-
-      // path.style.fill = '#C6AF28';
-      // アニメーション終了後にfillを適用
   });
 });
 
 // TOP SVG背景アニメーション
-        // Vivusインスタンスを作成
-        let vivus = new Vivus('my-svg', {
-          type: 'delayed',
-          duration: 200,
-          start: 'manual', // 手動でアニメーションを開始
-          dashGap: 20
-      });
+// 初期設定
+let duration = window.innerWidth < 992 ? 10 : 200;
 
-      // スクロールイベントに基づいて描画を制御
-      document.addEventListener('scroll', function() {
-          let scrollPosition = window.scrollY;
-          let documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-          let progress = scrollPosition / documentHeight;
+// Vivusインスタンスを作成
+let vivus = new Vivus('my-svg', {
+    type: 'delayed',
+    duration: duration,
+    start: 'manual', // 手動でアニメーションを開始
+    dashGap: 20
+});
 
-          // Vivusの進行状況を設定
-          vivus.setFrameProgress(progress);
-      });
+// スクロールイベントに基づいて描画を制御
+document.addEventListener('scroll', function() {
+    let scrollPosition = window.scrollY;
+    let documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    let progress = scrollPosition / documentHeight;
+
+    // Vivusの進行状況を設定
+    vivus.setFrameProgress(progress);
+});
+
+// ウィンドウサイズ変更時のリスナーを追加して、必要に応じて再設定
+window.addEventListener('resize', function() {
+    let newDuration = window.innerWidth < 992 ? 10 : 200;
+    if (newDuration !== duration) {
+        duration = newDuration;
+        // Vivusインスタンスを再作成して設定を更新
+        vivus = new Vivus('my-svg', {
+            type: 'delayed',
+            duration: duration,
+            start: 'manual', // 手動でアニメーションを開始
+            dashGap: 20
+        });
+
+        // スクロールイベントに基づいて描画を制御
+        document.addEventListener('scroll', function() {
+            let scrollPosition = window.scrollY;
+            let documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            let progress = scrollPosition / documentHeight;
+
+            // Vivusの進行状況を設定
+            vivus.setFrameProgress(progress);
+        });
+    }
+});
+
 
 // プリローダーアニメーション
 window.onload = function () {
@@ -63,7 +89,6 @@ window.onload = function () {
       const elementTop = element.getBoundingClientRect().top;
       const windowHeight = window.innerHeight;
       if (elementTop < windowHeight - 100) {
-        // 少し早めにアニメーションが始まるように調整
         element.classList.add("visible");
       }
     });
@@ -81,9 +106,12 @@ const swiper1 = new Swiper('.swiper-container.top', {
   allowTouchMove: true,
   breakpoints: {
     320: {
-      slidesPerView: 3.5,
+      slidesPerView: 2.5,
     },
     480: {
+      slidesPerView: 2.5,
+    },
+    600: {
       slidesPerView: 3.5,
     },
     768: {
@@ -109,10 +137,13 @@ const swiper2 = new Swiper('.swiper-container.products', {
   allowTouchMove: false,
   breakpoints: {
     320: {
-      slidesPerView: 3.5,
+      slidesPerView: 1.5,
     },
     480: {
-      slidesPerView: 3.5,
+      slidesPerView: 2,
+    },
+    600: {
+      slidesPerView: 3,
     },
     768: {
       slidesPerView: 3.5,
@@ -136,10 +167,13 @@ const swiper3 = new Swiper('.swiper-container.works', {
   allowTouchMove: false,
   breakpoints: {
     320: {
-      slidesPerView: 3.5,
+      slidesPerView: 1.5,
     },
     480: {
-      slidesPerView: 3.5,
+      slidesPerView: 2,
+    },
+    600: {
+      slidesPerView: 3,
     },
     768: {
       slidesPerView: 3.5,
