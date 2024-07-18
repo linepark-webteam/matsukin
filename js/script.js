@@ -2,62 +2,110 @@ console.log("test");
 
 
 // TOP HERO SVGアニメーション
-new Vivus('house', {
-  duration: 500,
-  type: 'async',
-  animTimingFunction: Vivus.EASE
-}, function (obj) {
-  obj.el.classList.add('finished'); // アニメーション完了を示すクラスを追加
-  document.querySelectorAll('#house path').forEach(function(path) {
-  });
-});
+console.log("test");
 
-// TOP SVG背景アニメーション
+// Vivusの描画と同時にAnime.jsのアニメーションを開始
+function startVivusAnimation() {
+  // Vivusインスタンスを作成
+  new Vivus('house', {
+    duration: 200,
+    type: 'async',
+    animTimingFunction: Vivus.EASE,
+    start: 'inViewport', // ページに入った時にアニメーションを開始
+    onReady: function (obj) {
+      // 描画開始時にAnime.jsのアニメーションを開始
+      anime({
+        targets: '#house path',
+        translateX: function() {
+          return anime.random(-10, 10) + 'px';
+        },
+        translateY: function() {
+          return anime.random(-10, 10) + 'px';
+        },
+        easing: 'linear',
+        duration: 1000,
+        direction: 'alternate',
+        loop: true
+      });
+    },
+    onEnd: function (obj) {
+      obj.el.classList.add('finished'); // アニメーション完了を示すクラスを追加
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', startVivusAnimation);
+
+
+// TOPページ SVG背景アニメーション
 // 初期設定
 let duration = window.innerWidth < 992 ? 10 : 200;
 
 // Vivusインスタンスを作成
 let vivus = new Vivus('my-svg', {
-    type: 'delayed',
-    duration: duration,
-    start: 'manual', // 手動でアニメーションを開始
-    dashGap: 20
+  type: 'delayed',
+  duration: duration,
+  start: 'manual', // 手動でアニメーションを開始
+  dashGap: 20
+});
+
+// Anime.jsのアニメーション設定
+let animeInstance = anime({
+  targets: '#my-svg path',
+  translateX: function() {
+    return anime.random(-5, 5) + 'px';
+  },
+  translateY: function() {
+    return anime.random(-5, 5) + 'px';
+  },
+  easing: 'easeInOutSine',
+  duration: 1000,
+  direction: 'alternate',
+  loop: true,
+  autoplay: false // 自動再生をオフにする
 });
 
 // スクロールイベントに基づいて描画を制御
 document.addEventListener('scroll', function() {
-    let scrollPosition = window.scrollY;
-    let documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-    let progress = scrollPosition / documentHeight;
+  let scrollPosition = window.scrollY;
+  let documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+  let progress = scrollPosition / documentHeight;
 
-    // Vivusの進行状況を設定
-    vivus.setFrameProgress(progress);
+  // Vivusの進行状況を設定
+  vivus.setFrameProgress(progress);
+
+  // Anime.jsのアニメーションを再生
+  animeInstance.play();
 });
 
 // ウィンドウサイズ変更時のリスナーを追加して、必要に応じて再設定
 window.addEventListener('resize', function() {
-    let newDuration = window.innerWidth < 992 ? 10 : 200;
-    if (newDuration !== duration) {
-        duration = newDuration;
-        // Vivusインスタンスを再作成して設定を更新
-        vivus = new Vivus('my-svg', {
-            type: 'delayed',
-            duration: duration,
-            start: 'manual', // 手動でアニメーションを開始
-            dashGap: 20
-        });
+  let newDuration = window.innerWidth < 992 ? 10 : 200;
+  if (newDuration !== duration) {
+    duration = newDuration;
+    // Vivusインスタンスを再作成して設定を更新
+    vivus = new Vivus('my-svg', {
+      type: 'delayed',
+      duration: duration,
+      start: 'manual', // 手動でアニメーションを開始
+      dashGap: 20
+    });
 
-        // スクロールイベントに基づいて描画を制御
-        document.addEventListener('scroll', function() {
-            let scrollPosition = window.scrollY;
-            let documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-            let progress = scrollPosition / documentHeight;
+    // スクロールイベントに基づいて描画を制御
+    document.addEventListener('scroll', function() {
+      let scrollPosition = window.scrollY;
+      let documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      let progress = scrollPosition / documentHeight;
 
-            // Vivusの進行状況を設定
-            vivus.setFrameProgress(progress);
-        });
-    }
+      // Vivusの進行状況を設定
+      vivus.setFrameProgress(progress);
+
+      // Anime.jsのアニメーションを再生
+      animeInstance.play();
+    });
+  }
 });
+
 
 
 // プリローダーアニメーション
@@ -134,7 +182,7 @@ const swiper2 = new Swiper('.swiper-container.products', {
     delay: 3000,
     disableOnInteraction: false,
   },
-  allowTouchMove: false,
+  allowTouchMove: true,
   breakpoints: {
     320: {
       slidesPerView: 1.5,
@@ -164,7 +212,7 @@ const swiper3 = new Swiper('.swiper-container.works', {
     delay: 3000,
     disableOnInteraction: false,
   },
-  allowTouchMove: false,
+  allowTouchMove: true,
   breakpoints: {
     320: {
       slidesPerView: 1.5,

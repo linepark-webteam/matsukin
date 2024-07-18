@@ -12,6 +12,10 @@
   }
 }
 
+.letter {
+  display: inline-block;
+  opacity: 0;
+}
 /* SVGアニメーションの為のスタイル */
 .svg {
   width: 100%;

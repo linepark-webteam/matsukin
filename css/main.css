@@ -129,7 +129,7 @@
 }
 @media screen and (min-width: 992px) {
   .svg-background {
-    top: 1200px; /* 上部からの位置 */
+    top: 1400px; /* 上部からの位置 */
     width: 100%;
     height: 100%;
     z-index: -1; /* 背景に配置 */
@@ -137,10 +137,18 @@
 }
 @media screen and (min-width: 1024px) {
   .svg-background {
-    top: 1200px; /* 上部からの位置 */
+    top: 1050px; /* 上部からの位置 */
     width: 100%;
     height: 100%;
     z-index: -1; /* 背景に配置 */
+  }
+}
+@media screen and (min-width: 1400px) {
+  .svg-background {
+    top: 800px;
+    width: 95%;
+    height: 95%;
+    z-index: -1;
   }
 }
 

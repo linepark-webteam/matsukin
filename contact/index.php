@@ -152,11 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
   </section> -->
 
-  <section class="mb-5 py-5">
-
-
-
-
+  <section class="contact-container mx-5 my-5 py-5">
         <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8">
@@ -180,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- お名前（フリガナ） -->
             <div class="form-group d-lg-flex justify-content-center mt-3">
-              <label for="kana" class="col-lg-4 fs-4 fw-bold mb-2">お名前（フリガナ）<span class="text-danger fs-3 fw-bold">*</span></label>
+              <label for="kana" class="col-lg-4 fs-5 fw-bold mb-2">お名前（フリガナ）<span class="text-danger fs-3 fw-bold">*</span></label>
               <div class="d-flex flex-column col-lg-8">
                 <input type="text" name="kana" class="form-control d-block" id="kana" placeholder="フリガナを入力してください" maxlength="32" value="<?php echo htmlspecialchars($kana); ?>">
                 <span class="small">（32文字以内）</span>
