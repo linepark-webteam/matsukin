@@ -65,56 +65,48 @@
   }
 }
 
-.hero-text h2 {
+.animate-text.head .letter {
   font-family: "Apple Chancery";
   font-size: calc((100vw - 320px) / 140 + 22px);
   font-weight: bold;
   letter-spacing: 2px;
 }
-.hero-text p {
+.animate-text.p .letter {
   font-size: calc((100vw - 320px) / 140 + 16px);
   font-weight: bold;
   letter-spacing: 5px;
 }
 
 @media screen and (min-width: 430px) {
-  .hero-text h2 {
+  .animate-text.head .letter {
     font-size: calc((100vw - 320px) / 140 + 28px);
-    font-weight: bold;
   }
-  .hero-text p {
+  .animate-text.p .letter {
     font-size: calc((100vw - 320px) / 140 + 20px);
-    font-weight: bold;
   }
 }
 @media screen and (min-width: 768px) {
-  .hero-text h2 {
+  .animate-text.head .letter {
     font-size: calc((100vw - 320px) / 140 + 56px);
-    font-weight: bold;
   }
-  .hero-text p {
+  .animate-text.p .letter {
     font-size: calc((100vw - 320px) / 140 + 24px);
-    font-weight: bold;
   }
 }
 @media screen and (min-width: 1024px) {
-  .hero-text h2 {
+  .animate-text.head .letter {
     font-size: calc((100vw - 320px) / 140 + 64px);
-    font-weight: bold;
   }
-  .hero-text p {
+  .animate-text.p .letter {
     font-size: calc((100vw - 320px) / 140 + 22px);
-    font-weight: bold;
   }
 }
 @media screen and (min-width: 1280px) {
-  .hero-text h2 {
+  .animate-text.head .letter {
     font-size: 64px;
-    font-weight: bold;
   }
-  .hero-text p {
+  .animate-text.p .letter {
     font-size: 24px;
-    font-weight: bold;
   }
 }
 

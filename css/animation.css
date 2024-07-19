@@ -12,15 +12,16 @@
   }
 }
 
+/* １文字ずつ表示されるアニメーションの為のスタイル */
 .letter {
   display: inline-block;
   opacity: 0;
 }
+
 /* SVGアニメーションの為のスタイル */
 .svg {
   width: 100%;
   /* max-width: 992px; */
-  /* SVGの最大幅を設定 */
   margin: 0 auto; /* 中央揃え */
   display: block;
 }
@@ -29,7 +30,7 @@ svg {
   height: auto;
 }
 path {
-  fill: none; /* 初期状態では塗りつぶし無し */
+  fill: none;
   stroke: #C6AF28; /* 線の色 */
   stroke-width: 4; /* 線の太さ */
 }
