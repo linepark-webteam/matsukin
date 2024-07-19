@@ -1,8 +1,6 @@
 console.log("test");
 
 // TOP HERO SVGアニメーション
-console.log("test");
-
 // Vivusの描画と同時にAnime.jsのアニメーションを開始
 function startVivusAnimation() {
   // Vivusインスタンスを作成
@@ -35,6 +33,43 @@ function startVivusAnimation() {
 
 document.addEventListener("DOMContentLoaded", startVivusAnimation);
 
+
+// テキストを一文字ずつ表示するアニメーション
+// テキストを一文字ずつ分割してspanタグで囲む
+function splitTextIntoSpans(element) {
+  const text = element.textContent;
+  element.innerHTML = '';
+  text.split('').forEach((char) => {
+    const span = document.createElement('span');
+    span.textContent = char === ' ' ? '\u00A0' : char; // 半角スペースを &nbsp; に置き換える
+    span.classList.add('letter');
+    element.appendChild(span);
+  });
+}
+
+// アニメーションを適用する
+function animateText() {
+  const textElements = document.querySelectorAll('.animate-text');
+
+  textElements.forEach((element, index) => {
+    splitTextIntoSpans(element);
+
+    anime.timeline({loop: false})
+      .add({
+        targets: element.querySelectorAll('.letter'),
+        opacity: [0, 1],
+        easing: 'easeInOutQuad',
+        duration: 750,
+        delay: (el, i) => 50 * (i + 1),
+        offset: index * 1000 // 各要素のアニメーションの開始をずらす
+      });
+  });
+}
+
+// ページが読み込まれたときにアニメーションを開始
+document.addEventListener('DOMContentLoaded', animateText);
+
+
 // TOPページ SVG背景アニメーション
 // 初期設定
 let duration = window.innerWidth < 992 ? 10 : 200;
@@ -43,7 +78,7 @@ let duration = window.innerWidth < 992 ? 10 : 200;
 let vivus = new Vivus("my-svg", {
   type: "delayed",
   duration: duration,
-  start: "auto", // アニメーションを開始（手動か自動か）
+  start: "manual", // 手動でアニメーションを開始
   dashGap: 20,
 });
 
@@ -60,7 +95,7 @@ let animeInstance = anime({
   duration: 1000,
   direction: "alternate",
   loop: true,
-  autoplay: true, // 自動再生オン
+  autoplay: false, // 自動再生をオフにする
 });
 
 // スクロールイベントに基づいて描画を制御
@@ -105,41 +140,6 @@ window.addEventListener("resize", function () {
     });
   }
 });
-
-// テキストを一文字ずつ表示するアニメーション
-// テキストを一文字ずつ分割してspanタグで囲む
-function splitTextIntoSpans(element) {
-  const text = element.textContent;
-  element.innerHTML = '';
-  text.split('').forEach((char) => {
-    const span = document.createElement('span');
-    span.textContent = char === ' ' ? '\u00A0' : char; // 半角スペースを &nbsp; に置き換える
-    span.classList.add('letter');
-    element.appendChild(span);
-  });
-}
-
-// アニメーションを適用する
-function animateText() {
-  const textElements = document.querySelectorAll('.animate-text');
-
-  textElements.forEach((element, index) => {
-    splitTextIntoSpans(element);
-
-    anime.timeline({loop: false})
-      .add({
-        targets: element.querySelectorAll('.letter'),
-        opacity: [0, 1],
-        easing: 'easeInOutQuad',
-        duration: 750,
-        delay: (el, i) => 50 * (i + 1),
-        offset: index * 1000 // 各要素のアニメーションの開始をずらす
-      });
-  });
-}
-
-// ページが読み込まれたときにアニメーションを開始
-document.addEventListener('DOMContentLoaded', animateText);
 
 
 // プリローダーアニメーション

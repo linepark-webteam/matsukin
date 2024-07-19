@@ -18,6 +18,7 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
 
 // フォーム送信処理
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // 各フィールドの値をセッションに保存
     $name = $_POST['name'] ?? '';
     $_SESSION['name'] = $name;
     $kana = $_POST['kana'] ?? '';
@@ -80,10 +81,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $firstErrorField = $firstErrorField ?: 'inquiry';
     }
 
-    if (empty($privacyPolicy)) {
+    // プライバシーポリシーの同意確認
+    if (isset($_POST['privacyPolicy']) && $_POST['privacyPolicy'] == 'accepted') {
+      $_SESSION['privacyPolicy'] = 'accepted';
+      $privacyPolicy = 'accepted';
+  } else {
+      $_SESSION['privacyPolicy'] = 'not_accepted';
+      $privacyPolicy = 'not_accepted';
       $errors['privacyPolicy'] = '<span class="text-danger fs-6">個人情報保護方針への同意をお願いいたします。</span>';
       $firstErrorField = $firstErrorField ?: 'privacyPolicy';
   }
+
+  //   if (empty($privacyPolicy)) {
+  //     $errors['privacyPolicy'] = '<span class="text-danger fs-6">個人情報保護方針への同意をお願いいたします。</span>';
+  //     $firstErrorField = $firstErrorField ?: 'privacyPolicy';
+  // }
 
   // 最初のエラーが発生したフィールドにフォーカスするためのIDをセッションに保存
   if ($firstErrorField) {
@@ -148,13 +160,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
 
-  <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.html'; ?>
-
-  <!-- <section class="hero mb-5">
-        <div>
-          <h2>お問い合わせ</h2>
-        </div>
-  </section> -->
+  <?php
+  // include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.html';
+  include $_SERVER['DOCUMENT_ROOT'] . '/matsukin/includes/header.html'; //For Git
+  ?>
 
   <section class="contact-container mx-5 my-5 py-5">
     <div class="container">

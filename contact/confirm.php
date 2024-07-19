@@ -42,10 +42,10 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
   <!-- AppleIcon -->
   <link rel="apple-touch-icon" href="./img/apple-touch-icon.png" sizes="180x180">
 
-  <!-- Zen Kaku Gothic New Google Fonts -->
+  <!-- Shippori Antique B1 & Zen Kaku Gothic New Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
 
   <!-- ↓ リセットCSS -->
   <link rel="stylesheet" href="../css/ress.min.css">
@@ -61,6 +61,7 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
   <link rel="stylesheet" href="../css/animation.css">
 
   <link rel="stylesheet" href="../css/contact.css">
+
   <title>お問い合わせ内容の確認</title>
 </head>
 
