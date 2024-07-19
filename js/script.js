@@ -43,7 +43,7 @@ let duration = window.innerWidth < 992 ? 10 : 200;
 let vivus = new Vivus("my-svg", {
   type: "delayed",
   duration: duration,
-  start: "manual", // 手動でアニメーションを開始
+  start: "auto", // アニメーションを開始（手動か自動か）
   dashGap: 20,
 });
 
@@ -60,7 +60,7 @@ let animeInstance = anime({
   duration: 1000,
   direction: "alternate",
   loop: true,
-  autoplay: false, // 自動再生をオフにする
+  autoplay: true, // 自動再生オン
 });
 
 // スクロールイベントに基づいて描画を制御

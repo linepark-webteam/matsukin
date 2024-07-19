@@ -20,11 +20,22 @@ input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 20px;
+  width: 45px;
   height: 20px;
   background-color: #e8e8e8;
   border: 1px solid #ccc;
   cursor: pointer;
+}
+@media screen and (min-width: 430px) {
+  input[type="checkbox"] {
+    width: 45px;
+  }
+}
+@media screen and (min-width: 768px) {
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /* チェックされたときの背景色を変更 */

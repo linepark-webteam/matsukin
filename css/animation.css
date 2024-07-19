@@ -12,13 +12,13 @@
   }
 }
 
-/* １文字ずつ表示されるアニメーションの為のスタイル */
+/* テキストを１文字ずつ表示するアニメーションの為のスタイル */
 .letter {
   display: inline-block;
   opacity: 0;
 }
 
-/* SVGアニメーションの為のスタイル */
+/* TOPのSVGアニメーションの為のスタイル */
 .svg {
   width: 100%;
   /* max-width: 992px; */
@@ -35,8 +35,8 @@ path {
   stroke-width: 4; /* 線の太さ */
 }
 
-/* スライドアニメーションの為のスタイル */
-.slides {
+/* スライド（フェードインアウト）アニメーションの為のスタイル */
+/* .slides {
   position: relative;
   height: 100%;
   overflow: hidden;
@@ -58,4 +58,4 @@ path {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+} */

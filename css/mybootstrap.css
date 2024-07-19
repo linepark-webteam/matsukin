@@ -98,3 +98,27 @@
   border-radius: 5px;
 }
 
+/* formに関するスタイル変更 */
+/* カスタムシャドウカラー */
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(198, 175, 40, 0.5); /*シャドウの色変更 */
+  border-color: #c6af28; /* ボーダーの色変更 */
+}
+
+.form-control:focus {
+  border-color: #c6af28; /* フォーカス時のボーダー色 */
+  outline: none;
+}
+
+.form-check-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(198, 175, 40, 0.5); /*シャドウの色変更 */
+}
+
+/* テキストエリアのスタイル */
+textarea.form-control:focus {
+  border-color: #c6af28; /* フォーカス時のボーダー色 */
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(198, 175, 40, 0.5); /*シャドウの色変更 */
+}
