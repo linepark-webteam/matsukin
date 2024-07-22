@@ -1,4 +1,4 @@
-console.log("test2");
+console.log("test");
 
 // TOP HERO SVGアニメーション
 function startVivusAnimation() {
@@ -61,7 +61,7 @@ function animateText() {
     });
   });
 }
-
+// Swipperスライダー
 // スライダーの初期化
 function initializeSwipers() {
   const swiperTop = new Swiper(".swiper-container.top", {
@@ -147,7 +147,7 @@ document.addEventListener("scroll", function () {
 let duration = window.innerWidth < 992 ? 10 : 200;
 
 // Vivusインスタンスを作成
-let vivus = new Vivus("my-svg", {
+let vivus = new Vivus("background-svg", {
   type: "delayed",
   duration: duration,
   start: "manual", // 手動でアニメーションを開始
@@ -156,27 +156,46 @@ let vivus = new Vivus("my-svg", {
 
 // Anime.jsのアニメーション設定
 let animeInstance = anime({
-  targets: "#my-svg path",
+  targets: "#background-svg path",
   translateX: () => anime.random(-5, 5) + "px",
   translateY: () => anime.random(-5, 5) + "px",
   easing: "easeInOutSine",
   duration: 1000,
   direction: "alternate",
   loop: true,
-  autoplay: false, // 自動再生をオフにする
+  autoplay: true, // 自動再生をオフにする
 });
+
+// IntersectionObserverの設定
+let observer = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Vivusアニメーションを開始
+        vivus.play();
+
+        // Anime.jsアニメーションを開始
+        animeInstance.play();
+
+        // 一度アニメーションを開始したら、それ以上監視不要なのでobserverを停止
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.5, // 50%の要素が見えた時にトリガー
+  }
+);
+
+// 監視対象を指定
+observer.observe(document.getElementById("background-svg"));
 
 // ウィンドウサイズ変更時のリスナーを追加して、必要に応じて再設定
 window.addEventListener("resize", function () {
   let newDuration = window.innerWidth < 992 ? 10 : 200;
   if (newDuration !== duration) {
     duration = newDuration;
-    vivus = new Vivus("my-svg", {
-      type: "delayed",
-      duration: duration,
-      start: "manual",
-      dashGap: 20,
-    });
+    vivus.reset().setDuration(duration).play(1); // Vivusをリセットして新しいdurationを設定後、再生
   }
 });
 
