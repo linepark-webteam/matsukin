@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.html';
   ?>
 
-  <section class="contact-container mx-5 my-5 py-5">
+  <section class="contact-container mx-md-5 mx-3 my-5 py-5">
     <div class="container">
       <div class="col-12">
         <h2 class="fs-3 fw-bold">お問い合わせ</h2>

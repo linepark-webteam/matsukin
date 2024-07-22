@@ -1,5 +1,3 @@
-console.log("test");
-
 // TOP HERO SVGアニメーション
 // Vivusの描画と同時にAnime.jsのアニメーションを開始
 function startVivusAnimation() {

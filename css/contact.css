@@ -1,11 +1,7 @@
 .contact-container {
   background-color: #fff;
   border-radius: 50px;
-}
-@media screen and (min-width: 992px) {
-  .contact-container {
-    margin-top: 100px !important;
-  }
+  margin-top: 100px !important;
 }
 
 input[type="text"],
