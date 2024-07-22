@@ -43,3 +43,10 @@ input[type="checkbox"]:checked {
   background-color: #c6af28;
   border: 1px solid #e8e8e8;
 }
+
+/* confirm.phpで長いテキストが入力されたときの折り返し指定 */
+.session-data {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}

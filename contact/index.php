@@ -161,8 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
   <?php
-  // include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.html';
-  include $_SERVER['DOCUMENT_ROOT'] . '/matsukin/includes/header.html'; //For Git
+  include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.html';
   ?>
 
   <section class="contact-container mx-5 my-5 py-5">
@@ -285,9 +284,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>
 
   <!-- Bootstrap 5 JavaScript -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script> -->
+    crossorigin="anonymous"></script>
   <!-- FontAwesome -->
   <script src="https://kit.fontawesome.com/e7eaec89a2.js" crossorigin="anonymous"></script>
   <!-- Swipper ライブラリ CDN -->
