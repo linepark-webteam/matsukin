@@ -125,22 +125,6 @@ function initializeSwipers() {
 // ページが読み込まれたときにアニメーションを開始
 document.addEventListener("DOMContentLoaded", animateText);
 
-// スクロールイベントに基づいて描画を制御
-let scrollThrottleTimer = false;
-document.addEventListener("scroll", function () {
-  if (!scrollThrottleTimer) {
-    scrollThrottleTimer = true;
-    requestAnimationFrame(() => {
-      let scrollPosition = window.scrollY;
-      let documentHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      let progress = scrollPosition / documentHeight;
-      vivus.setFrameProgress(progress);
-      animeInstance.play();
-      scrollThrottleTimer = false;
-    });
-  }
-});
 
 // TOPページ SVG背景アニメーション
 // 初期設定
@@ -148,10 +132,9 @@ let duration = window.innerWidth < 992 ? 10 : 200;
 
 // Vivusインスタンスを作成
 let vivus = new Vivus("background-svg", {
-  type: "delayed",
+  type: "sync",
   duration: duration,
   start: "manual", // 手動でアニメーションを開始
-  dashGap: 20,
 });
 
 // Anime.jsのアニメーション設定
@@ -160,30 +143,31 @@ let animeInstance = anime({
   translateX: () => anime.random(-5, 5) + "px",
   translateY: () => anime.random(-5, 5) + "px",
   easing: "easeInOutSine",
-  duration: 1000,
+  duration: 500,
   direction: "alternate",
-  loop: true,
-  autoplay: true, // 自動再生をオフにする
+  loop: true,  // ループを有効にする
+  autoplay: false, // 自動再生をオフにする
 });
+
+// アニメーションが既に開始されたかどうかを追跡
+let animationStarted = false;
 
 // IntersectionObserverの設定
 let observer = new IntersectionObserver(
   (entries, observer) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // Vivusアニメーションを開始
+      if (entry.isIntersecting && !animationStarted) {
+        // アニメーションがまだ開始されていない場合のみ実行
         vivus.play();
-
-        // Anime.jsアニメーションを開始
         animeInstance.play();
-
+        animationStarted = true;
         // 一度アニメーションを開始したら、それ以上監視不要なのでobserverを停止
         observer.unobserve(entry.target);
       }
     });
   },
   {
-    threshold: 0.5, // 50%の要素が見えた時にトリガー
+    threshold: 0.1, // 10%の要素が見えた時にトリガー
   }
 );
 
@@ -195,9 +179,13 @@ window.addEventListener("resize", function () {
   let newDuration = window.innerWidth < 992 ? 10 : 200;
   if (newDuration !== duration) {
     duration = newDuration;
-    vivus.reset().setDuration(duration).play(1); // Vivusをリセットして新しいdurationを設定後、再生
+    if (!animationStarted) {
+      // アニメーションがまだ開始されていない場合のみリセット
+      vivus.reset().setDuration(duration);
+    }
   }
 });
+
 
 // プリローダーアニメーション
 window.onload = function () {
