@@ -4,7 +4,7 @@ session_start();
 // セッション変数が設定されていないか確認（直接アクセスをチェック）
 if (empty($_SESSION['name']) || empty($_SESSION['email'])) {
   // セッション変数が設定されていない場合は、./contact/ へリダイレクト
-  header('Location: ../contact/');
+  header('Location: ./index.php');
   exit;
 }
 
@@ -17,6 +17,8 @@ $confirmEmail = $_SESSION['confirmEmail'] ?? '';
 $inquiry = $_SESSION['inquiry'] ?? '';
 $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
 
+// var_dump($_SESSION);
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +27,6 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 
   <!-- Favicon -->
   <link rel="icon" href="../img/favicon-16x16.png" type="image/png" sizes="16x16">
@@ -73,6 +74,7 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
           </div>
 
           <form action="sendmail.php" method="post">
+          <input type="hidden" name="token" value="<?php echo htmlspecialchars($_SESSION['token']); ?>">
 
             <div class="mb-4">
               <h3 class="fs-4">お名前</h3>

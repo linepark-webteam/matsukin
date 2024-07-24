@@ -18,94 +18,100 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
 
 // フォーム送信処理
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // 各フィールドの値をセッションに保存
-    $name = $_POST['name'] ?? '';
-    $_SESSION['name'] = $name;
-    $kana = $_POST['kana'] ?? '';
-    $_SESSION['kana'] = $kana;
-    $companyName = $_POST['companyName'] ?? '';
-    $_SESSION['companyName'] = $companyName;
-    $email = $_POST['email'] ?? '';
-    $_SESSION['email'] = $email;
-    $confirmEmail = $_POST['confirmEmail'] ?? '';
-    $_SESSION['confirmEmail'] = $confirmEmail;
-    $inquiry = $_POST['inquiry'] ?? '';
-    $_SESSION['inquiry'] = $inquiry;
+  // 各フィールドの値をセッションに保存
+  $name = $_POST['name'] ?? '';
+  $_SESSION['name'] = $name;
+  $kana = $_POST['kana'] ?? '';
+  $_SESSION['kana'] = $kana;
+  $companyName = $_POST['companyName'] ?? '';
+  $_SESSION['companyName'] = $companyName;
+  $email = $_POST['email'] ?? '';
+  $_SESSION['email'] = $email;
+  $confirmEmail = $_POST['confirmEmail'] ?? '';
+  $_SESSION['confirmEmail'] = $confirmEmail;
+  $inquiry = $_POST['inquiry'] ?? '';
+  $_SESSION['inquiry'] = $inquiry;
+  $privacyPolicy = $_POST['privacyPolicy'] ?? '';
+  $_SESSION['privacyPolicy'] = $privacyPolicy;
 
-    // エラーがある場合に最初のエラーフィールドIDを保存
-    $firstErrorField = '';
+  // エラーがある場合に最初のエラーフィールドIDを保存
+  $firstErrorField = '';
 
-    // 各フィールドのエラーチェック
-    if (empty($name)) {
-        $errors['name'] = '<span class="text-danger fs-6">お名前は必須です。</span>';
-        $firstErrorField = $firstErrorField ?: 'name';
-    } elseif (strlen($name) > 32) {
-        $errors['name'] = '<span class="text-danger fs-6">お名前は32文字以内で入力してください。</span>';
-        $firstErrorField = $firstErrorField ?: 'name';
-    }
-
-    if (empty($kana)) {
-        $errors['kana'] = '<span class="text-danger fs-6">お名前（フリガナ）は必須です。</span>';
-        $firstErrorField = $firstErrorField ?: 'kana';
-    } elseif (strlen($kana) > 32) {
-        $errors['kana'] = '<span class="text-danger fs-6">お名前（フリガナ）は32文字以内で入力してください。</span>';
-        $firstErrorField = $firstErrorField ?: 'kana';
-    }
-
-    if (strlen($companyName) > 64) {
-        $errors['companyName'] = '<span class="text-danger fs-6">会社名は64文字以内で入力してください。</span>';
-        $firstErrorField = $firstErrorField ?: 'companyName';
-    }
-
-    if (empty($email)) {
-        $errors['email'] = '<span class="text-danger fs-6">メールアドレスは必須です。</span>';
-        $firstErrorField = $firstErrorField ?: 'email';
-    } elseif (strlen($email) > 64) {
-        $errors['email'] = '<span class="text-danger fs-6">メールアドレスは64文字以内で入力してください。</span>';
-        $firstErrorField = $firstErrorField ?: 'email';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = '<span class="text-danger fs-6">正しいメールアドレスを入力してください。</span>';
-        $firstErrorField = $firstErrorField ?: 'email';
-    }
-
-    if ($email !== $confirmEmail) {
-        $errors['confirmEmail'] = '<span class="text-danger fs-6">メールアドレスと確認用メールアドレスが一致しません。</span>';
-        $firstErrorField = $firstErrorField ?: 'confirmEmail';
-    }
-
-    if (empty($inquiry)) {
-        $errors['inquiry'] = '<span class="text-danger fs-6">お問い合わせ内容を入力してください。</span>';
-        $firstErrorField = $firstErrorField ?: 'inquiry';
-    } elseif (strlen($inquiry) > 1000) {
-        $errors['inquiry'] = '<span class="text-danger fs-6">お問い合わせ内容は1000文字以内で入力してください。</span>';
-        $firstErrorField = $firstErrorField ?: 'inquiry';
-    }
-
-    // プライバシーポリシーの同意確認
-    if (isset($_POST['privacyPolicy']) && $_POST['privacyPolicy'] == 'accepted') {
-      $_SESSION['privacyPolicy'] = 'accepted';
-      $privacyPolicy = 'accepted';
-  } else {
-      $_SESSION['privacyPolicy'] = 'not_accepted';
-      $privacyPolicy = 'not_accepted';
-      $errors['privacyPolicy'] = '<span class="text-danger fs-6">個人情報保護方針への同意をお願いいたします。</span>';
-      $firstErrorField = $firstErrorField ?: 'privacyPolicy';
+  // 各フィールドのエラーチェック
+  if (empty($name)) {
+    $errors['name'] = '<span class="text-danger fs-6">お名前は必須です。</span>';
+    $firstErrorField = $firstErrorField ?: 'name';
+  } elseif (strlen($name) > 32) {
+    $errors['name'] = '<span class="text-danger fs-6">お名前は32文字以内で入力してください。</span>';
+    $firstErrorField = $firstErrorField ?: 'name';
   }
 
-  //   if (empty($privacyPolicy)) {
-  //     $errors['privacyPolicy'] = '<span class="text-danger fs-6">個人情報保護方針への同意をお願いいたします。</span>';
-  //     $firstErrorField = $firstErrorField ?: 'privacyPolicy';
-  // }
+  if (empty($kana)) {
+    $errors['kana'] = '<span class="text-danger fs-6">お名前（フリガナ）は必須です。</span>';
+    $firstErrorField = $firstErrorField ?: 'kana';
+  } elseif (strlen($kana) > 32) {
+    $errors['kana'] = '<span class="text-danger fs-6">お名前（フリガナ）は32文字以内で入力してください。</span>';
+    $firstErrorField = $firstErrorField ?: 'kana';
+  }
+
+  if (strlen($companyName) > 64) {
+    $errors['companyName'] = '<span class="text-danger fs-6">会社名は64文字以内で入力してください。</span>';
+    $firstErrorField = $firstErrorField ?: 'companyName';
+  }
+
+  if (empty($email)) {
+    $errors['email'] = '<span class="text-danger fs-6">メールアドレスは必須です。</span>';
+    $firstErrorField = $firstErrorField ?: 'email';
+  } elseif (strlen($email) > 64) {
+    $errors['email'] = '<span class="text-danger fs-6">メールアドレスは64文字以内で入力してください。</span>';
+    $firstErrorField = $firstErrorField ?: 'email';
+  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors['email'] = '<span class="text-danger fs-6">正しいメールアドレスを入力してください。</span>';
+    $firstErrorField = $firstErrorField ?: 'email';
+  }
+
+  if ($email !== $confirmEmail) {
+    $errors['confirmEmail'] = '<span class="text-danger fs-6">メールアドレスと確認用メールアドレスが一致しません。</span>';
+    $firstErrorField = $firstErrorField ?: 'confirmEmail';
+  }
+
+  if (empty($inquiry)) {
+    $errors['inquiry'] = '<span class="text-danger fs-6">お問い合わせ内容を入力してください。</span>';
+    $firstErrorField = $firstErrorField ?: 'inquiry';
+  } elseif (strlen($inquiry) > 1000) {
+    $errors['inquiry'] = '<span class="text-danger fs-6">お問い合わせ内容は1000文字以内で入力してください。</span>';
+    $firstErrorField = $firstErrorField ?: 'inquiry';
+  }
+
+  // プライバシーポリシーの同意確認
+  if (isset($_POST['privacyPolicy']) && $_POST['privacyPolicy'] == 'accepted') {
+    $_SESSION['privacyPolicy'] = 'accepted';
+    $privacyPolicy = 'accepted';
+  } else {
+    $_SESSION['privacyPolicy'] = 'not_accepted';
+    $privacyPolicy = 'not_accepted';
+    $errors['privacyPolicy'] = '<span class="text-danger fs-6">個人情報保護方針への同意をお願いいたします。</span>';
+    $firstErrorField = $firstErrorField ?: 'privacyPolicy';
+  }
+
+  // CSRFトークンの検証を追加
+  if (!isset($_POST['token']) || $_POST['token'] !== $_SESSION['token']) {
+    $errors['token'] = 'CSRF検証エラー。もう一度お試しください。';
+  }
+
 
   // 最初のエラーが発生したフィールドにフォーカスするためのIDをセッションに保存
   if ($firstErrorField) {
-      $_SESSION['errorField'] = $firstErrorField;
+    $_SESSION['errorField'] = $firstErrorField;
   }
 
   // エラーがなければ次のページへリダイレクト
   if (empty($errors)) {
-      header('Location: confirm.php');
-      exit;
+    header('Location: confirm.php');
+    unset($_SESSION['errorField']);  // エラーフィールドをセッションから削除
+    exit;
+  } else {
+    $_SESSION['errorField'] = $firstErrorField;  // エラーがある場合のみセット
   }
 }
 ?>
@@ -143,8 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <link rel="stylesheet" href="../css/ress.min.css">
 
   <!-- ↓ BootStrap CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <!-- ↓ BootStrapのスタイルを上書き -->
   <link rel="stylesheet" href="../css/mybootstrap.css">
 
@@ -169,16 +174,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="col-12">
         <h2 class="fs-3 fw-bold">お問い合わせ</h2>
       </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-      <div class="section-header col-lg-12 my-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="section-header col-lg-12 my-5">
             <h2 class="fs-4 fw-bold">お問合せフォーム</h2>
             <p class="ms-lg-5 mt-3 fs-6 fw-bold">弊社に関するご質問、商品やサービスなどお気軽にお問い合わせください。</p>
           </div>
 
-        <form action="" method="post">
-        <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
-        <input type="hidden" id="errorField" value="<?php echo htmlspecialchars($_SESSION['errorField'] ?? ''); ?>">
+          <form action="" method="post">
+            <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
+            <input type="hidden" id="errorField" value="<?php echo htmlspecialchars($_SESSION['errorField'] ?? ''); ?>">
 
             <!-- お名前 -->
             <div class="form-group d-lg-flex justify-content-center mt-3">
@@ -257,8 +262,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="form-check d-flex justify-content-center">
                 <div class="d-flex flex-column align-items-center col-lg-12">
                   <div class="d-flex">
-                    <input type="checkbox" name="privacyPolicy" class="form-check-input fs-6 fw-bold" id="privacyPolicy" value="accepted" <?php echo (!empty($privacyPolicy) ? 'checked' : ''); ?>>
-                    <label class="form-check-label fs-6 fw-bold" for="privacyPolicy"><span class="fs-6 text-decoration-underline"><a href="../privacy-policy/">「個人情報保護方針」</a></span>に同意の上、チェックを入れて送信してください。</label>
+                    <input type="checkbox" name="privacyPolicy" class="form-check-input fs-6 fw-bold" id="privacyPolicy" value="accepted" <?php echo (!empty($_SESSION['privacyPolicy']) && $_SESSION['privacyPolicy'] == 'accepted' ? 'checked' : ''); ?>>
+                    <label class="form-check-label fs-6 fw-bold" for="privacyPolicy">「個人情報保護方針」に同意の上、チェックを入れて送信してください。</label>
                   </div>
                   <?php if (!empty($errors['privacyPolicy'])) : ?>
                     <div class="error"><?php echo $errors['privacyPolicy']; ?></div>
@@ -276,7 +281,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </form>
 
         </div>
-        </div>
+      </div>
 
   </section>
 
@@ -284,9 +289,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>
 
   <!-- Bootstrap 5 JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   <!-- FontAwesome -->
   <script src="https://kit.fontawesome.com/e7eaec89a2.js" crossorigin="anonymous"></script>
   <!-- Swipper ライブラリ CDN -->
