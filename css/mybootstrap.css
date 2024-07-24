@@ -77,6 +77,13 @@
 .btn-outline-primary:focus, .btn-outline-primary.focus {
   box-shadow: 0 0 0 0.2rem rgba(198, 175, 40, 0.5); /* フォーカス時のシャドウを設定 */
 }
+/* クリック時のスタイル */
+.btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary:focus:active {
+  color: #fff;
+  background-color: #c6af28;
+  border-color: #c6af28;
+}
+
 
 .btn-outline-primary:disabled {
   color: #c6af28; /* 無効時の文字色 */

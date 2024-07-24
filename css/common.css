@@ -126,6 +126,13 @@ header.fixed-top.transparent {
 }
 /* Topへスクロールボタン */
 
+/* コンテンツの入れ物 */
+.contents-container {
+  background-color: #fff;
+  border-radius: 50px;
+  margin-top: 100px !important;
+}
+
 /* フッターのスタイル */
 footer {
 }

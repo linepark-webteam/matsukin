@@ -4,7 +4,7 @@ session_start();
 // セッション変数が設定されていないか確認（直接アクセスをチェック）
 if (empty($_SESSION['name']) || empty($_SESSION['email'])) {
   // セッション変数が設定されていない場合は、./contact/ へリダイレクト
-  header('Location: ./index.php');
+  header('Location: ../contact/');
   exit;
 }
 
@@ -61,7 +61,7 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
 <body>
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.html'; ?>
 
-  <section class="contact-container mx-md-5 mx-3 my-5 py-5">
+  <section class="contents-container mx-md-5 mx-3 my-5 py-5">
     <div class="container">
       <div class="col-12">
         <h2 class="fs-3 fw-bold">お問い合わせ内容の確認</h2>
@@ -111,7 +111,7 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
     </div>
   </section>
 
-  <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.html'; ?>
 
   <!-- Bootstrap 5 JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
