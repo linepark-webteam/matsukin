@@ -136,14 +136,20 @@
 
 @media screen and (min-width: 1200px) {
   .svg-background {
-    top: 140vh;
+    top: 150vh;
     width: 90%;
     left: 5%;
   }
 }
 @media screen and (min-width: 1400px) {
   .svg-background {
-    top: 120vh;
+    top: 150vh;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .svg-background {
+    top: 130vh;
     width: 80%;
   }
 }
