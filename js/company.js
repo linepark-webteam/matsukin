@@ -43,35 +43,23 @@ $(document).ready(function() {
   // 初期ロード時とウィンドウサイズ変更時に位置とスケールを調整
   adjustSvg();
   $(window).resize(adjustSvg);
-});
+
 
 //
 // 上記のSVGを徐々に描画するアニメーション
-$(document).ready(function() {
-  // SVG全体のアニメーションをVivusで初期化
-  const svgAnimation = new Vivus('borderHouse', {
+  // 通常のパスのアニメーション
+  new Vivus('normalPath', {
     duration: 200,
-    start: 'manual',
     type: 'oneByOne',
     animTimingFunction: Vivus.EASE
   });
 
-  // Vivusアニメーションの再生
-  svgAnimation.play();
-
-  // delayedPathのアニメーションをAnime.jsで遅延して開始
-  setTimeout(() => {
-    // Anime.jsを使って、delayedPathのstrokeDashoffsetをアニメーションする
-    anime({
-      targets: '#delayedPath',
-      strokeDashoffset: [anime.setDashoffset, 0], // 初期状態から0までアニメーション
-      easing: 'easeInOutSine',  // イージング関数
-      duration: 1500,  // アニメーションの持続時間
-      begin: function(anim) {
-        // アニメーション開始時に透明度を1に設定
-        document.getElementById('delayedPath').style.opacity = 1;
-      }
+  // 遅延パスのアニメーション
+  setTimeout(function() {
+    new Vivus('delayedPath', {
+      duration: 200,
+      type: 'oneByOne',
+      animTimingFunction: Vivus.EASE
     });
-  }, 2000); // 2秒後に遅延アニメーションを実行
+  }, 3000); // 3秒後に遅延アニメーションを開始
 });
-
