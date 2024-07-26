@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.container {
+  overflow-x: hidden; /* 横のはみ出し部分を非表示に */
+}
+
+.page-heading {
+  margin-bottom: 0;
+}
+
+.svg-container {
+  position: relative;
+}
+.svg-container svg {
+  width: 100%;
+  display: block;
+  preserveAspectRatio: "xMinYMin meet";
+}/*# sourceMappingURL=company.css.map */
