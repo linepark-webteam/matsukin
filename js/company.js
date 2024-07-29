@@ -47,19 +47,18 @@ $(document).ready(function() {
 
 //
 // 上記のSVGを徐々に描画するアニメーション
-  // 通常のパスのアニメーション
-  new Vivus('normalPath', {
+
+// SVG全体のアニメーション
+$(window).on('load', function() {
+  // ここでSVGアニメーションの設定
+  new Vivus('borderHouse', {
     duration: 200,
     type: 'oneByOne',
     animTimingFunction: Vivus.EASE
   });
 
-  // 遅延パスのアニメーション
-  setTimeout(function() {
-    new Vivus('delayedPath', {
-      duration: 200,
-      type: 'oneByOne',
-      animTimingFunction: Vivus.EASE
-    });
-  }, 3000); // 3秒後に遅延アニメーションを開始
+  adjustSvg();
+  $(window).resize(adjustSvg);
+});
+
 });
