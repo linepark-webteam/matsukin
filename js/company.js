@@ -61,4 +61,34 @@ $(window).on('load', function() {
   $(window).resize(adjustSvg);
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  animateText();
+});
+// テキストを一文字ずつ表示するアニメーション
+function splitTextIntoSpans(element) {
+  const text = element.textContent;
+  element.innerHTML = "";
+  text.split("").forEach((char) => {
+    const span = document.createElement("span");
+    span.textContent = char === " " ? "\u00A0" : char;
+    span.classList.add("letter");
+    element.appendChild(span);
+  });
+}
+
+function animateText() {
+  const textElements = document.querySelectorAll(".animate-text");
+  textElements.forEach((element, index) => {
+    splitTextIntoSpans(element);
+    anime.timeline({ loop: false }).add({
+      targets: element.querySelectorAll(".letter"),
+      opacity: [0, 1],
+      easing: "easeInOutQuad",
+      duration: 750,
+      delay: (el, i) => 50 * (i + 1),
+      offset: index * 1000,
+    });
+  });
+}
+
 });

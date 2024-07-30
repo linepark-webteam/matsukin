@@ -110,6 +110,35 @@
   }
 }
 
+.hero-scroll-text {
+  font-family: "Apple Chancery";
+  font-size: calc((100vw - 320px) / 140 + 14px);
+  color: #c6af28;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+@media screen and (min-width: 430px) {
+  .hero-scroll-text {
+    font-size: calc((100vw - 320px) / 140 + 16px);
+  }
+}
+@media screen and (min-width: 768px) {
+  .hero-scroll-text {
+    font-size: calc((100vw - 320px) / 140 + 18px);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .hero-scroll-text {
+    font-size: calc((100vw - 320px) / 140 + 22px);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .hero-scroll-text {
+    font-size: 24px;
+  }
+}
+
+
 /* SVG背景の為のスタイル */
 .svg-background {
   position: absolute;
