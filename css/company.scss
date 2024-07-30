@@ -16,7 +16,7 @@ $cBack: rgba(255, 241, 159, 0.751);
     width: 100%;
     display: block;
     // SVGがビューポート内で調整されるように設定
-    preserveAspectRatio: "xMinYMin meet";
+    preserveaspectratio: "xMinYMin meet";
   }
 
   @media screen and (min-width: 960px) {
@@ -30,7 +30,6 @@ $cBack: rgba(255, 241, 159, 0.751);
 
 // Tableのスタイル
 .company-table {
-
   & .t-row {
     border-top: 0.1px solid $cMain;
 
@@ -42,9 +41,8 @@ $cBack: rgba(255, 241, 159, 0.751);
   & .t-head {
     background-color: $cBack;
     display: block;
-    width: 100em;
 
-    @media screen and (min-width: 960px) {
+    @media screen and (min-width: 768px) {
       display: table-cell;
       width: auto;
     }
@@ -53,17 +51,32 @@ $cBack: rgba(255, 241, 159, 0.751);
   & .t-data {
     display: block;
 
-    @media screen and (min-width: 960px) {
+    @media screen and (min-width: 768px) {
       display: table-cell;
-    }
-
-    &.last p {
-      font-size: 0.7rem;
-
-      @media screen and (min-width: 768px) {
-        font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
-      }
     }
   }
 }
 
+.long-text {
+  font-size: 1rem;
+  letter-spacing: 1px;
+
+  @media screen and (min-width: 768px) {
+    font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
+  }
+}
+
+.pc {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: inline;
+  }
+}
+.mb {
+  display: inline;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
