@@ -183,9 +183,38 @@ footer {
 }
 /* フッターのスタイルここまで */
 
-/* 下層ページのherosection */
+/* 下層ページ */
+/*herosection */
 .hero-section {
   position: relative;
   width: 100%;
   height: 500px;
+}
+
+/* 下層ページのSVG */
+.container {
+  overflow-x: hidden; /* 横のはみ出し部分を非表示に */
+}
+
+.page-heading {
+  margin-bottom: 0;
+}
+
+.svg-container {
+  position: relative;
+
+  svg {
+    width: 100%;
+    display: block;
+    // SVGがビューポート内で調整されるように設定
+    preserveaspectratio: "xMinYMin meet";
+  }
+
+  @media screen and (min-width: 960px) {
+    // transform: scale(1.2);
+  }
+
+  @media screen and (min-width: 1280px) {
+    // transform: scale(1);
+  }
 }

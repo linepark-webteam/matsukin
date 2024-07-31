@@ -1,0 +1,29 @@
+$cMain: #c6af28; //rgb(198, 175, 40)
+$cBack: rgba(255, 241, 159, 0.751);
+
+.container {
+  overflow-x: hidden; /* 横のはみ出し部分を非表示に */
+}
+
+.page-heading {
+  margin-bottom: 0;
+}
+
+.svg-container {
+  position: relative;
+
+  svg {
+    width: 100%;
+    display: block;
+    // SVGがビューポート内で調整されるように設定
+    preserveaspectratio: "xMinYMin meet";
+  }
+
+  @media screen and (min-width: 960px) {
+    // transform: scale(1.2);
+  }
+
+  @media screen and (min-width: 1280px) {
+    // transform: scale(1);
+  }
+}
