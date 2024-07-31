@@ -1,18 +1,12 @@
+@charset "UTF-8";
 /* ダウンロードフォント */
 @font-face {
   font-family: "Apple Chancery";
-  src: url("./fonts/AppleChancery.eot"); /* IE9 Compatibility */
-  src: url("./fonts/AppleChancery.eot?#iefix") format("embedded-opentype"),
-    /* url("./fonts/AppleChancery.woff2") format("woff2"), */
-      /* Super Modern Browsers */
-      /* url("./fonts/AppleChancery.woff") format("woff"), */
-      /* Modern Browsers */ url("./fonts/AppleChancery.ttf") format("truetype"),
-    /* Safari, Android, iOS */ url("./fonts/AppleChancery.svg#AppleChancery")
-      format("svg"); /* Legacy iOS */
+  src: url("./fonts/AppleChancery.eot");
+  src: url("./fonts/AppleChancery.eot?#iefix") format("embedded-opentype"), url("./fonts/AppleChancery.ttf") format("truetype"), url("./fonts/AppleChancery.svg#AppleChancery") format("svg");
   font-weight: normal;
   font-style: normal;
 }
-
 body {
   background-color: #e8e8e8;
   font-family: "Zen Kaku Gothic New", "Apple Chancery", sans-serif;
@@ -40,61 +34,58 @@ a {
   height: auto;
 }
 
-/* headeの透過・不透過 */
+/* Header透明度 */
 header.fixed-top.transparent {
-  background-color: rgba(255, 255, 255, 0); /* 透過状態 */
+  background-color: rgba(255, 255, 255, 0);
 }
-/* header.fixed-top.scrolled {
-  background-color: rgba(255, 255, 255, 1);} /* 不透明状態 */
+
+/* Headerの透明度変化 */
+header.fixed-top.scrolled {
+  background-color: rgb(255, 255, 255);
+}
 
 /* Navbarの設定 */
-.navbar-brand-box {
+.navbar-brand-box,
+.navbar-nav-box {
   display: flex;
   align-items: center;
 }
-.navbar-nav-box {
-  display: flex;
+@media (min-width: 992px) {
+  .navbar-brand-box.navbar-brand-box,
+  .navbar-nav-box.navbar-brand-box {
+    padding-left: 100px;
+  }
+}
+.navbar-brand-box.navbar-nav-box,
+.navbar-nav-box.navbar-nav-box {
   justify-content: flex-end;
   flex-grow: 1;
 }
 @media (min-width: 992px) {
-  .navbar-brand-box {
-    padding-left: 100px;
-  }
-  .navbar-nav-box {
+  .navbar-brand-box.navbar-nav-box,
+  .navbar-nav-box.navbar-nav-box {
     padding-right: 100px;
   }
-}
-.navbar-brand-items h1 span {
-  font-weight: bold;
-  color: #4c3a2c;
-}
-
-.navbar-nav-box li {
-  font-weight: bold;
 }
 
 .navbar-brand-box a.navbar-brand {
   display: flex;
   align-items: center;
 }
-
 .navbar-brand-box a.navbar-brand img {
-  margin-right: 5px; /* ロゴとテキストの間のスペース */
+  margin-right: 5px;
 }
 
 .navbar-toggler {
   justify-content: left;
 }
-
 @media (min-width: 991.98px) {
   .navbar-toggler {
     margin-left: auto;
   }
 }
 
-/* Topへスクロールボタン */
-/* スクロールボタン全体 */
+/* スクロールボタンのスタイル */
 #page_top {
   width: 50px;
   height: 50px;
@@ -103,10 +94,8 @@ header.fixed-top.transparent {
   right: 10px;
   bottom: 15px;
   background: #22a4c4;
-  border: 3px rgb(0, 80, 54) solid;
+  border: 3px solid rgb(0, 80, 54);
 }
-
-/* Font Awesomeを使用 */
 #page_top::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -123,79 +112,4 @@ header.fixed-top.transparent {
   margin: auto;
   text-align: center;
   text-decoration: none;
-}
-/* Topへスクロールボタン */
-
-/* コンテンツの入れ物 */
-.contents-container {
-  background-color: #fff;
-  border-radius: 50px;
-  margin-top: 100px !important;
-}
-
-/* フッターのスタイル */
-footer {
-}
-@media screen and (min-width: 992px) {
-  footer {
-    margin-top: 150px;
-  }
-}
-.footer-brand {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
-  font-weight: bold;
-}
-
-.footer-brand .brand-logo {
-  margin-right: 10px;
-}
-
-/* .brand-container {
-  border-right: 1px solid #333;
-} */
-@media screen and (min-width: 992px) {
-  .brand-container {
-    border-right: 1px solid #4c3a2c;
-  }
-}
-
-.footer-link {
-  font-weight: bold;
-  margin-right: 30px;
-}
-@media screen and (min-width: 992px) {
-  .footer-link {
-    font-size: 1rem;
-  }
-}
-
-.conntact-container {
-}
-.fa-brands,
-.fab {
-  margin-right: 0;
-}
-@media screen and (min-width: 992px) {
-  .fa-brands,
-  .fab {
-    margin-right: 20px;
-  }
-}
-
-.copyright {
-  font-family: "Shippori Antique B1", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: .5px;
-}
-/* フッターのスタイル */
-
-/* 下層ページのherosection */
-.hero-section {
-  position: relative;
-  width: 100%;
-  height: 500px;
-}
+}/*# sourceMappingURL=common.css.map */

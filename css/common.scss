@@ -1,0 +1,129 @@
+$priFontFamily: "Zen Kaku Gothic New", "Apple Chancery", sans-serif;
+$cFont: #4c3a2c;
+$cBg: #e8e8e8;
+$cLink: inherit;
+$navbarPadding: 100px;
+$brandLogoWidth: 30px;
+$scrollButtonSize: 50px;
+$footerMarginLg: 150px;
+
+@mixin scroll-button($size, $cBg) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  position: fixed;
+  right: 10px;
+  bottom: 15px;
+  background: $cBg;
+  border: 3px solid rgb(0, 80, 54); // この色も必要に応じて変数化または直接指定
+
+  &::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f077"; // FontAwesomeのアイコンコード
+    font-size: 16px;
+    color: #ffffff;
+    position: absolute;
+    width: $size;
+    height: 16px;
+    top: 0;
+    bottom: 5px;
+    right: 0;
+    left: -2px;
+    margin: auto;
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
+/* ダウンロードフォント */
+@font-face {
+  font-family: "Apple Chancery";
+  src: url("./fonts/AppleChancery.eot"); // IE9 Compatibility
+  src: url("./fonts/AppleChancery.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/AppleChancery.ttf") format("truetype"),
+    url("./fonts/AppleChancery.svg#AppleChancery") format("svg"); // Legacy iOS
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: $cBg;
+  font-family: $priFontFamily;
+  color: $cFont;
+  letter-spacing: 3px;
+}
+
+/* フォントサイズ */
+p,
+span,
+li,
+th,
+td {
+  font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
+}
+
+/* aタグのスタイル */
+a {
+  color: $cLink;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: $brandLogoWidth;
+  height: auto;
+}
+
+/* Header透明度 */
+header.fixed-top.transparent {
+  background-color: rgba(255, 255, 255, 0); // 透明状態
+}
+
+/* Headerの透明度変化 */
+header.fixed-top.scrolled {
+  background-color: rgba(255, 255, 255, 1); // 不透明状態
+}
+
+/* Navbarの設定 */
+.navbar-brand-box,
+.navbar-nav-box {
+  display: flex;
+  align-items: center;
+
+  &.navbar-brand-box {
+    @media (min-width: 992px) {
+      padding-left: $navbarPadding;
+    }
+  }
+
+  &.navbar-nav-box {
+    justify-content: flex-end;
+    flex-grow: 1;
+
+    @media (min-width: 992px) {
+      padding-right: $navbarPadding;
+    }
+  }
+}
+
+.navbar-brand-box a.navbar-brand {
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: 5px; // ロゴとテキストの間
+  }
+}
+
+.navbar-toggler {
+  justify-content: left;
+
+  @media (min-width: 991.98px) {
+    margin-left: auto;
+  }
+}
+
+/* スクロールボタンのスタイル */
+#page_top {
+  @include scroll-button($scrollButtonSize, #22a4c4); // ミックスインを使用
+}

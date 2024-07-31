@@ -1,0 +1,198 @@
+/* ダウンロードフォント */
+@font-face {
+  font-family: "Apple Chancery";
+  src: url("./fonts/AppleChancery.eot"); /* IE9 Compatibility */
+  src: url("./fonts/AppleChancery.eot?#iefix") format("embedded-opentype"),
+    /* Modern Browsers */ url("./fonts/AppleChancery.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("./fonts/AppleChancery.svg#AppleChancery")
+      format("svg"); /* Legacy iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #e8e8e8;
+  font-family: "Zen Kaku Gothic New", "Apple Chancery", sans-serif;
+  color: #4c3a2c;
+  letter-spacing: 3px;
+}
+
+/* フォントサイズ */
+p,
+span,
+li,
+th,
+td {
+  font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
+}
+
+/* aタグのスタイル */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 30px;
+  height: auto;
+}
+
+/* headeの透過・不透過 */
+header.fixed-top.transparent {
+  background-color: rgba(255, 255, 255, 0); /* 透過状態 */
+}
+/* header.fixed-top.scrolled {
+  background-color: rgba(255, 255, 255, 1);} /* 不透明状態 */
+
+/* Navbarの設定 */
+.navbar-brand-box {
+  display: flex;
+  align-items: center;
+}
+.navbar-nav-box {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+@media (min-width: 992px) {
+  .navbar-brand-box {
+    padding-left: 100px;
+  }
+  .navbar-nav-box {
+    padding-right: 100px;
+  }
+}
+.navbar-brand-items h1 span {
+  font-weight: bold;
+  color: #4c3a2c;
+}
+
+.navbar-nav-box li {
+  font-weight: bold;
+}
+
+.navbar-brand-box a.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand-box a.navbar-brand img {
+  margin-right: 5px; /* ロゴとテキストの間のスペース */
+}
+
+.navbar-toggler {
+  justify-content: left;
+}
+
+@media (min-width: 991.98px) {
+  .navbar-toggler {
+    margin-left: auto;
+  }
+}
+
+/* Topへスクロールボタン */
+/* スクロールボタン全体 */
+#page_top {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: fixed;
+  right: 10px;
+  bottom: 15px;
+  background: #22a4c4;
+  border: 3px rgb(0, 80, 54) solid;
+}
+
+/* Font Awesomeを使用 */
+#page_top::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f077";
+  font-size: 16px;
+  color: #ffffff;
+  position: absolute;
+  width: 50px;
+  height: 16px;
+  top: 0;
+  bottom: 5px;
+  right: 0;
+  left: -2px;
+  margin: auto;
+  text-align: center;
+  text-decoration: none;
+}
+/* Topへスクロールボタン */
+
+/* コンテンツの入れ物 */
+.contents-container {
+  background-color: #fff;
+  border-radius: 50px;
+  margin-top: 100px !important;
+}
+
+/* フッターのスタイル */
+footer {
+}
+@media screen and (min-width: 992px) {
+  footer {
+    margin-top: 150px;
+  }
+}
+.footer-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
+  font-weight: bold;
+}
+
+.footer-brand .brand-logo {
+  margin-right: 10px;
+}
+
+/* .brand-container {
+  border-right: 1px solid #333;
+} */
+@media screen and (min-width: 992px) {
+  .brand-container {
+    border-right: 1px solid #4c3a2c;
+  }
+}
+
+.footer-link {
+  font-weight: bold;
+  margin-right: 30px;
+}
+@media screen and (min-width: 992px) {
+  .footer-link {
+    font-size: 1rem;
+  }
+}
+
+.conntact-container {
+}
+.fa-brands,
+.fab {
+  margin-right: 0;
+}
+@media screen and (min-width: 992px) {
+  .fa-brands,
+  .fab {
+    margin-right: 20px;
+  }
+}
+
+.copyright {
+  font-family: "Shippori Antique B1", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
+/* フッターのスタイル */
+
+/* 下層ページのherosection */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 500px;
+}

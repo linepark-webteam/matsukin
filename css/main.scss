@@ -1,0 +1,319 @@
+// 変数
+$cFontColor: #4c3a2c;
+$cGold: #c6af28;
+$font-family-special: "Apple Chancery";
+
+// ミックスイン
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin responsive-font($min-size, $max-size, $min-vw: 320px, $max-vw: 1280px) {
+  $min-size: strip-unit($min-size);
+  $max-size: strip-unit($max-size);
+  $min-vw: strip-unit($min-vw);
+  $max-vw: strip-unit($max-vw);
+
+  $slope: ($max-size - $min-size) / ($max-vw - $min-vw);
+  $y-axis-intersection: -1 * $min-vw * $slope + $min-size;
+
+  font-size: calc(#{$y-axis-intersection}px + #{$slope * 100}vw);
+}
+
+// メディアクエリミックスイン
+@mixin media-min($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+.top-hero-section {
+  width: 100%;
+  height: 100svh;
+
+  @include media-min(992px) {
+    width: 100%;
+    height: 100svh;
+  }
+}
+
+.hero-svg {
+  padding-top: 150px;
+  transform: scale(2, 2);
+
+  @include media-min(430px) {
+    padding-top: 200px;
+  }
+
+  @include media-min(500px) {
+    padding-top: 100px;
+    transform: scale(1.5, 1.5);
+  }
+
+  @include media-min(768px) {
+    padding-top: 200px;
+    transform: scale(1.5, 1.5);
+  }
+
+  @include media-min(1024px) {
+    padding-top: 300px;
+    transform: scale(1, 1);
+  }
+
+  @include media-min(1280px) {
+    padding-top: 100px;
+    transform: scale(1, 1);
+  }
+}
+
+.hero-text {
+  color: $cFontColor;
+  text-align: center;
+  margin-top: 150px;
+
+  @include media-min(430px) {
+    margin-top: 180px;
+  }
+
+  @include media-min(768px) {
+    margin-top: 150px;
+  }
+
+  @include media-min(1024px) {
+    margin-top: 50px;
+  }
+}
+
+.animate-text {
+  &.head .letter {
+    font-family: $font-family-special;
+    @include responsive-font(22px, 64px);
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+  &.p .letter {
+    @include responsive-font(16px, 24px);
+    font-weight: bold;
+    letter-spacing: 5px;
+  }
+
+  @include media-min(1280px) {
+    &.head .letter {
+      font-size: 64px;
+    }
+    &.p .letter {
+      font-size: 24px;
+    }
+  }
+}
+
+.hero-scroll-text {
+  font-family: $font-family-special;
+  @include responsive-font(14px, 24px);
+  color: $cGold;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.svg-background {
+  position: absolute;
+  top: 180svh;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+
+  @include media-min(430px) {
+    top: 160svh;
+  }
+
+  @include media-min(500px) {
+    top: 150svh;
+  }
+
+  @include media-min(768px) {
+    top: 140svh;
+  }
+
+  @include media-min(992px) {
+    top: 120svh;
+    width: 95%;
+    left: 2.5%;
+  }
+
+  @include media-min(1200px) {
+    top: 120vh;
+    width: 90%;
+    left: 5%;
+  }
+
+  @include media-min(1400px) {
+    top: 150vh;
+    width: 100%;
+  }
+
+  @include media-min(1600px) {
+    top: 130vh;
+    width: 80%;
+  }
+}
+
+.swiper-container.top {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+
+  .swiper-slide.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 160px;
+      height: 200px;
+      border-radius: 20px;
+      object-fit: cover;
+
+      @include media-min(430px) {
+        width: 180px;
+        height: 220px;
+      }
+
+      @include media-min(768px) {
+        width: 220px;
+        height: 260px;
+      }
+
+      @include media-min(1024px) {
+        width: 240px;
+        height: 280px;
+      }
+    }
+  }
+}
+
+// 共通のセクションスタイル
+%section-common {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+
+  .c-section-item {
+    max-width: 600px;
+  }
+
+  .c-section-title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 16px;
+    color: $cFontColor;
+  }
+
+  .c-section-paragraph {
+    font-size: 16px;
+    font-weight: bold;
+    color: $cFontColor;
+    text-align: center;
+  }
+}
+
+.c-section-content {
+  &.first,
+  &.products {
+    @extend %section-common;
+  }
+
+  padding: 20px;
+  font-weight: bold;
+
+  .c-section-title {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: $cFontColor;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .c-section-paragraph {
+    font-size: 16px;
+    color: $cFontColor;
+  }
+}
+
+.company {
+  @include media-min(1024px) {
+    margin-top: 150px;
+  }
+
+  &-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+
+    @include media-min(430px) {
+      width: 350px;
+      height: 350px;
+    }
+
+    @include media-min(600px) {
+      width: 450px;
+      height: 450px;
+    }
+  }
+}
+
+.introduction {
+  @include media-min(992px) {
+    margin-top: 50px;
+  }
+
+  &-img {
+    @extend .company-img;
+  }
+}
+
+.products-container {
+  @include media-min(992px) {
+    margin-top: 150px;
+  }
+}
+
+// 製造・作品のSwipperスライダーのスタイル
+%swiper-common {
+  width: 100vw;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: inherit;
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 240px;
+      height: 240px;
+      border-radius: 20px;
+      object-fit: cover;
+
+      @include media-min(1024px) {
+        width: 250px;
+        height: 250px;
+      }
+    }
+  }
+}
+
+.swiper-container {
+  &.products,
+  &.works {
+    @extend %swiper-common;
+  }
+}

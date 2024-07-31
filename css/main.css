@@ -16,7 +16,6 @@
 @media screen and (min-width: 430px) {
   .hero-svg {
     padding-top: 200px;
-    transform: scale(2, 2);
   }
 }
 @media screen and (min-width: 500px) {
@@ -27,13 +26,13 @@
 }
 @media screen and (min-width: 768px) {
   .hero-svg {
-    padding-top: 100px;
+    padding-top: 200px;
     transform: scale(1.5, 1.5);
   }
 }
 @media screen and (min-width: 1024px) {
   .hero-svg {
-    padding-top: 100px;
+    padding-top: 300px;
     transform: scale(1, 1);
   }
 }
@@ -45,7 +44,7 @@
 }
 
 .hero-text {
-  color: #4c3a2c; /* テキストの色 */
+  color: #4c3a2c;
   text-align: center;
   margin-top: 150px;
 }
@@ -67,39 +66,14 @@
 
 .animate-text.head .letter {
   font-family: "Apple Chancery";
-  font-size: calc((100vw - 320px) / 140 + 22px);
+  font-size: calc(8px + 4.375vw);
   font-weight: bold;
   letter-spacing: 2px;
 }
 .animate-text.p .letter {
-  font-size: calc((100vw - 320px) / 140 + 16px);
+  font-size: calc(13.3333333333px + 0.8333333333vw);
   font-weight: bold;
   letter-spacing: 5px;
-}
-
-@media screen and (min-width: 430px) {
-  .animate-text.head .letter {
-    font-size: calc((100vw - 320px) / 140 + 28px);
-  }
-  .animate-text.p .letter {
-    font-size: calc((100vw - 320px) / 140 + 20px);
-  }
-}
-@media screen and (min-width: 768px) {
-  .animate-text.head .letter {
-    font-size: calc((100vw - 320px) / 140 + 56px);
-  }
-  .animate-text.p .letter {
-    font-size: calc((100vw - 320px) / 140 + 24px);
-  }
-}
-@media screen and (min-width: 1024px) {
-  .animate-text.head .letter {
-    font-size: calc((100vw - 320px) / 140 + 64px);
-  }
-  .animate-text.p .letter {
-    font-size: calc((100vw - 320px) / 140 + 22px);
-  }
 }
 @media screen and (min-width: 1280px) {
   .animate-text.head .letter {
@@ -110,266 +84,197 @@
   }
 }
 
-/* SVG背景の為のスタイル */
+.hero-scroll-text {
+  font-family: "Apple Chancery";
+  font-size: calc(10.6666666667px + 1.0416666667vw);
+  color: #c6af28;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
 .svg-background {
   position: absolute;
-  top: 160svh;
+  top: 180svh;
   left: 0;
   width: 100%;
-  height: 100%;
-  z-index: -1; /* 背景に配置 */
+  height: auto;
+  z-index: -1;
+}
+@media screen and (min-width: 430px) {
+  .svg-background {
+    top: 160svh;
+  }
+}
+@media screen and (min-width: 500px) {
+  .svg-background {
+    top: 150svh;
+  }
+}
+@media screen and (min-width: 768px) {
+  .svg-background {
+    top: 140svh;
+  }
 }
 @media screen and (min-width: 992px) {
   .svg-background {
-    top: 1400px; /* 上部からの位置 */
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* 背景に配置 */
+    top: 120svh;
+    width: 95%;
+    left: 2.5%;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .svg-background {
-    top: 1050px; /* 上部からの位置 */
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* 背景に配置 */
+    top: 120vh;
+    width: 90%;
+    left: 5%;
   }
 }
 @media screen and (min-width: 1400px) {
   .svg-background {
-    top: 800px;
-    width: 95%;
-    height: 95%;
-    z-index: -1;
+    top: 150vh;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .svg-background {
+    top: 130vh;
+    width: 80%;
   }
 }
 
-
-/* ページトップの Swipper Sliderの為のスタイル */
 .swiper-container.top {
   width: 100%;
   height: 300px;
   overflow: hidden;
 }
-.swiper-wrapper {
+.swiper-container.top .swiper-wrapper {
   transition-timing-function: linear !important;
 }
-.swiper-slide.top {
+.swiper-container.top .swiper-slide.top {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.swiper-slide.top img {
+.swiper-container.top .swiper-slide.top img {
   width: 160px;
   height: 200px;
   border-radius: 20px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 @media screen and (min-width: 430px) {
-  .swiper-slide.top img {
+  .swiper-container.top .swiper-slide.top img {
     width: 180px;
     height: 220px;
-    object-fit: cover;
-  }
-}
-@media screen and (min-width: 500px) {
-  .swiper-slide.top img {
-    width: 180px;
-    height: 220px;
-    object-fit: cover;
   }
 }
 @media screen and (min-width: 768px) {
-  .swiper-slide.top img {
+  .swiper-container.top .swiper-slide.top img {
     width: 220px;
     height: 260px;
-    object-fit: cover;
   }
 }
 @media screen and (min-width: 1024px) {
-  .swiper-slide.top img {
+  .swiper-container.top .swiper-slide.top img {
     width: 240px;
     height: 280px;
-    object-fit: cover;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .swiper-slide.top img {
-    width: 240px;
-    height: 280px;
-    object-fit: cover;
   }
 }
 
-/* first products section共通のスタイル */
-.c-section-content.first,
-.c-section-content.products {
+.c-section-content.first, .c-section-content.products {
   display: flex;
   justify-content: center;
   padding: 20px;
 }
-
-.c-section-item.first,
-.c-section-item.products {
+.c-section-content.first .c-section-item, .c-section-content.products .c-section-item {
   max-width: 600px;
 }
-
-.c-section-title.first,
-.c-section-title.products {
-  font-weight: bold ;
+.c-section-content.first .c-section-title, .c-section-content.products .c-section-title {
+  font-weight: bold;
   text-align: center;
   margin-bottom: 16px;
   color: #4c3a2c;
 }
-
-.c-section-paragraph.first,
-.c-section-paragraph.products {
+.c-section-content.first .c-section-paragraph, .c-section-content.products .c-section-paragraph {
   font-size: 16px;
   font-weight: bold;
   color: #4c3a2c;
   text-align: center;
 }
 
-/* section共通のスタイル */
 .c-section-content {
   padding: 20px;
   font-weight: bold;
 }
-
-.c-section-title {
+.c-section-content .c-section-title {
   font-size: 24px;
   margin-bottom: 16px;
   color: #4c3a2c;
   font-weight: bold;
   text-align: center;
 }
-
-.c-section-paragraph {
+.c-section-content .c-section-paragraph {
   font-size: 16px;
   color: #4c3a2c;
 }
 
-/* 会社概要 */
-.company {
-  /* margin-top: ; */
-}
 @media screen and (min-width: 1024px) {
   .company {
     margin-top: 150px;
   }
 }
-
-.company-img {
+.company-img, .introduction-img {
   width: 300px;
   height: 300px;
   border-radius: 20px;
 }
 @media screen and (min-width: 430px) {
-  .company-img {
+  .company-img, .introduction-img {
     width: 350px;
     height: 350px;
   }
 }
 @media screen and (min-width: 600px) {
-  .company-img {
-    width: 450px;
-    height: 450px;
-  }
-}
-@media screen and (min-width: 768px) {
-  .company-img {
-    width: 450px;
-    height: 450px;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .company-img {
+  .company-img, .introduction-img {
     width: 450px;
     height: 450px;
   }
 }
 
-/* 事業紹介 */
-.introduction {
-  /* margin-top: ; */
-}
 @media screen and (min-width: 992px) {
   .introduction {
     margin-top: 50px;
   }
 }
-
-.introduction-img {
-  width: 300px;
-  height: 300px;
-  border-radius: 20px;
-}
-@media screen and (min-width: 430px) {
-  .introduction-img {
-    width: 350px;
-    height: 350px;
-  }
-}
-@media screen and (min-width: 600px) {
-  .introduction-img {
-    width: 450px;
-    height: 450px;
-  }
-}
-@media screen and (min-width: 768px) {
-  .introduction-img {
-    width: 450px;
-    height: 450px;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .introduction-img {
-    width: 450px;
-    height: 450px;
-  }
-}
-
-/* 取扱製品 */
-.products-container {
-  /* margin-top: ; */
-}
 @media screen and (min-width: 992px) {
   .products-container {
     margin-top: 150px;
-    /* margin-bottom: 50px; */
   }
 }
 
-/* 製造・作品のSwipperスライダーの為のスタイル */
-.swiper-container.products,
-.swiper-container.works {
-  width: 100vw;  /* 画面幅いっぱいに表示 */
-  height: 300px;  /* 固定の高さ */
-  margin: 0;  /* 余白をリセット */
-  padding: 0;  /* 余白をリセット */
-  box-sizing: border-box;  /* ボーダーとパディングを幅に含める */
+.swiper-container.products, .swiper-container.works {
+  width: 100vw;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   overflow: inherit;
 }
-.swiper-slide.products,
-.swiper-slide.works
-{
+.swiper-container.products .swiper-slide, .swiper-container.works .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.swiper-slide.products img,
-.swiper-slide.works img
-{
+.swiper-container.products .swiper-slide img, .swiper-container.works .swiper-slide img {
   width: 240px;
   height: 240px;
   border-radius: 20px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 @media screen and (min-width: 1024px) {
-  .swiper-slide.products img,
-  .swiper-slide.works img
-  {
+  .swiper-container.products .swiper-slide img, .swiper-container.works .swiper-slide img {
     width: 250px;
     height: 250px;
   }
-}
+}/*# sourceMappingURL=main.css.map */
