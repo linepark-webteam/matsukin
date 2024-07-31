@@ -134,11 +134,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta property="og:description" content="＊">
 
   <!-- Favicon -->
-  <link rel="icon" href="./img/favicon-16x16.png" type="image/png" sizes="16x16">
-  <link rel="icon" href="./img/favicon-32x32.png" type="image/png" sizes="32x32">
-  <link rel="icon" href="./img/favicon-32x32.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="../img/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="../img/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../img/favicon-32x32.png" type="image/png" sizes="48x48">
   <!-- AppleIcon -->
-  <link rel="apple-touch-icon" href="./img/apple-touch-icon.png" sizes="180x180">
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png" sizes="180x180">
 
   <!-- Shippori Antique B1 & Zen Kaku Gothic New Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

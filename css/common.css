@@ -112,4 +112,60 @@ header.fixed-top.scrolled {
   margin: auto;
   text-align: center;
   text-decoration: none;
+}
+
+/* フッターのスタイル */
+@media screen and (min-width: 992px) {
+  footer {
+    margin-top: 150px;
+  }
+}
+footer .footer-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
+  font-weight: bold;
+}
+footer .footer-brand .brand-logo {
+  margin-right: 10px;
+}
+@media screen and (min-width: 992px) {
+  footer .brand-container {
+    border-right: 1px solid #4c3a2c;
+  }
+}
+footer .footer-link {
+  font-weight: bold;
+  margin-right: 30px;
+}
+@media screen and (min-width: 992px) {
+  footer .footer-link {
+    font-size: 1rem;
+  }
+}
+.fa-brands,
+.fab {
+  margin-right: 0;
+}
+@media screen and (min-width: 992px) {
+  .fa-brands,
+  .fab {
+    margin-right: 20px;
+  }
+}
+
+.copyright {
+  font-family: "Shippori Antique B1", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
+
+/* フッターのスタイルここまで */
+/* 下層ページのherosection */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 500px;
 }/*# sourceMappingURL=common.css.map */

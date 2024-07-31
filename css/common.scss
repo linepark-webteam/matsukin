@@ -127,3 +127,65 @@ header.fixed-top.scrolled {
 #page_top {
   @include scroll-button($scrollButtonSize, #22a4c4); // ミックスインを使用
 }
+/* フッターのスタイル */
+footer {
+  @media screen and (min-width: 992px) {
+    margin-top: 150px;
+  }
+
+  .footer-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
+    font-weight: bold;
+
+    .brand-logo {
+      margin-right: 10px;
+    }
+  }
+
+  .brand-container {
+    // border-right: 1px solid #333;
+    @media screen and (min-width: 992px) {
+      border-right: 1px solid #4c3a2c;
+    }
+  }
+
+  .footer-link {
+    font-weight: bold;
+    margin-right: 30px;
+
+    @media screen and (min-width: 992px) {
+      font-size: 1rem;
+    }
+  }
+
+  .conntact-container {
+    // スタイル未定義だが、定義する可能性があるので空ブロック配置
+  }
+}
+
+.fa-brands,
+.fab {
+  margin-right: 0;
+
+  @media screen and (min-width: 992px) {
+    margin-right: 20px;
+  }
+}
+
+.copyright {
+  font-family: "Shippori Antique B1", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
+/* フッターのスタイルここまで */
+
+/* 下層ページのherosection */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
