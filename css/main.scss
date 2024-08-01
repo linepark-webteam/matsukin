@@ -38,30 +38,30 @@ $font-family-special: "Apple Chancery";
 }
 
 .hero-svg {
-  padding-top: 150px;
+  padding-top: 25svh;
   transform: scale(2, 2);
 
   @include media-min(430px) {
-    padding-top: 200px;
+    padding-top: 25svh;
   }
 
   @include media-min(500px) {
-    padding-top: 100px;
+    padding-top: 22svh;
     transform: scale(1.5, 1.5);
   }
 
   @include media-min(768px) {
-    padding-top: 200px;
+    padding-top: 25svh;
     transform: scale(1.5, 1.5);
   }
 
   @include media-min(1024px) {
-    padding-top: 300px;
+    padding-top: 20svh;
     transform: scale(1, 1);
   }
 
   @include media-min(1280px) {
-    padding-top: 100px;
+    padding-top: 10svh;
     transform: scale(1, 1);
   }
 }

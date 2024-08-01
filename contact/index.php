@@ -285,7 +285,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   <div class="d-flex flex-column align-items-center col-lg-12">
                     <div class="d-flex">
                       <input type="checkbox" name="privacyPolicy" class="form-check-input fs-6 fw-bold" id="privacyPolicy" value="accepted" <?php echo (!empty($_SESSION['privacyPolicy']) && $_SESSION['privacyPolicy'] == 'accepted' ? 'checked' : ''); ?>>
-                      <label class="form-check-label fs-6 fw-bold" for="privacyPolicy">プライバシーポリシーに同意の上、チェックを入れて送信してください。</label>
+                      <label class="form-check-label fs-6 fw-bold" for="privacyPolicy"><u><a href="../privacy-policy/">プライバシーポリシー</a></u>に同意の上、チェックを入れて送信してください。</label>
                     </div>
                     <?php if (!empty($errors['privacyPolicy'])) : ?>
                       <div class="error"><?php echo $errors['privacyPolicy']; ?></div>
