@@ -69,7 +69,7 @@ header.fixed-top.transparent {
   align-items: center;
 }
 .navbar-brand-box a.navbar-brand img {
-  margin-right: 5px;
+  margin-right: 15px;
 }
 
 .navbar-toggler {
@@ -120,11 +120,11 @@ footer .footer-brand {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: clamp(0.875rem, 1.5vw + 1rem, 1.25rem);
+  font-size: clamp(1rem, 1.5vw + 1rem, 1.5rem);
   font-weight: bold;
 }
 footer .footer-brand .brand-logo {
-  margin-right: 10px;
+  margin-right: 15px;
 }
 @media screen and (min-width: 992px) {
   footer .brand-container {
@@ -133,11 +133,11 @@ footer .footer-brand .brand-logo {
 }
 footer .footer-link {
   font-weight: bold;
-  margin-right: 30px;
 }
 @media screen and (min-width: 992px) {
   footer .footer-link {
     font-size: 1rem;
+    margin-right: 30px;
   }
 }
 .fa-brands,

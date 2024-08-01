@@ -46,7 +46,7 @@
 .hero-text {
   color: #4c3a2c;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 20svh;
 }
 @media screen and (min-width: 430px) {
   .hero-text {

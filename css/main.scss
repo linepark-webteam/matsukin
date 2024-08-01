@@ -69,7 +69,7 @@ $font-family-special: "Apple Chancery";
 .hero-text {
   color: $cFontColor;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 20svh;
 
   @include media-min(430px) {
     margin-top: 180px;
