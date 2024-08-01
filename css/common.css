@@ -127,7 +127,7 @@ footer .footer-brand .brand-logo {
   margin-right: 15px;
 }
 @media screen and (min-width: 992px) {
-  footer .brand-container {
+  footer .brand-and-link-container {
     border-right: 1px solid #4c3a2c;
   }
 }
@@ -137,7 +137,6 @@ footer .footer-link {
 @media screen and (min-width: 992px) {
   footer .footer-link {
     font-size: 1rem;
-    margin-right: 30px;
   }
 }
 .fa-brands,
