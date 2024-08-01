@@ -118,22 +118,22 @@ $font-family-special: "Apple Chancery";
 
 .svg-background {
   position: absolute;
-  top: 180svh;
+  top: 145svh;
   left: 0;
   width: 100%;
   height: auto;
   z-index: -1;
 
   @include media-min(430px) {
-    top: 160svh;
+    top: 130svh;
   }
 
   @include media-min(500px) {
-    top: 150svh;
+    top: 130svh;
   }
 
   @include media-min(768px) {
-    top: 140svh;
+    top: 120svh;
   }
 
   @include media-min(992px) {

@@ -94,7 +94,7 @@
 
 .svg-background {
   position: absolute;
-  top: 180svh;
+  top: 145svh;
   left: 0;
   width: 100%;
   height: auto;
@@ -102,17 +102,17 @@
 }
 @media screen and (min-width: 430px) {
   .svg-background {
-    top: 160svh;
+    top: 130svh;
   }
 }
 @media screen and (min-width: 500px) {
   .svg-background {
-    top: 150svh;
+    top: 130svh;
   }
 }
 @media screen and (min-width: 768px) {
   .svg-background {
-    top: 140svh;
+    top: 120svh;
   }
 }
 @media screen and (min-width: 992px) {
