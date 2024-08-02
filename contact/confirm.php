@@ -66,9 +66,10 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
 <body>
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.html'; ?>
 
-  <section class="contents-container mx-md-5 mx-3 my-5 py-5">
-    <div class="container">
-      <div class="col-12">
+  <main>
+      <section class="contents-container mx-md-5 mx-3 px-1 pt-1 pb-5">
+        <div class="container mt-5">
+          <div class="col-12">
         <h2 class="page-heading fs-3 fw-bold">お問い合わせ内容の確認</h2>
         <div class="svg-container">
           <svg version="1.1" id="borderHouse" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1024 100" style="enable-background: new 0 0 1024 100" xml:space="preserve">
@@ -144,6 +145,7 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
       </div>
     </div>
   </section>
+  </main>
 
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.html'; ?>
 

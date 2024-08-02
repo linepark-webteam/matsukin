@@ -161,11 +161,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <title>お問い合わせ</title>
 
-    <!-- Anime.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
+  <!-- Anime.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
 
 
 <body>
@@ -175,8 +175,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   ?>
 
   <main>
-    <section class="contents-container mx-md-5 mx-3 my-5 px-1 py-5">
-      <div class="container">
+    <section class="contents-container mx-md-5 mx-3 px-1 pt-1 pb-5">
+      <div class="container mt-5">
         <div class="col-12">
           <h2 class="page-heading fs-3 fw-bold">お問い合わせ</h2>
           <div class="svg-container">
