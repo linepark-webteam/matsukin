@@ -87,7 +87,7 @@ $font-family-special: "Apple Chancery";
 .animate-text {
   &.head .letter {
     font-family: $font-family-special;
-    @include responsive-font(22px, 64px);
+    @include responsive-font(18px, 64px);
     font-weight: bold;
     letter-spacing: 2px;
   }
