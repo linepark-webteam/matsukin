@@ -95,4 +95,17 @@ function animateText() {
   });
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+  const header = document.querySelector('header.fixed-top');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) { // 50px以上スクロールしたら不透過にする
+      header.classList.remove('transparent');
+      header.classList.add('opaque');
+    } else {
+      header.classList.add('transparent');
+      header.classList.remove('opaque');
+    }
+  });
+});
+
 });

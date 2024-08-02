@@ -36,10 +36,13 @@ a {
 
 /* Header透明度 */
 header.fixed-top.transparent {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+header.fixed-top.opaque {
   background-color: #e8e8e8;
 }
 
-/* Headerの透明度変化 */
 /* Navbarの設定 */
 .navbar-brand-box,
 .navbar-nav-box {
@@ -167,13 +170,9 @@ footer .footer-link {
 }
 
 .contents-container {
+  margin: 100px 0 50px;
   background-color: #fff;
-  border-radius: 3%;
-}
-@media screen and (min-width: 500px) {
-  .contents-container {
-    border-radius: 10%;
-  }
+  border-radius: 35px;
 }
 
 /* 下層ページ 見出し下のSVG */

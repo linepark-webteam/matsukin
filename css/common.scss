@@ -76,15 +76,16 @@ a {
 }
 
 /* Header透明度 */
+// headerの透明状態
 header.fixed-top.transparent {
-  background-color: $cBg; // 不透明状態
-  // background-color: rgba(255, 255, 255, 0); // 透明状態
+  background-color: rgba(255, 255, 255, 0); // 透明状態
 }
 
-/* Headerの透明度変化 */
-// header.fixed-top.scrolled {
-//   background-color: $cBg
-// }
+// headerの不透明状態
+header.fixed-top.opaque {
+  background-color: $cBg;
+}
+
 
 /* Navbarの設定 */
 .navbar-brand-box,
@@ -192,12 +193,9 @@ footer {
 }
 
 .contents-container {
+  margin: 100px 0 50px;
   background-color: #fff;
-  border-radius: 3%;
-
-  @media screen and (min-width: 500px) {
-    border-radius: 10%;
-  }
+  border-radius: 35px;
 }
 
 /* 下層ページ 見出し下のSVG */
