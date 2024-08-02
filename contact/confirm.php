@@ -55,7 +55,12 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
   <link rel="stylesheet" href="../css/contact.css">
 
   <title>お問い合わせ内容の確認</title>
-</head>
+
+    <!-- Anime.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
 
 
 <body>
@@ -150,8 +155,6 @@ $privacyPolicy = $_SESSION['privacyPolicy'] ?? '';
   <!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
   <!-- Vivus(SVG Animation)ライブラリ CDN -->
   <script src="https://cdn.jsdelivr.net/npm/vivus/dist/vivus.min.js"></script>
-  <!-- jQuery CDN -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <!-- MyScript -->
   <script src="../js/contact.js"></script>
 </body>
