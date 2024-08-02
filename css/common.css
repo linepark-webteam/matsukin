@@ -166,7 +166,17 @@ footer .footer-link {
   height: 500px;
 }
 
-/* 下層ページのSVG */
+.contents-container {
+  background-color: #fff;
+  border-radius: 3%;
+}
+@media screen and (min-width: 500px) {
+  .contents-container {
+    border-radius: 10%;
+  }
+}
+
+/* 下層ページ 見出し下のSVG */
 .container {
   overflow-x: hidden; /* 横のはみ出し部分を非表示に */
 }
