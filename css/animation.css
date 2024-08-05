@@ -1,15 +1,12 @@
 /* フェードインアニメーションのスタイル */
 .u-fade-in {
-  animation: fadeIn 2s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  will-change: opacity;
 }
 
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-  }
-  to {
-      opacity: 1;
-  }
+.u-fade-in.fade-in {
+  opacity: 1;
 }
 
 /* テキストを１文字ずつ表示するアニメーションの為のスタイル */

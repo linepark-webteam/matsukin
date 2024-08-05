@@ -85,12 +85,37 @@ $(document).ready(function() {
     }
   }
 
+    // フェードイン要素の処理を行う関数
+    function handleFadeInElements() {
+      $('.u-fade-in').each(function() {
+        var element = $(this);
+        if (isElementInViewport(element)) {
+          element.addClass('fade-in');
+        }
+      });
+    }
+
+  // 要素がビューポート内にあるかをチェックする関数
+  function isElementInViewport(el) {
+    var rect = el[0].getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
   // 初期化と各種イベントリスナーの設定
   adjustSvg();
   initSvgAnimation();
   animateText();
   updateHeaderTransparency();
+  handleFadeInElements();  // 初回のフェードイン処理
 
   $(window).on('resize', adjustSvg);
-  $(window).on('scroll', updateHeaderTransparency);
+  $(window).on('scroll', function() {
+    updateHeaderTransparency();
+    handleFadeInElements();  // スクロール時にもフェードイン処理を実行
+  });
 });

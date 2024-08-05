@@ -10,7 +10,29 @@ const util = {
       element.appendChild(span);
     });
   },
-  getScreenWidth: () => $(window).width()
+  throttle: (func, limit) => {
+    let inThrottle;
+    return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    }
+  },
+  getScreenWidth: () => $(window).width(),
+  isElementInViewport: (el) => {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  },
 };
 
 // アニメーション関連の関数
@@ -22,7 +44,7 @@ const animations = {
       animTimingFunction: Vivus.EASE,
       start: options.start || "autostart",
       onReady: options.onReady,
-      onEnd: options.onEnd
+      onEnd: options.onEnd,
     });
   },
   text: () => {
@@ -47,28 +69,26 @@ const animations = {
       onEnd: (obj) => {
         obj.el.classList.add("finished");
         if (document.querySelector("#house").classList.contains("ready")) {
-          requestAnimationFrame(() => {
-            anime({
-              targets: "#house path",
-              translateX: () => anime.random(-10, 10) + "px",
-              translateY: () => anime.random(-10, 10) + "px",
-              easing: "linear",
-              duration: 1000,
-              direction: "alternate",
-              loop: true,
-            });
+          anime({
+            targets: "#house path",
+            translateX: () => anime.random(-10, 10) + "px",
+            translateY: () => anime.random(-10, 10) + "px",
+            easing: "linear",
+            duration: 1000,
+            direction: "alternate",
+            loop: true,
           });
         }
-      }
+      },
     });
   },
   backgroundSvg: () => {
     let duration = util.getScreenWidth() < 992 ? 10 : 200;
     let vivus = animations.vivus("background-svg", {
       type: "sync",
-      start: "manual"
+      start: "manual",
     });
-    
+
     let animeInstance = anime({
       targets: "#background-svg path",
       translateX: () => anime.random(-5, 5) + "px",
@@ -77,7 +97,7 @@ const animations = {
       duration: 500,
       direction: "alternate",
       loop: true,
-      autoplay: false
+      autoplay: false,
     });
 
     let animationStarted = false;
@@ -106,7 +126,20 @@ const animations = {
         }
       }
     });
-  }
+  },
+  fadeIn: () => {
+    const fadeElements = document.querySelectorAll(".u-fade-in:not(.fade-in)");
+    const viewportHeight = window.innerHeight;
+
+    fadeElements.forEach((element) => {
+      const rect = element.getBoundingClientRect();
+      if (rect.top <= viewportHeight) {
+        requestAnimationFrame(() => {
+          element.classList.add("fade-in");
+        });
+      }
+    });
+  },
 };
 
 // Swiper初期化
@@ -121,7 +154,7 @@ const initializeSwipers = () => {
         768: { slidesPerView: 3.5 },
         1024: { slidesPerView: 4 },
         1200: { slidesPerView: 5 },
-      }
+      },
     },
     products: {
       spaceBetween: 25,
@@ -132,7 +165,7 @@ const initializeSwipers = () => {
         768: { slidesPerView: 3 },
         1024: { slidesPerView: 3.5 },
         1200: { slidesPerView: 4.5 },
-      }
+      },
     },
     works: {
       spaceBetween: 25,
@@ -143,8 +176,8 @@ const initializeSwipers = () => {
         768: { slidesPerView: 3 },
         1024: { slidesPerView: 3.5 },
         1200: { slidesPerView: 4.5 },
-      }
-    }
+      },
+    },
   };
 
   Object.entries(swiperConfigs).forEach(([key, config]) => {
@@ -156,7 +189,7 @@ const initializeSwipers = () => {
         disableOnInteraction: false,
       },
       allowTouchMove: true,
-      ...config
+      ...config,
     });
   });
 };
@@ -164,7 +197,7 @@ const initializeSwipers = () => {
 // SVG調整関数
 const adjustSvg = () => {
   const screenWidth = util.getScreenWidth();
-  const h2Height = $('.fs-3.fw-bold').outerHeight();
+  const h2Height = $(".fs-3.fw-bold").outerHeight();
   let additionalOffset, scaleValue;
 
   if (screenWidth < 375) {
@@ -185,18 +218,18 @@ const adjustSvg = () => {
     [additionalOffset, scaleValue] = [18, 1.1];
   }
 
-  $('.svg-container').css({
-    'top': -(h2Height + additionalOffset) + 'px',
-    'transform': `scale(${scaleValue})`
+  $(".svg-container").css({
+    top: -(h2Height + additionalOffset) + "px",
+    transform: `scale(${scaleValue})`,
   });
 };
 
 // ヘッダーの透過・不透過トグル
 const updateHeaderTransparency = () => {
-  const header = $('header.fixed-top');
+  const header = $("header.fixed-top");
   $(window).scrollTop() > 50
-    ? header.removeClass('transparent').addClass('opaque')
-    : header.addClass('transparent').removeClass('opaque');
+    ? header.removeClass("transparent").addClass("opaque")
+    : header.addClass("transparent").removeClass("opaque");
 };
 
 // プリローダーアニメーション
@@ -213,9 +246,16 @@ $(document).ready(() => {
   animations.topHeroSvg();
   animations.text();
   animations.backgroundSvg();
+  animations.fadeIn(); // 初回のフェードイン処理
   initializeSwipers();
   updateHeaderTransparency();
 
-  $(window).on('resize', adjustSvg);
-  $(window).on('scroll', updateHeaderTransparency);
+  $(window).on('resize', util.throttle(adjustSvg, 100));
+  $(window).on('scroll', util.throttle(() => {
+    updateHeaderTransparency();
+    animations.fadeIn();
+  }, 100));
+
+  // ウィンドウのリサイズ時にもフェードイン処理を実行
+  $(window).on('resize', util.throttle(animations.fadeIn, 100));
 });
