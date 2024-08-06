@@ -12,15 +12,15 @@ const util = {
   },
   throttle: (func, limit) => {
     let inThrottle;
-    return function() {
+    return function () {
       const args = arguments;
       const context = this;
       if (!inThrottle) {
         func.apply(context, args);
         inThrottle = true;
-        setTimeout(() => inThrottle = false, limit);
+        setTimeout(() => (inThrottle = false), limit);
       }
-    }
+    };
   },
   getScreenWidth: () => $(window).width(),
   isElementInViewport: (el) => {
@@ -250,12 +250,15 @@ $(document).ready(() => {
   initializeSwipers();
   updateHeaderTransparency();
 
-  $(window).on('resize', util.throttle(adjustSvg, 100));
-  $(window).on('scroll', util.throttle(() => {
-    updateHeaderTransparency();
-    animations.fadeIn();
-  }, 100));
+  $(window).on("resize", util.throttle(adjustSvg, 100));
+  $(window).on(
+    "scroll",
+    util.throttle(() => {
+      updateHeaderTransparency();
+      animations.fadeIn();
+    }, 100)
+  );
 
   // ウィンドウのリサイズ時にもフェードイン処理を実行
-  $(window).on('resize', util.throttle(animations.fadeIn, 100));
+  $(window).on("resize", util.throttle(animations.fadeIn, 100));
 });

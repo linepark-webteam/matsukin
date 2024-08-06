@@ -1,43 +1,43 @@
-.top-hero-section {
+.p-hero__content {
   width: 100%;
   height: 100svh;
 }
 @media screen and (min-width: 992px) {
-  .top-hero-section {
+  .p-hero__content {
     width: 100%;
     height: 100svh;
   }
 }
 
-.hero-svg {
+.p-hero__svg {
   padding-top: 25svh;
   transform: scale(2, 2);
 }
 @media screen and (min-width: 430px) {
-  .hero-svg {
+  .p-hero__svg {
     padding-top: 25svh;
   }
 }
 @media screen and (min-width: 500px) {
-  .hero-svg {
+  .p-hero__svg {
     padding-top: 22svh;
     transform: scale(1.5, 1.5);
   }
 }
 @media screen and (min-width: 768px) {
-  .hero-svg {
+  .p-hero__svg {
     padding-top: 25svh;
     transform: scale(1.5, 1.5);
   }
 }
 @media screen and (min-width: 1024px) {
-  .hero-svg {
+  .p-hero__svg {
     padding-top: 20svh;
     transform: scale(1, 1);
   }
 }
 @media screen and (min-width: 1280px) {
-  .hero-svg {
+  .p-hero__svg {
     padding-top: 10svh;
     transform: scale(1, 1);
   }
@@ -60,7 +60,7 @@
 }
 @media screen and (min-width: 1024px) {
   .hero-text {
-    margin-top: 50px;
+    margin-top: 5px;
   }
 }
 

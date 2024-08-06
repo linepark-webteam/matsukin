@@ -27,7 +27,7 @@ $font-family-special: "Apple Chancery";
   }
 }
 
-.top-hero-section {
+.p-hero__content {
   width: 100%;
   height: 100svh;
 
@@ -37,7 +37,7 @@ $font-family-special: "Apple Chancery";
   }
 }
 
-.hero-svg {
+.p-hero__svg {
   padding-top: 25svh;
   transform: scale(2, 2);
 
@@ -80,7 +80,7 @@ $font-family-special: "Apple Chancery";
   }
 
   @include media-min(1024px) {
-    margin-top: 50px;
+    margin-top: 5px;
   }
 }
 

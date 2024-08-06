@@ -80,27 +80,29 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
 
-  <body>
+  <body class="l-body u-fade-in">
 
-    <header class="fixed-top transparent">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <header class="l-header p-header fixed-top transparent">
+      <nav class="p-header__nav navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid px-4">
-          <div class="navbar-brand-box">
-            <div class="navbar-brand-items">
+          <div class="p-header__brand navbar-brand-box">
+            <div class="p-header__brand-items navbar-brand-items">
               <h1>
-                <a class="navbar-brand" href="#">
+                <a class="p-header__link navbar-brand" href="#">
                   <img
-                    class="brand-logo"
+                    class="p-header__logo brand-logo"
                     src="./img/matsukin-logo.png"
                     alt="BrandLogo"
                   />
-                  <span class="fw-bold">東北松金工業株式会社</span></a
+                  <span class="p-header__text fw-bold"
+                    >東北松金工業株式会社</span
+                  ></a
                 >
               </h1>
             </div>
           </div>
           <button
-            class="navbar-toggler collapsed"
+            class="p-header__toggle navbar-toggler collapsed"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -110,17 +112,23 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav-box">
-              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item me-3">
-                  <a class="nav-link fw-bold" href="./company/">会社概要</a>
+          <div
+            class="p-header__menu collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
+            <div class="p-header__nav-wrapper navbar-nav-box">
+              <ul class="p-header__nav-list navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="p-header__nav-item nav-item me-3">
+                  <a class="p-header__nav-link nav-link fw-bold"
+                    href="./company/">会社概要</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link fw-bold me-3" href="./introduction/">事業紹介</a>
+                <li class="p-header__nav-item nav-item">
+                  <a class="p-header__nav-link nav-link fw-bold me-3"
+                    href="./introduction/">事業紹介</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link fw-bold" href="./products/">取扱製品</a>
+                <li class="p-header__nav-item nav-item">
+                  <a class="p-header__nav-link nav-link fw-bold"
+                    href="./products/">取扱製品</a>
                 </li>
               </ul>
             </div>
@@ -131,10 +139,10 @@
 
     <div class="mt-5"></div>
 
-    <main>
-      <section>
-        <div class="top-hero-section">
-          <div class="svg hero-svg">
+    <main class="l-main">
+      <section class="p-hero">
+        <div class="p-hero__content top-hero-section">
+          <div class="p-hero__svg svg hero-svg">
             <?xml version="1.0" encoding="utf-8"?>
             <svg
               version="1.1"
@@ -178,29 +186,37 @@
               />
             </svg>
           </div>
-          <div class="container-fluid row">
-            <div class="hero-text">
-              <h2 class="animate-text head">From familiar things to art</h2>
-              <p class="animate-text p">身近なものから、アートまで</p>
+          <div class="p-hero__text-wrapper container-fluid row">
+            <div class="p-hero__text hero-text">
+              <h2 class="p-hero__heading c-animate-text animate-text head">
+                From familiar things to art
+              </h2>
+              <p class="p-hero__subheading c-animate-text animate-text p">
+                身近なものから、アートまで
+              </p>
             </div>
             <div
-              class="hero-scroll-box d-flex flex-column align-items-center mt-3"
+              class="p-hero__scroll hero-scroll-box d-flex flex-column align-items-center mt-3"
             >
-              <p class="hero-scroll-text mb-0">scroll</p>
-              <img src="./img/scroll.webp" alt="" />
+              <p class="p-hero__scroll-text hero-scroll-text mb-0">scroll</p>
+              <img
+                class="p-hero__scroll-image"
+                src="./img/scroll.webp"
+                alt=""
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section>
-        <div class="container mt-5 mb-5 mb-lg-0 u-fade-in">
-          <div class="c-section-content first">
-            <div class="c-section-item first">
-              <h2 class="c-section-title first fs-lg-3 fs-5">
+      <section class="p-about">
+        <div class="l-container container mt-5 mb-5 mb-lg-0 u-fade-in">
+          <div class="p-about__content c-section-content first">
+            <div class="p-about__item c-section-item first">
+              <h2 class="p-about__title c-section-title first fs-lg-3 fs-5">
                 東北松金工業の目指すもの
               </h2>
-              <p class="c-section-paragraph first">
+              <p class="p-about__text c-section-paragraph first">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Mollitia molestiae totam dolorem incidunt. Aliquid consectetur
                 qui sint tempora impedit laborum sed, praesentium ea aperiam
@@ -209,32 +225,36 @@
             </div>
           </div>
         </div>
-
-        <div class="swiper-container top my-3 pt-5 pt-lg-0">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide top">
-              <img src="./img/image1.png" alt="Image 1" />
-            </div>
-            <div class="swiper-slide top">
-              <img src="./img/image2.png" alt="Image 2" />
-            </div>
-            <div class="swiper-slide top">
-              <img src="./img/image3.png" alt="Image 3" />
-            </div>
-            <div class="swiper-slide top">
-              <img src="./img/image1.png" alt="Image 1" />
-            </div>
-            <div class="swiper-slide top">
-              <img src="./img/image2.png" alt="Image 2" />
-            </div>
-            <div class="swiper-slide top">
-              <img src="./img/image3.png" alt="Image 2" />
-            </div>
-          </div>
-        </div>
       </section>
 
-      <div class="svg-background">
+      <!-- slider -->
+      <div
+        class="p-slider p-slider--top swiper-container top u-fade-in my-3 pt-5 pt-lg-0"
+      >
+        <div class="p-slider__wrapper swiper-wrapper">
+          <div class="swiper-slide top">
+            <img src="./img/image1.png" alt="Image 1" />
+          </div>
+          <div class="swiper-slide top">
+            <img src="./img/image2.png" alt="Image 2" />
+          </div>
+          <div class="swiper-slide top">
+            <img src="./img/image3.png" alt="Image 3" />
+          </div>
+          <div class="swiper-slide top">
+            <img src="./img/image1.png" alt="Image 1" />
+          </div>
+          <div class="swiper-slide top">
+            <img src="./img/image2.png" alt="Image 2" />
+          </div>
+          <div class="swiper-slide top">
+            <img src="./img/image3.png" alt="Image 2" />
+          </div>
+        </div>
+      </div>
+
+      <!-- SVG背景 -->
+      <div class="p-background svg-background">
         <svg
           id="background-svg"
           version="1.1"
@@ -314,28 +334,35 @@
       </div>
 
       <!-- 会社概要 -->
-      <section class="company">
-        <div class="container mt-5 u-fade-in">
+      <section class="p-company company">
+        <div class="l-container container mt-5 u-fade-in">
           <div
-            class="c-section-content company d-flex justify-content-around flex-lg-row align-items-lg-start flex-column align-items-center"
+            class="p-company__content c-section-content company d-flex justify-content-around flex-lg-row align-items-lg-start flex-column align-items-center"
           >
-            <h2 class="c-section-title d-lg-none d-block">会社概要</h2>
+            <h2 class="p-company__title c-section-title d-lg-none d-block">
+              会社概要
+            </h2>
             <img
-              class="col-lg-7 company-img"
+              class="p-company__image col-lg-7 company-img"
               src="./img/image1.png"
               alt="testimg"
             />
             <div
-              class="c-section-item col-lg-3 d-lg-bock d-flex flex-column align-items-center mt-lg-0 mt-3"
+              class="p-company__text-wrapper c-section-item col-lg-3 d-lg-bock d-flex flex-column align-items-center mt-lg-0 mt-3"
             >
-              <h2 class="c-section-title d-lg-block d-none">会社概要</h2>
-              <p>
+              <h2 class="p-company__title c-section-title d-lg-block d-none">
+                会社概要
+              </h2>
+              <p class="p-company__text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Eligendi debitis in, quaerat quis dolorem, recusandae nemo
                 suscipit necessitatibus odio fuga consectetur corporis, quam vel
                 similique maiores cupiditate modi sint dicta!
               </p>
-              <button type="button" class="btn btn-primary mt-5 px-4 py-2">
+              <button
+                type="button"
+                class="c-button btn btn-primary mt-5 px-4 py-2"
+              >
                 <a href="./company/"
                   >さらに読む<i class="fa-solid fa-angles-right"></i
                 ></a>
@@ -346,28 +373,37 @@
       </section>
 
       <!-- 事業紹介 -->
-      <section class="introduction">
-        <div class="container mt-5 u-fade-in">
+      <section class="p-introduction introduction">
+        <div class="l-container container mt-5 u-fade-in">
           <div
-            class="c-section-content introduction d-flex justify-content-around flex-lg-row-reverse align-items-lg-start flex-column align-items-center"
+            class="p-introduction__content c-section-content introduction d-flex justify-content-around flex-lg-row-reverse align-items-lg-start flex-column align-items-center"
           >
-            <h2 class="c-section-title d-lg-none d-block">事業紹介</h2>
+            <h2 class="p-introduction__title c-section-title d-lg-none d-block">
+              事業紹介
+            </h2>
             <img
-              class="col-lg-7 introduction-img"
+              class="p-introduction__image col-lg-7 introduction-img"
               src="./img/image2.png"
               alt="testimg"
             />
             <div
-              class="c-section-item col-lg-3 d-lg-bock d-flex flex-column align-items-center mt-lg-0 mt-3"
+              class="p-introduction__text-wrapper c-section-item col-lg-3 d-lg-bock d-flex flex-column align-items-center mt-lg-0 mt-3"
             >
-              <h2 class="c-section-title d-lg-block d-none">事業紹介</h2>
-              <p>
+              <h2
+                class="p-introduction__title c-section-title d-lg-block d-none"
+              >
+                事業紹介
+              </h2>
+              <p class="p-introduction__text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Eligendi debitis in, quaerat quis dolorem, recusandae nemo
                 suscipit necessitatibus odio fuga consectetur corporis, quam vel
                 similique maiores cupiditate modi sint dicta!
               </p>
-              <button type="button" class="btn btn-primary mt-5 px-4 py-2">
+              <button
+                type="button"
+                class="c-button btn btn-primary mt-5 px-4 py-2"
+              >
                 <a href="./introduction/"
                   >さらに読む <i class="fa-solid fa-angles-right"></i
                 ></a>
@@ -378,12 +414,14 @@
       </section>
 
       <!-- 取扱製品 -->
-      <section class="products">
-        <div class="container mt-5 products-container u-fade-in">
-          <div class="c-section-content products">
-            <div class="c-section-item products">
-              <h2 class="c-section-title products">取扱製品</h2>
-              <p class="c-section-paragraph products">
+      <section class="p-products products">
+        <div class="l-container container mt-5 products-container u-fade-in">
+          <div class="p-products__content c-section-content products">
+            <div class="p-products__item c-section-item products">
+              <h2 class="p-products__title c-section-title products">
+                取扱製品
+              </h2>
+              <p class="p-products__text c-section-paragraph products">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Mollitia molestiae totam dolorem incidunt. Aliquid consectetur
                 qui sint tempora impedit laborum sed, praesentium ea aperiam
@@ -392,15 +430,10 @@
             </div>
           </div>
         </div>
-        <!-- <div class="container-fluid products mt-5 u-fade-in">
-        <div class="c-section-content products">
-          <div class="c-section-item products">
-            <h2 class="c-section-title products">製造</h2>
-          </div>
-        </div>
-      </div> -->
-        <div class="swiper-container products container-fluid">
-          <div class="swiper-wrapper">
+        <div
+          class="p-slider p-slider--products swiper-container products container-fluid u-fade-in"
+        >
+          <div class="p-slider__wrapper swiper-wrapper">
             <div class="swiper-slide products">
               <img src="./img/image1.png" alt="Image 1" />
             </div>
@@ -422,9 +455,12 @@
           </div>
         </div>
 
-        <div>
+        <div class="l-container">
           <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-primary mt-5 px-4 py-2">
+            <button
+              type="button"
+              class="c-button btn btn-primary mt-5 px-4 py-2"
+            >
               <a href="./manufacture/"
                 >さらに見る <i class="fa-solid fa-angles-right"></i
               ></a>
@@ -433,16 +469,17 @@
         </div>
       </section>
 
-      <section>
-        <div class="container mt-3 u-fade-in">
-          <div class="c-section-content works">
-            <div class="c-section-item works">
-              <h2 class="c-section-title works mb-3">作品</h2>
+      <!-- WORKS -->
+      <section class="p-works">
+        <div class="l-container container mt-3 u-fade-in">
+          <div class="p-works__content c-section-content works">
+            <div class="p-works__item c-section-item works">
+              <h2 class="p-works__title c-section-title works mb-3">作品</h2>
             </div>
           </div>
         </div>
-        <div class="swiper-container works">
-          <div class="swiper-wrapper">
+        <div class="p-slider p-slider--works swiper-container works u-fade-in">
+          <div class="p-slider__wrapper swiper-wrapper">
             <div class="swiper-slide works">
               <img src="./img/image1.png" alt="Image 1" />
             </div>
@@ -470,17 +507,17 @@
     <!-- <a href="#" id="page_top"></a> -->
 
     <footer
-      class="container-fluid d-flex justify-content-center mt-5 mb-3 py-3"
+      class="l-footer p-footer container-fluid d-flex justify-content-center mt-5 mb-3 py-3"
     >
-      <div class="container">
-        <div class="row d-flex justify-content-center">
+      <div class="l-container container">
+        <div class="p-footer__content row d-flex justify-content-center">
           <div
-            class="brand-and-link-container col-12 col-lg-6 align-content-center"
+            class="p-footer__brand-container brand-and-link-container col-12 col-lg-6 align-content-center"
           >
-            <div class="brand-container">
-              <h2 class="content-text footer-brand">
+            <div class="p-footer__brand brand-container">
+              <h2 class="p-footer__brand-text content-text footer-brand">
                 <img
-                  class="brand-logo"
+                  class="p-footer__logo brand-logo"
                   src="./img/matsukin-logo.png"
                   alt="BrandLogo"
                 />
@@ -488,33 +525,37 @@
               </h2>
             </div>
 
+            <div
+              class="p-footer__links d-flex col-12 col-lg-12 justify-content-lg-center justify-content-evenly"
+            >
               <div
-                class="d-flex col-12 col-lg-12 justify-content-lg-center justify-content-evenly"
+                class="p-footer__link-item content-text footer-link me-0 me-lg-4"
               >
-                <div class="content-text footer-link me-0 me-lg-4">
-                  <a href="./company/">
-                    <p class="fs-lg-4 fs-6 fw-bold">会社概要</p>
-                  </a>
-                </div>
-                <div class="content-text footer-link me-0 me-lg-4">
-                  <a href="./introduction/">
-                    <p class="fs-lg-4 fs-6 fw-bold">事業紹介</p>
-                  </a>
-                </div>
-                <div class="content-text footer-link">
-                  <a href="./products/">
-                    <p class="fs-lg-4 fs-6 fw-bold">取扱製品</p>
-                  </a>
-                </div>
+                <a href="./company/">
+                  <p class="fs-lg-4 fs-6 fw-bold">会社概要</p>
+                </a>
               </div>
+              <div
+                class="p-footer__link-item content-text footer-link me-0 me-lg-4"
+              >
+                <a href="./introduction/">
+                  <p class="fs-lg-4 fs-6 fw-bold">事業紹介</p>
+                </a>
+              </div>
+              <div class="p-footer__link-item content-text footer-link">
+                <a href="./products/">
+                  <p class="fs-lg-4 fs-6 fw-bold">取扱製品</p>
+                </a>
+              </div>
+            </div>
           </div>
           <div
-            class="conntact-container d-flex justify-content-center align-items-center col-12 col-lg-6"
+            class="p-footer__contact contact-container d-flex justify-content-center align-items-center col-12 col-lg-6"
           >
             <div
-              class="d-flex flex-lg-row flex-column align-items-lg-start align-items-center"
+              class="p-footer__contact-inner d-flex flex-lg-row flex-column align-items-lg-start align-items-center"
             >
-              <div class="d-lg-block d-flex">
+              <div class="p-footer__social d-lg-block d-flex">
                 <!-- instagram icon -->
                 <i class="fa-brands fa-instagram fa-2xl me-lg-0 me-3"></i>
                 <!-- X icon -->
@@ -524,7 +565,7 @@
               <div>
                 <button
                   type="button"
-                  class="btn btn-primary mt-lg-0 mt-4 px-4 py-2"
+                  class="c-button btn btn-primary mt-lg-0 mt-4 px-4 py-2"
                 >
                   <a href="./contact/"
                     >お問い合わせ <i class="fa-solid fa-angles-right"></i
@@ -536,9 +577,13 @@
         </div>
       </div>
     </footer>
-    <div class="container-fluid">
-      <div class="d-flex justify-content-center align-items-center py-3">
-        <small class="copyright fw-bold">&copy; 2024 TohokuMatsukinKogyo</small>
+    <div class="l-container container-fluid">
+      <div
+        class="p-copyright d-flex justify-content-center align-items-center py-3"
+      >
+        <small class="p-copyright__text copyright fw-bold"
+          >&copy; 2024 TohokuMatsukinKogyo</small
+        >
       </div>
     </div>
 
