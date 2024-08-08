@@ -16,34 +16,34 @@
     <!-- Favicon -->
     <link
       rel="icon"
-      href="../img/favicon-16x16.png"
+      href="./img/favicon-16x16.png"
       type="image/png"
       sizes="16x16"
     />
     <link
       rel="icon"
-      href="../img/favicon-32x32.png"
+      href="./img/favicon-32x32.png"
       type="image/png"
       sizes="32x32"
     />
     <link
       rel="icon"
-      href="../img/favicon-32x32.png"
+      href="./img/favicon-32x32.png"
       type="image/png"
       sizes="48x48"
     />
     <!-- AppleIcon -->
     <link
       rel="apple-touch-icon"
-      href="../img/apple-touch-icon.png"
+      href="./img/apple-touch-icon.png"
       sizes="180x180"
     />
 
-    <!-- Shippori Antique B1 & Zen Kaku Gothic New Google Fonts -->
+    <!-- Zen Kaku Gothic New Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&family=Zen+Kaku+Gothic+New&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap"
       rel="stylesheet"
     />
 
@@ -60,9 +60,10 @@
     <!-- ↓ BootStrapのスタイルを上書き -->
     <link rel="stylesheet" href="../css/mybootstrap.css" />
 
-    <link rel="stylesheet" href="../css/common.css" />
     <!-- ↓ アニメーション用のスタイルシート -->
     <link rel="stylesheet" href="../css/animation.css" />
+
+    <link rel="stylesheet" href="../css/common.css" />
 
     <link rel="stylesheet" href="../css/introduction.css" />
 
@@ -72,7 +73,69 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
+
+    <style>
+      body {
+          margin: 0;
+          padding: 0;
+          overflow-x: hidden;
+      }
+      .product-container {
+          min-height: 300vh;
+          position: relative;
+          overflow: hidden;
+      }
+      .image-stack {
+    position: absolute;
+    left: 25%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: top 0.3s ease;
+}
+      .img-container-items {
+          position: absolute;
+          max-width: 70%;
+          max-height: 70vh;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          transition: all 0.5s ease;
+      }
+      .img-container-items:nth-child(2) {
+          transform: rotate(-5deg) translate(-5%, -5%);
+          opacity: 0.5;
+      }
+      .img-container-items:nth-child(3) {
+          transform: rotate(5deg) translate(5%, 5%);
+          opacity: 0.5;
+      }
+      .intro-text-container {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 50%;
+          min-height: 300vh;
+      }
+      .intro-text {
+          min-height: 100vh;
+          padding: 20px;
+          box-sizing: border-box;
+          opacity: 0;
+          transition: opacity 0.5s ease;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+      .intro-text.active {
+          opacity: 1;
+      }
+  </style>
+</head>
+
   <body>
     <header class="fixed-top transparent">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -109,7 +172,9 @@
                   <a class="nav-link fw-bold" href="../company/">会社概要</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fw-bold me-3" href="../introduction/">事業紹介</a>
+                  <a class="nav-link fw-bold me-3" href="../introduction/"
+                    >事業紹介</a
+                  >
                 </li>
                 <li class="nav-item">
                   <a class="nav-link fw-bold" href="../products/">取扱製品</a>
@@ -121,30 +186,141 @@
       </nav>
     </header>
 
-    <main></main>
+    <main>
+      <div class="contents-container mx-md-5 mx-3 px-1 pt-1 pb-5">
+        <div class="container mt-5">
+          <div class="page-ttl-container col-12">
+            <h2 class="page-heading fs-3 fw-bold u-fade-in">事業紹介</h2>
+            <div class="svg-container">
+              <svg
+                version="1.1"
+                id="borderHouse"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 1024 100"
+                style="enable-background: new 0 0 1024 100"
+                xml:space="preserve"
+              >
+                <style type="text/css">
+                  .st0 {
+                    fill: none;
+                    stroke: #c6af28;
+                    stroke-width: 2;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 10;
+                  }
+                </style>
+                <g>
+                  <path
+                    id="delayedPath"
+                    class="st0"
+                    d="M828.04,45.32c2.22-1.02,4.67-0.89,7.04-0.74c2.04,0.12,4.08,0.25,6.12,0.37c0.16,0.01,0.34,0.03,0.45,0.16
+                    c0.13,0.15,0.13,0.39,0.13,0.6c-0.04,6.76-0.07,13.52-0.11,20.28c0,0.38-0.03,0.82-0.28,1.06c-0.19,0.18-0.46,0.19-0.71,0.19
+                    c-3.7-0.05-7.4-0.1-11.1-0.15c-0.21,0-0.43-0.01-0.6-0.16c-0.21-0.18-0.28-0.52-0.33-0.83c-1.11-6.89-1.29-13.99-0.55-20.96"
+                  />
+                  <path
+                    id="normalPath"
+                    class="st0"
+                    d="M15.73,64.66c394-1,539.33,5.15,602-9c62-14,115-9.82,145.69,0.47c22.25,7.46,24.56-0.29,24.56-0.29
+                    c2.14-9,0.84-4.93,2.98-13.93c0.22-0.94,0.47-1.93,1.06-2.61c0.86-0.99,2.19-1.03,3.38-1.01c6.78,0.11,13.55,0.22,20.33,0.33
+                    c0.63,0.01,1.34-0.03,1.74-0.61c0.3-0.43,0.32-1.04,0.33-1.61c0.02-1.72,0.05-3.45,0.07-5.17c-1.47-0.4-2.93-0.8-4.4-1.2
+                    c6.05-5.09,12.72-9.11,19.74-11.9c0.64-0.25,1.3-0.5,1.97-0.48c0.8,0.02,1.55,0.42,2.29,0.81c6.41,3.41,12.82,6.81,19.24,10.22
+                    c-0.31,2.33-3.78,1.15-4.94,3.05c-0.39,0.63-0.42,1.48-0.43,2.26c-0.18,11.25-0.37,22.51-0.55,33.76c0.65-0.10,3.31-0.19,3.96-0.29
+                    c1.58-4.11,2.64-8.51,3.14-13c-1.51,2.12-2.04,5.19-1.34,7.85c1.81,0.20,3.37-1.80,3.76-3.93s-0.09-4.34-0.57-6.44
+                    c-0.23-1.03-0.71-2.28-1.59-2.23c-0.56,0.03-0.98,0.61-1.31,1.15c-2.07,3.44-3.35,7.88-2.4,11.97s4.68,7.33,8.05,6.06
+                    c1.80-4.26,3.04-8.86,3.67-13.58c-2.07,1.69-2.6,5.55-1.09,7.95c3.81-1.43,5.64-7.72,3.41-11.69c-0.85-1.52-2.58-2.68-3.88-1.71
+                    c-0.52,0.39-0.85,1.04-1.17,1.67c-1.22,2.42-2.48,5.04-2.37,7.86c0.12,3.26,2,5.98,3.79,8.43c0.39,0.53,0.86,1.11,1.45,1.06
+                    c0.40-0.03,2.07-0.05,2.44-0.23c0.99-0.48,2,0,5-1c4.24-1.41,26-15,44.34-11.8c57.06,9.94,64.66,24.8,82.66,23.8"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+
+
+ <!-- introduction -->
+ <section class="row d-flex justify-content-center">
+  <div class="product-container">
+      <div class="image-stack">
+          <img class="img-container-items" src="../img/narrow-image1.png" alt="">
+          <img class="img-container-items" src="../img/narrow-image2.png" alt="">
+          <img class="img-container-items" src="../img/narrow-image3.png" alt="">
+      </div>
+      <div class="intro-text-container">
+          <div class="intro-text" data-index="0">
+              <h2>Title1</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+          </div>
+          <div class="intro-text" data-index="1">
+              <h2>Title2</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+          </div>
+          <div class="intro-text" data-index="2">
+              <h2>Title3</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
+          </div>
+      </div>
+  </div>
+</section>
+</div>
+</div>
+</main>
 
     <!-- PageTopへ戻るボタン -->
     <!-- <a href="#" id="page_top"></a> -->
 
     <footer
-    class="container-fluid d-flex justify-content-center mt-5 mb-3 py-3"
+      class="container-fluid d-flex justify-content-center mt-5 mb-3 py-3"
     >
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div
-          class="brand-and-link-container col-12 col-lg-6 align-content-center"
-        >
-          <div class="brand-container">
-            <h2 class="content-text footer-brand">
-              <img
-                class="brand-logo"
-                src="../img/matsukin-logo.png"
-                alt="BrandLogo"
-              />
-              <span>東北松金工業株式会社</span>
-            </h2>
-          </div>
-    
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div
+            class="brand-and-link-container col-12 col-lg-6 align-content-center"
+          >
+            <div class="brand-container">
+              <h2 class="content-text footer-brand">
+                <img
+                  class="brand-logo"
+                  src="../img/matsukin-logo.png"
+                  alt="BrandLogo"
+                />
+                <span>東北松金工業株式会社</span>
+              </h2>
+            </div>
+
             <div
               class="d-flex col-12 col-lg-12 justify-content-lg-center justify-content-evenly"
             >
@@ -164,39 +340,39 @@
                 </a>
               </div>
             </div>
-        </div>
-        <div
-          class="conntact-container d-flex justify-content-center align-items-center col-12 col-lg-6"
-        >
+          </div>
           <div
-            class="d-flex flex-lg-row flex-column align-items-lg-start align-items-center"
+            class="conntact-container d-flex justify-content-center align-items-center col-12 col-lg-6"
           >
-            <div class="d-lg-block d-flex">
-              <!-- instagram icon -->
-              <i class="fa-brands fa-instagram fa-2xl me-lg-0 me-3"></i>
-              <!-- X icon -->
-              <i class="fa-brands fa-x-twitter fa-2xl"></i>
-            </div>
-    
-            <div>
-              <button
-                type="button"
-                class="btn btn-primary mt-lg-0 mt-4 px-4 py-2"
-              >
-                <a href="../contact/"
-                  >お問い合わせ <i class="fa-solid fa-angles-right"></i
-                ></a>
-              </button>
+            <div
+              class="d-flex flex-lg-row flex-column align-items-lg-start align-items-center"
+            >
+              <div class="d-lg-block d-flex">
+                <!-- instagram icon -->
+                <i class="fa-brands fa-instagram fa-2xl me-lg-0 me-3"></i>
+                <!-- X icon -->
+                <i class="fa-brands fa-x-twitter fa-2xl"></i>
+              </div>
+
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary mt-lg-0 mt-4 px-4 py-2"
+                >
+                  <a href="../contact/"
+                    >お問い合わせ <i class="fa-solid fa-angles-right"></i
+                  ></a>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </footer>
     <div class="container-fluid">
-    <div class="d-flex justify-content-center align-items-center py-3">
-      <small class="copyright fw-bold">&copy; 2024 TohokuMatsukinKogyo</small>
-    </div>
+      <div class="d-flex justify-content-center align-items-center py-3">
+        <small class="copyright fw-bold">&copy; 2024 TohokuMatsukinKogyo</small>
+      </div>
     </div>
 
     <!-- Bootstrap 5 JavaScript -->
@@ -214,5 +390,119 @@
     <script src="https://cdn.jsdelivr.net/npm/vivus/dist/vivus.min.js"></script>
     <!-- MyScript -->
     <script src="../js/base.js"></script>
-  </body>
+
+    <script>
+      const images = document.querySelectorAll('.img-container-items');
+      const introTexts = document.querySelectorAll('.intro-text');
+      const productContainer = document.querySelector('.product-container');
+      const introTextContainer = document.querySelector('.intro-text-container');
+      const header = document.querySelector('header');
+      const imageStack = document.querySelector('.image-stack');
+      let currentSection = 0;
+      let sectionHeights = [];
+      let initialImagePosition = 0;
+  
+      function updateLayout() {
+          const windowHeight = window.innerHeight;
+          const headerHeight = header.offsetHeight;
+  
+          // 各intro-textの高さを計算し、必要に応じてコンテナの高さを調整
+          let totalHeight = 0;
+          sectionHeights = [];
+          introTexts.forEach(text => {
+              const textHeight = Math.max(text.offsetHeight, windowHeight);
+              sectionHeights.push(textHeight);
+              totalHeight += textHeight;
+          });
+  
+          productContainer.style.height = `${totalHeight}px`;
+          introTextContainer.style.height = `${totalHeight}px`;
+  
+          // 初期画像位置を設定（Title1と同じ高さ）
+          const firstIntroText = introTexts[0];
+          initialImagePosition = firstIntroText.offsetTop;
+          imageStack.style.top = `${initialImagePosition}px`;
+          imageStack.style.position = 'absolute';
+      }
+  
+      function handleScroll() {
+          const scrollPosition = window.scrollY;
+          const containerHeight = productContainer.offsetHeight;
+          const windowHeight = window.innerHeight;
+          const headerHeight = header.offsetHeight;
+  
+          // 現在のセクションを計算
+          let currentScrollPosition = 0;
+          currentSection = 0;
+          for (let i = 0; i < sectionHeights.length; i++) {
+              if (scrollPosition >= currentScrollPosition && scrollPosition < currentScrollPosition + sectionHeights[i]) {
+                  currentSection = i;
+                  break;
+              }
+              currentScrollPosition += sectionHeights[i];
+          }
+  
+          // intro-textを表示
+          introTexts.forEach((text, index) => {
+              if (index === currentSection) {
+                  text.classList.add('active');
+              } else {
+                  text.classList.remove('active');
+              }
+          });
+  
+          // 画像のアニメーション
+          images.forEach((img, index) => {
+              if (index === currentSection) {
+                  img.style.transform = 'scale(1) rotate(0deg)';
+                  img.style.opacity = '1';
+                  img.style.zIndex = '3';
+              } else if (index < currentSection) {
+                  img.style.transform = 'scale(0.9) rotate(0deg)';
+                  img.style.opacity = '0';
+                  img.style.zIndex = '1';
+              } else {
+                  img.style.transform = index === currentSection + 1 ? 'rotate(-5deg) translate(-5%, -5%)' : 'rotate(5deg) translate(5%, 5%)';
+                  img.style.opacity = '0.5';
+                  img.style.zIndex = '2';
+              }
+          });
+  
+          // 画像スタックの位置調整
+          let imageStackPosition;
+          const lastSectionStart = containerHeight - sectionHeights[sectionHeights.length - 1];
+  
+          if (scrollPosition < initialImagePosition - headerHeight) {
+              // 初期位置
+              imageStackPosition = initialImagePosition;
+              imageStack.style.position = 'absolute';
+          } else if (scrollPosition + windowHeight > lastSectionStart) {
+              // 最後のセクション
+              const scrollProgress = (scrollPosition + windowHeight - lastSectionStart) / windowHeight;
+              const finalPosition = containerHeight - windowHeight / 2;
+              imageStackPosition = lastSectionStart + (finalPosition - lastSectionStart) * scrollProgress;
+              imageStack.style.position = 'absolute';
+          } else {
+              // スクロール中
+              imageStackPosition = scrollPosition + headerHeight;
+              imageStack.style.position = 'fixed';
+              imageStack.style.top = `${headerHeight}px`;
+          }
+  
+          if (imageStack.style.position === 'absolute') {
+              imageStack.style.top = `${imageStackPosition}px`;
+          }
+      }
+  
+      window.addEventListener('load', () => {
+          updateLayout();
+          handleScroll();
+      });
+      window.addEventListener('resize', () => {
+          updateLayout();
+          handleScroll();
+      });
+      window.addEventListener('scroll', handleScroll);
+  </script>
+</body>
 </html>
