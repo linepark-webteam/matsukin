@@ -401,12 +401,15 @@
       let currentSection = 0;
       let sectionHeights = [];
       let initialImagePosition = 0;
-  
+      let imageHeight = 0;
+      
+      // 微調整用のオフセット（正の値で下に、負の値で上に移動）
+      const POSITION_OFFSET = -200; // 必要に応じてこの値を調整してください
+      
       function updateLayout() {
           const windowHeight = window.innerHeight;
           const headerHeight = header.offsetHeight;
-  
-          // 各intro-textの高さを計算し、必要に応じてコンテナの高さを調整
+      
           let totalHeight = 0;
           sectionHeights = [];
           introTexts.forEach(text => {
@@ -414,24 +417,28 @@
               sectionHeights.push(textHeight);
               totalHeight += textHeight;
           });
-  
+      
           productContainer.style.height = `${totalHeight}px`;
           introTextContainer.style.height = `${totalHeight}px`;
-  
-          // 初期画像位置を設定（Title1と同じ高さ）
+      
           const firstIntroText = introTexts[0];
-          initialImagePosition = firstIntroText.offsetTop;
+          const title1 = firstIntroText.querySelector('h2');
+          const title1Rect = title1.getBoundingClientRect();
+          initialImagePosition = title1Rect.top + window.pageYOffset - headerHeight + POSITION_OFFSET;
+          
           imageStack.style.top = `${initialImagePosition}px`;
           imageStack.style.position = 'absolute';
+      
+          imageHeight = windowHeight;
+          imageStack.style.height = `${imageHeight}px`;
       }
-  
+      
       function handleScroll() {
           const scrollPosition = window.scrollY;
           const containerHeight = productContainer.offsetHeight;
           const windowHeight = window.innerHeight;
           const headerHeight = header.offsetHeight;
-  
-          // 現在のセクションを計算
+      
           let currentScrollPosition = 0;
           currentSection = 0;
           for (let i = 0; i < sectionHeights.length; i++) {
@@ -441,17 +448,11 @@
               }
               currentScrollPosition += sectionHeights[i];
           }
-  
-          // intro-textを表示
+      
           introTexts.forEach((text, index) => {
-              if (index === currentSection) {
-                  text.classList.add('active');
-              } else {
-                  text.classList.remove('active');
-              }
+              text.classList.toggle('active', index === currentSection);
           });
-  
-          // 画像のアニメーション
+      
           images.forEach((img, index) => {
               if (index === currentSection) {
                   img.style.transform = 'scale(1) rotate(0deg)';
@@ -467,33 +468,37 @@
                   img.style.zIndex = '2';
               }
           });
-  
-          // 画像スタックの位置調整
-          let imageStackPosition;
+      
+          const imageFullyVisiblePosition = initialImagePosition + imageHeight - windowHeight;
           const lastSectionStart = containerHeight - sectionHeights[sectionHeights.length - 1];
-  
+      
+          let imageStackPosition;
           if (scrollPosition < initialImagePosition - headerHeight) {
               // 初期位置
               imageStackPosition = initialImagePosition;
               imageStack.style.position = 'absolute';
+              imageStack.style.top = `${imageStackPosition}px`;
+          } else if (scrollPosition < imageFullyVisiblePosition) {
+              // 画像が完全に表示されるまでの段階的な移動
+              imageStackPosition = initialImagePosition - (scrollPosition - (initialImagePosition - headerHeight));
+              imageStack.style.position = 'fixed';
+              imageStack.style.top = `${imageStackPosition}px`;
           } else if (scrollPosition + windowHeight > lastSectionStart) {
               // 最後のセクション
-              const scrollProgress = (scrollPosition + windowHeight - lastSectionStart) / windowHeight;
-              const finalPosition = containerHeight - windowHeight / 2;
-              imageStackPosition = lastSectionStart + (finalPosition - lastSectionStart) * scrollProgress;
+              const maxScroll = containerHeight - windowHeight;
+              const scrollProgress = Math.min((scrollPosition - lastSectionStart) / (maxScroll - lastSectionStart), 1);
+              const startPosition = lastSectionStart - windowHeight + headerHeight;
+              const endPosition = containerHeight - windowHeight;
+              imageStackPosition = startPosition + (endPosition - startPosition) * scrollProgress;
               imageStack.style.position = 'absolute';
+              imageStack.style.top = `${imageStackPosition}px`;
           } else {
-              // スクロール中
-              imageStackPosition = scrollPosition + headerHeight;
+              // 画像が完全に表示された後は固定
               imageStack.style.position = 'fixed';
               imageStack.style.top = `${headerHeight}px`;
           }
-  
-          if (imageStack.style.position === 'absolute') {
-              imageStack.style.top = `${imageStackPosition}px`;
-          }
       }
-  
+      
       window.addEventListener('load', () => {
           updateLayout();
           handleScroll();
@@ -503,6 +508,6 @@
           handleScroll();
       });
       window.addEventListener('scroll', handleScroll);
-  </script>
+      </script>
 </body>
 </html>
