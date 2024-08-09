@@ -77,16 +77,16 @@
     <style>
       .product-container {
         position: relative;
-        height: 100vh;
+        width: 100vw;
+        height: 300vh;
         overflow: hidden;
-        padding-top: 100px; /* ヘッダーの高さに応じて調整 */
       }
       .image-stack {
-        position: absolute;
-        top: 100px; /* ヘッダーの高さに応じて調整 */
+        position: sticky;
+        top: 0;
         left: 0;
-        width: 50%;
-        height: calc(100vh - 100px); /* ヘッダーの高さを考慮 */
+        width: 100%;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -98,29 +98,21 @@
         width: auto;
         height: auto;
         object-fit: contain;
-        transition: all 0.5s ease;
         opacity: 0;
       }
       .intro-text-container {
         position: absolute;
-        top: 100px; /* ヘッダーの高さに応じて調整 */
+        top: 0;
         right: 0;
         width: 50%;
-        height: calc(100vh - 100px); /* ヘッダーの高さを考慮 */
-        overflow-y: auto;
+        height: 300vh;
         padding-left: 20px;
       }
       .intro-text {
-        min-height: 100%;
+        height: 100vh;
         padding: 20px;
         box-sizing: border-box;
         opacity: 0;
-        transition: opacity 0.5s ease;
-        display: none;
-      }
-      .intro-text.active {
-        opacity: 1;
-        display: block;
       }
     </style>
 
@@ -385,83 +377,45 @@
     <script src="../js/base.js"></script>
 
     <script>
-      const images = document.querySelectorAll('.img-container-items');
-      const introTexts = document.querySelectorAll('.intro-text');
-      const productContainer = document.querySelector('.product-container');
-      const introTextContainer = document.querySelector('.intro-text-container');
-      const header = document.querySelector('header');
-      const imageStack = document.querySelector('.image-stack');
-      let currentSection = 0;
-      let isScrollingEnabled = false;
+      gsap.registerPlugin(ScrollTrigger);
       
-      function updateLayout() {
-          const windowHeight = window.innerHeight;
-          const headerHeight = header.offsetHeight;
+      const images = gsap.utils.toArray('.img-container-items');
+      const introTexts = gsap.utils.toArray('.intro-text');
       
-          productContainer.style.height = `${windowHeight}px`;
-          imageStack.style.height = `${windowHeight - headerHeight}px`;
-          introTextContainer.style.height = `${windowHeight - headerHeight}px`;
-      }
+      gsap.set(images[0], { opacity: 1 });
+      gsap.set(introTexts[0], { opacity: 1 });
       
-      function handleScroll(event) {
-          const containerTop = productContainer.offsetTop;
-          const containerBottom = containerTop + productContainer.offsetHeight;
-          const scrollPosition = window.scrollY;
-      
-          if (scrollPosition >= containerTop && scrollPosition < containerBottom) {
-              event.preventDefault();
-              const scrollDelta = event.deltaY || -event.wheelDelta || event.detail;
-              const scrollStep = 100; // スクロール速度の調整
-              
-              currentSection += scrollDelta > 0 ? 1 : -1;
-              currentSection = Math.max(0, Math.min(currentSection, introTexts.length - 1));
-      
-              updateActiveSection();
-              
-              // スムーズスクロール
-              introTextContainer.scrollTo({
-                  top: currentSection * scrollStep,
-                  behavior: 'smooth'
-              });
-          }
-      }
-      
-      function updateActiveSection() {
-          introTexts.forEach((text, index) => {
-              text.classList.toggle('active', index === currentSection);
-          });
-      
-          images.forEach((img, index) => {
-              if (index === currentSection) {
-                  img.style.transform = 'scale(1) rotate(0deg)';
-                  img.style.opacity = '1';
-                  img.style.zIndex = '3';
-              } else if (index < currentSection) {
-                  img.style.transform = 'scale(0.9) rotate(0deg)';
-                  img.style.opacity = '0';
-                  img.style.zIndex = '1';
-              } else {
-                  img.style.transform = index === currentSection + 1 ? 'rotate(-5deg) translate(-5%, -5%)' : 'rotate(5deg) translate(5%, 5%)';
-                  img.style.opacity = '0.5';
-                  img.style.zIndex = '2';
-              }
-          });
-      }
-      
-      function enableScrolling() {
-          isScrollingEnabled = true;
-          window.removeEventListener('scroll', enableScrolling);
-          productContainer.addEventListener('wheel', handleScroll, { passive: false });
-      }
-      
-      window.addEventListener('load', () => {
-          updateLayout();
-          updateActiveSection();
-          window.scrollTo(0, 0);
-          window.addEventListener('scroll', enableScrolling);
+      ScrollTrigger.create({
+        trigger: ".product-container",
+        start: "top top",
+        end: "bottom bottom",
+        pin: ".image-stack",
+        pinSpacing: false
       });
       
-      window.addEventListener('resize', updateLayout);
+      images.forEach((img, i) => {
+        ScrollTrigger.create({
+          trigger: introTexts[i],
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => gsap.to(img, { opacity: 1, duration: 0.5 }),
+          onLeave: () => gsap.to(img, { opacity: 0, duration: 0.5 }),
+          onEnterBack: () => gsap.to(img, { opacity: 1, duration: 0.5 }),
+          onLeaveBack: () => gsap.to(img, { opacity: 0, duration: 0.5 })
+        });
+      });
+      
+      introTexts.forEach((text, i) => {
+        ScrollTrigger.create({
+          trigger: text,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => gsap.to(text, { opacity: 1, duration: 0.5 }),
+          onLeave: () => gsap.to(text, { opacity: 0, duration: 0.5 }),
+          onEnterBack: () => gsap.to(text, { opacity: 1, duration: 0.5 }),
+          onLeaveBack: () => gsap.to(text, { opacity: 0, duration: 0.5 })
+        });
+      });
       </script>
 
 </body>
