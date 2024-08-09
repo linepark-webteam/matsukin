@@ -75,65 +75,55 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
-      body {
-          margin: 0;
-          padding: 0;
-          overflow-x: hidden;
-      }
       .product-container {
-          min-height: 300vh;
-          position: relative;
-          overflow: hidden;
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        padding-top: 100px; /* ヘッダーの高さに応じて調整 */
       }
       .image-stack {
-    position: absolute;
-    left: 25%;
-    transform: translateX(-50%);
-    width: 50%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: top 0.3s ease;
-}
+        position: absolute;
+        top: 100px; /* ヘッダーの高さに応じて調整 */
+        left: 0;
+        width: 50%;
+        height: calc(100vh - 100px); /* ヘッダーの高さを考慮 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       .img-container-items {
-          position: absolute;
-          max-width: 70%;
-          max-height: 70vh;
-          width: auto;
-          height: auto;
-          object-fit: contain;
-          transition: all 0.5s ease;
-      }
-      .img-container-items:nth-child(2) {
-          transform: rotate(-5deg) translate(-5%, -5%);
-          opacity: 0.5;
-      }
-      .img-container-items:nth-child(3) {
-          transform: rotate(5deg) translate(5%, 5%);
-          opacity: 0.5;
+        position: absolute;
+        max-width: 70%;
+        max-height: 70vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        transition: all 0.5s ease;
+        opacity: 0;
       }
       .intro-text-container {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 50%;
-          min-height: 300vh;
+        position: absolute;
+        top: 100px; /* ヘッダーの高さに応じて調整 */
+        right: 0;
+        width: 50%;
+        height: calc(100vh - 100px); /* ヘッダーの高さを考慮 */
+        overflow-y: auto;
+        padding-left: 20px;
       }
       .intro-text {
-          min-height: 100vh;
-          padding: 20px;
-          box-sizing: border-box;
-          opacity: 0;
-          transition: opacity 0.5s ease;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+        min-height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        display: none;
       }
       .intro-text.active {
-          opacity: 1;
+        opacity: 1;
+        display: block;
       }
-  </style>
+    </style>
+
 </head>
 
   <body>
@@ -388,6 +378,9 @@
     ></script>
     <!-- Vivus(SVG Animation)ライブラリ CDN -->
     <script src="https://cdn.jsdelivr.net/npm/vivus/dist/vivus.min.js"></script>
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <!-- MyScript -->
     <script src="../js/base.js"></script>
 
@@ -399,56 +392,41 @@
       const header = document.querySelector('header');
       const imageStack = document.querySelector('.image-stack');
       let currentSection = 0;
-      let sectionHeights = [];
-      let initialImagePosition = 0;
-      let imageHeight = 0;
-      
-      // 微調整用のオフセット（正の値で下に、負の値で上に移動）
-      const POSITION_OFFSET = -200; // 必要に応じてこの値を調整してください
+      let isScrollingEnabled = false;
       
       function updateLayout() {
           const windowHeight = window.innerHeight;
           const headerHeight = header.offsetHeight;
       
-          let totalHeight = 0;
-          sectionHeights = [];
-          introTexts.forEach(text => {
-              const textHeight = Math.max(text.offsetHeight, windowHeight);
-              sectionHeights.push(textHeight);
-              totalHeight += textHeight;
-          });
-      
-          productContainer.style.height = `${totalHeight}px`;
-          introTextContainer.style.height = `${totalHeight}px`;
-      
-          const firstIntroText = introTexts[0];
-          const title1 = firstIntroText.querySelector('h2');
-          const title1Rect = title1.getBoundingClientRect();
-          initialImagePosition = title1Rect.top + window.pageYOffset - headerHeight + POSITION_OFFSET;
-          
-          imageStack.style.top = `${initialImagePosition}px`;
-          imageStack.style.position = 'absolute';
-      
-          imageHeight = windowHeight;
-          imageStack.style.height = `${imageHeight}px`;
+          productContainer.style.height = `${windowHeight}px`;
+          imageStack.style.height = `${windowHeight - headerHeight}px`;
+          introTextContainer.style.height = `${windowHeight - headerHeight}px`;
       }
       
-      function handleScroll() {
+      function handleScroll(event) {
+          const containerTop = productContainer.offsetTop;
+          const containerBottom = containerTop + productContainer.offsetHeight;
           const scrollPosition = window.scrollY;
-          const containerHeight = productContainer.offsetHeight;
-          const windowHeight = window.innerHeight;
-          const headerHeight = header.offsetHeight;
       
-          let currentScrollPosition = 0;
-          currentSection = 0;
-          for (let i = 0; i < sectionHeights.length; i++) {
-              if (scrollPosition >= currentScrollPosition && scrollPosition < currentScrollPosition + sectionHeights[i]) {
-                  currentSection = i;
-                  break;
-              }
-              currentScrollPosition += sectionHeights[i];
+          if (scrollPosition >= containerTop && scrollPosition < containerBottom) {
+              event.preventDefault();
+              const scrollDelta = event.deltaY || -event.wheelDelta || event.detail;
+              const scrollStep = 100; // スクロール速度の調整
+              
+              currentSection += scrollDelta > 0 ? 1 : -1;
+              currentSection = Math.max(0, Math.min(currentSection, introTexts.length - 1));
+      
+              updateActiveSection();
+              
+              // スムーズスクロール
+              introTextContainer.scrollTo({
+                  top: currentSection * scrollStep,
+                  behavior: 'smooth'
+              });
           }
+      }
       
+      function updateActiveSection() {
           introTexts.forEach((text, index) => {
               text.classList.toggle('active', index === currentSection);
           });
@@ -468,46 +446,23 @@
                   img.style.zIndex = '2';
               }
           });
+      }
       
-          const imageFullyVisiblePosition = initialImagePosition + imageHeight - windowHeight;
-          const lastSectionStart = containerHeight - sectionHeights[sectionHeights.length - 1];
-      
-          let imageStackPosition;
-          if (scrollPosition < initialImagePosition - headerHeight) {
-              // 初期位置
-              imageStackPosition = initialImagePosition;
-              imageStack.style.position = 'absolute';
-              imageStack.style.top = `${imageStackPosition}px`;
-          } else if (scrollPosition < imageFullyVisiblePosition) {
-              // 画像が完全に表示されるまでの段階的な移動
-              imageStackPosition = initialImagePosition - (scrollPosition - (initialImagePosition - headerHeight));
-              imageStack.style.position = 'fixed';
-              imageStack.style.top = `${imageStackPosition}px`;
-          } else if (scrollPosition + windowHeight > lastSectionStart) {
-              // 最後のセクション
-              const maxScroll = containerHeight - windowHeight;
-              const scrollProgress = Math.min((scrollPosition - lastSectionStart) / (maxScroll - lastSectionStart), 1);
-              const startPosition = lastSectionStart - windowHeight + headerHeight;
-              const endPosition = containerHeight - windowHeight;
-              imageStackPosition = startPosition + (endPosition - startPosition) * scrollProgress;
-              imageStack.style.position = 'absolute';
-              imageStack.style.top = `${imageStackPosition}px`;
-          } else {
-              // 画像が完全に表示された後は固定
-              imageStack.style.position = 'fixed';
-              imageStack.style.top = `${headerHeight}px`;
-          }
+      function enableScrolling() {
+          isScrollingEnabled = true;
+          window.removeEventListener('scroll', enableScrolling);
+          productContainer.addEventListener('wheel', handleScroll, { passive: false });
       }
       
       window.addEventListener('load', () => {
           updateLayout();
-          handleScroll();
+          updateActiveSection();
+          window.scrollTo(0, 0);
+          window.addEventListener('scroll', enableScrolling);
       });
-      window.addEventListener('resize', () => {
-          updateLayout();
-          handleScroll();
-      });
-      window.addEventListener('scroll', handleScroll);
+      
+      window.addEventListener('resize', updateLayout);
       </script>
+
 </body>
 </html>
