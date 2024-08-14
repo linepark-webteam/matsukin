@@ -74,147 +74,87 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <style>
-      .product-container {
-        position: relative;
-        width: 100%;
-        height: 300vh;
-        overflow: hidden;
-      }
-      .content-wrapper {
-        position: sticky;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .image-stack {
-        position: relative;
-        width: 50%;
-        height: 100%;
-      }
-      .img-container-items {
-        position: absolute;
-        top: 20%;
-        left: 20%;
-        width: 50%;
-        height: auto;
-        object-fit: cover;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-      .img-container-items:first-child {
-        z-index: 3; /* 1枚目の画像を最前面に配置 */
-        opacity: 1;
-      }
-      /* 2枚目の画像に少し角度をつける */
-      .img-container-items:nth-child(2) {
-        z-index: 2; /* 2枚目の画像を1枚目の画像の下に配置 */
-        transform: rotate(-5deg);
-        opacity: 1;
-      }
-      /* 3枚目の画像に少し角度をつける */
-      .img-container-items:nth-child(3) {
-        z-index: 1; /* 3枚目の画像を2枚目の画像の下に配置 */
-        transform: rotate(5deg);
-        opacity: 1;
-      }
-      .intro-text-container {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      .intro-text {
-        height: 100vh;
-        padding: 20px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        color: #333;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-      .intro-text.active {
-        opacity: 1;
-      }
-      .intro-text h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-      }
-      .intro-text p {
-        font-size: 1.2rem;
-        max-width: 600px;
-      }
-      @media (max-width: 768px) {
-        .content-wrapper {
-          flex-direction: column;
-        }
-        .image-stack,
-        .intro-text-container {
-          width: 100%;
-          height: 50vh;
-        }
-        .intro-text {
-          height: 50vh;
-          align-items: center;
-          text-align: center;
-        }
-      }
-    </style>
+<style>
+  .content-wrapper {
+    display: flex;
+    justify-content: flex-start; /* 画像を左寄せ */
+    align-items: flex-start; /* テキストと画像を同じ高さに配置 */
+    position: relative;
+  }
+
+  .image-stack {
+    position: sticky;
+    top: 0;
+    width: 50%; /* ページ左側半分の幅 */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 上部に画像を配置 */
+    flex-direction: column;
+  }
+
+  .img-container-items {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    opacity: 0; /* デフォルトは非表示 */
+    transition: opacity 0.5s ease;
+  }
+
+  .img-container-items:first-child {
+    opacity: 1; /* 最初の画像を表示 */
+  }
+
+  .img-container-items:nth-child(2) {
+    transform: rotate(-5deg); /* 2枚目の画像に少し角度をつける */
+  }
+
+  .img-container-items:nth-child(3) {
+    transform: rotate(5deg); /* 3枚目の画像に少し角度をつける */
+  }
+
+  .intro-text-container {
+    width: 50%; /* テキスト部分を右側50%に配置 */
+    margin-left: 50%; /* 左側の画像スペースを確保 */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .intro-text {
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: #333;
+  }
+
+  @media (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+    .image-stack,
+    .intro-text-container {
+      width: 100%;
+      margin-left: 0;
+      height: 50vh;
+    }
+    .intro-text {
+      height: 50vh;
+      align-items: center;
+      text-align: center;
+    }
+  }
+</style>
+
     
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        gsap.registerPlugin(ScrollTrigger);
     
-        const images = gsap.utils.toArray(".img-container-items");
-        const introTexts = gsap.utils.toArray(".intro-text");
     
-        // 最初の画像とテキストを表示
-        gsap.set(images, { opacity: 0, zIndex: 1 });
-        gsap.set(images[0], { opacity: 1, zIndex: 3 });
-        gsap.set(introTexts[0], { opacity: 1 });
-    
-        images.forEach((img, i) => {
-          ScrollTrigger.create({
-            trigger: ".product-container",
-            start: () => `top+=${i * window.innerHeight} top`,
-            end: () => `top+=${(i + 1) * window.innerHeight} top`,
-            onEnter: () => {
-              gsap.to(img, { opacity: 1, zIndex: 3 - i, ease: "none" });
-              gsap.to(introTexts[i], { opacity: 1, ease: "none" });
-            },
-            onLeave: () => {
-              if (i < images.length - 1) {
-                gsap.to(img, { opacity: 0, zIndex: 1, ease: "none" });
-                gsap.to(introTexts[i], { opacity: 0, ease: "none" });
-              }
-            },
-            onEnterBack: () => {
-              if (i > 0) {
-                gsap.to(images[i - 1], { opacity: 1, zIndex: 3 - (i - 1), ease: "none" });
-                gsap.to(introTexts[i - 1], { opacity: 1, ease: "none" });
-              }
-            },
-            onLeaveBack: () => {
-              gsap.to(img, { opacity: 0, zIndex: 1, ease: "none" });
-              gsap.to(introTexts[i], { opacity: 0, ease: "none" });
-            },
-          });
-        });
-    
-        // レスポンシブ対応
-        window.addEventListener("resize", () => {
-          ScrollTrigger.refresh();
-        });
-      });
-    </script>
     
   </head>
 
@@ -488,5 +428,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <!-- MyScript -->
     <script src="../js/base.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        gsap.registerPlugin(ScrollTrigger);
+    
+        const images = gsap.utils.toArray(".img-container-items");
+        const texts = gsap.utils.toArray(".intro-text");
+    
+        gsap.set(images[0], { opacity: 1, zIndex: 3 }); // 最初の画像を表示
+    
+        texts.forEach((text, i) => {
+          ScrollTrigger.create({
+            trigger: text,
+            start: "top center",
+            onEnter: () => {
+              gsap.to(images, { opacity: 0, zIndex: 1 }); // 全ての画像を非表示
+              gsap.to(images[i], { opacity: 1, zIndex: 3 }); // 対応する画像を表示
+            },
+            onLeaveBack: () => {
+              if (i > 0) {
+                gsap.to(images[i - 1], { opacity: 1, zIndex: 3 }); // 前の画像に戻す
+                gsap.to(images[i], { opacity: 0, zIndex: 1 }); // 現在の画像を非表示
+              }
+            },
+          });
+        });
+    
+        window.addEventListener("resize", () => {
+          ScrollTrigger.refresh();
+        });
+      });
+    </script>
+    
+    
+    
   </body>
 </html>
