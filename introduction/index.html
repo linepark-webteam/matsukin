@@ -14,7 +14,7 @@
     <meta property="og:description" content="＊" />
 
     <!-- Favicon -->
-    <link
+    <!-- <link
       rel="icon"
       href="./img/favicon-16x16.png"
       type="image/png"
@@ -31,13 +31,13 @@
       href="./img/favicon-32x32.png"
       type="image/png"
       sizes="48x48"
-    />
+    /> -->
     <!-- AppleIcon -->
-    <link
+    <!-- <link
       rel="apple-touch-icon"
       href="./img/apple-touch-icon.png"
       sizes="180x180"
-    />
+    /> -->
 
     <!-- Zen Kaku Gothic New Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -65,7 +65,7 @@
 
     <link rel="stylesheet" href="../css/common.css" />
 
-    <link rel="stylesheet" href="../css/introduction.css" />
+    <!-- <link rel="stylesheet" href="../css/introduction.css" /> -->
 
     <title>事業紹介</title>
 
@@ -80,70 +80,143 @@
         width: 100%;
         height: 300vh;
         overflow: hidden;
-        padding-top: 20px; /* ヘッダーとのスペースを縮小 */
       }
-      .image-stack {
+      .content-wrapper {
         position: sticky;
-        top: 20px; /* ヘッダーとの間隔を縮小 */
+        top: 0;
         left: 0;
-        width: 50%;
-        height: calc(100vh - 20px); /* 調整 */
+        width: 100%;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
       }
+      .image-stack {
+        position: relative;
+        width: 50%;
+        height: 100%;
+      }
       .img-container-items {
         position: absolute;
-        max-width: 80%;
-        max-height: 80vh;
-        width: auto;
+        top: 20%;
+        left: 20%;
+        width: 50%;
         height: auto;
-        object-fit: contain;
+        object-fit: cover;
         opacity: 0;
         transition: opacity 0.5s ease;
+      }
+      .img-container-items:first-child {
+        z-index: 3; /* 1枚目の画像を最前面に配置 */
+        opacity: 1;
+      }
+      /* 2枚目の画像に少し角度をつける */
+      .img-container-items:nth-child(2) {
+        z-index: 2; /* 2枚目の画像を1枚目の画像の下に配置 */
+        transform: rotate(-5deg);
+        opacity: 1;
+      }
+      /* 3枚目の画像に少し角度をつける */
+      .img-container-items:nth-child(3) {
+        z-index: 1; /* 3枚目の画像を2枚目の画像の下に配置 */
+        transform: rotate(5deg);
+        opacity: 1;
       }
       .intro-text-container {
-        position: absolute;
-        top: 20px; /* ヘッダーとの間隔を縮小 */
-        right: 0;
         width: 50%;
-        height: calc(300vh - 20px); /* 調整 */
-        padding-left: 20px;
-      }
-      .intro-text {
-        height: calc(100vh - 20px); /* 調整 */
-        padding: 20px;
-        box-sizing: border-box;
-        opacity: 0;
-        transition: opacity 0.5s ease;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
       }
-      
+      .intro-text {
+        height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        color: #333;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .intro-text.active {
+        opacity: 1;
+      }
+      .intro-text h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .intro-text p {
+        font-size: 1.2rem;
+        max-width: 600px;
+      }
       @media (max-width: 768px) {
-        .product-container {
-          padding-top: 15px; /* モバイル用に更に調整 */
+        .content-wrapper {
+          flex-direction: column;
         }
-        .image-stack {
-          width: 100%;
-          height: calc(50vh - 15px);
-          top: 15px;
-        }
+        .image-stack,
         .intro-text-container {
           width: 100%;
-          height: auto;
-          padding-left: 0;
-          top: calc(50vh + 15px);
+          height: 50vh;
         }
         .intro-text {
-          height: auto;
-          min-height: 50vh;
+          height: 50vh;
+          align-items: center;
+          text-align: center;
         }
       }
     </style>
-
-</head>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        gsap.registerPlugin(ScrollTrigger);
+    
+        const images = gsap.utils.toArray(".img-container-items");
+        const introTexts = gsap.utils.toArray(".intro-text");
+    
+        // 最初の画像とテキストを表示
+        gsap.set(images, { opacity: 0, zIndex: 1 });
+        gsap.set(images[0], { opacity: 1, zIndex: 3 });
+        gsap.set(introTexts[0], { opacity: 1 });
+    
+        images.forEach((img, i) => {
+          ScrollTrigger.create({
+            trigger: ".product-container",
+            start: () => `top+=${i * window.innerHeight} top`,
+            end: () => `top+=${(i + 1) * window.innerHeight} top`,
+            onEnter: () => {
+              gsap.to(img, { opacity: 1, zIndex: 3 - i, ease: "none" });
+              gsap.to(introTexts[i], { opacity: 1, ease: "none" });
+            },
+            onLeave: () => {
+              if (i < images.length - 1) {
+                gsap.to(img, { opacity: 0, zIndex: 1, ease: "none" });
+                gsap.to(introTexts[i], { opacity: 0, ease: "none" });
+              }
+            },
+            onEnterBack: () => {
+              if (i > 0) {
+                gsap.to(images[i - 1], { opacity: 1, zIndex: 3 - (i - 1), ease: "none" });
+                gsap.to(introTexts[i - 1], { opacity: 1, ease: "none" });
+              }
+            },
+            onLeaveBack: () => {
+              gsap.to(img, { opacity: 0, zIndex: 1, ease: "none" });
+              gsap.to(introTexts[i], { opacity: 0, ease: "none" });
+            },
+          });
+        });
+    
+        // レスポンシブ対応
+        window.addEventListener("resize", () => {
+          ScrollTrigger.refresh();
+        });
+      });
+    </script>
+    
+  </head>
 
   <body>
     <header class="fixed-top transparent">
@@ -249,64 +322,77 @@
             </div>
           </div>
 
-
- <!-- introduction -->
- <section class="row d-flex justify-content-center">
-  <div class="product-container">
-      <div class="image-stack">
-          <img class="img-container-items" src="../img/narrow-image1.png" alt="">
-          <img class="img-container-items" src="../img/narrow-image2.png" alt="">
-          <img class="img-container-items" src="../img/narrow-image3.png" alt="">
+          <!-- introduction -->
+          <section class="row d-flex justify-content-center">
+            <div class="product-container">
+              <div class="content-wrapper">
+                <div class="image-stack">
+                  <img
+                    class="img-container-items"
+                    src="../img/narrow-image1.png"
+                    alt=""
+                  />
+                  <img
+                    class="img-container-items"
+                    src="../img/narrow-image2.png"
+                    alt=""
+                  />
+                  <img
+                    class="img-container-items"
+                    src="../img/narrow-image3.png"
+                    alt=""
+                  />
+                </div>
+                <div class="intro-text-container">
+                  <div class="intro-text">
+                    <h2>Title1</h2>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                  </div>
+                  <div class="intro-text">
+                    <h2>Title2</h2>
+                    <p>
+                      Quibusdam suscipit ipsam at, aperiam corporis tenetur
+                      inventore id facere?
+                    </p>
+                    <p>
+                      Quibusdam suscipit ipsam at, aperiam corporis tenetur
+                      inventore id facere?
+                    </p>
+                    <p>
+                      Quibusdam suscipit ipsam at, aperiam corporis tenetur
+                      inventore id facere?
+                    </p>
+                  </div>
+                  <div class="intro-text">
+                    <h2>Title3</h2>
+                    <p>
+                      Quibusdam tempore ipsa quaerat voluptate velit sed maiores
+                      rem ad ullam in!
+                    </p>
+                    <p>
+                      Quibusdam tempore ipsa quaerat voluptate velit sed maiores
+                      rem ad ullam in!
+                    </p>
+                    <p>
+                      Quibusdam tempore ipsa quaerat voluptate velit sed maiores
+                      rem ad ullam in!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
-      <div class="intro-text-container">
-          <div class="intro-text" data-index="0">
-              <h2>Title1</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-          </div>
-          <div class="intro-text" data-index="1">
-              <h2>Title2</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-          </div>
-          <div class="intro-text" data-index="2">
-              <h2>Title3</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam suscipit ipsam at, aperiam corporis tenetur inventore id facere? Quibusdam tempore ipsa quaerat voluptate velit sed maiores rem ad ullam in!</p>
-          </div>
-      </div>
-  </div>
-</section>
-</div>
-</div>
-</main>
+    </main>
 
     <!-- PageTopへ戻るボタン -->
     <!-- <a href="#" id="page_top"></a> -->
@@ -402,55 +488,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <!-- MyScript -->
     <script src="../js/base.js"></script>
-
-    <script>
-      gsap.registerPlugin(ScrollTrigger);
-      
-      const images = gsap.utils.toArray('.img-container-items');
-      const introTexts = gsap.utils.toArray('.intro-text');
-      
-      gsap.set(images[0], { opacity: 1 });
-      gsap.set(introTexts[0], { opacity: 1 });
-      
-      ScrollTrigger.create({
-        trigger: ".product-container",
-        start: "top top",
-        end: "bottom bottom",
-        pin: ".image-stack",
-        pinSpacing: false
-      });
-      
-      images.forEach((img, i) => {
-        ScrollTrigger.create({
-          trigger: introTexts[i],
-          start: "top 60%",
-          end: "bottom 40%",
-          onEnter: () => gsap.to(img, { opacity: 1, duration: 0.5 }),
-          onLeave: () => gsap.to(img, { opacity: 0, duration: 0.5 }),
-          onEnterBack: () => gsap.to(img, { opacity: 1, duration: 0.5 }),
-          onLeaveBack: () => gsap.to(img, { opacity: 0, duration: 0.5 })
-        });
-      });
-      
-      introTexts.forEach((text, i) => {
-        ScrollTrigger.create({
-          trigger: text,
-          start: "top 60%",
-          end: "bottom 40%",
-          onEnter: () => gsap.to(text, { opacity: 1, duration: 0.5 }),
-          onLeave: () => gsap.to(text, { opacity: 0, duration: 0.5 }),
-          onEnterBack: () => gsap.to(text, { opacity: 1, duration: 0.5 }),
-          onLeaveBack: () => gsap.to(text, { opacity: 0, duration: 0.5 })
-        });
-      });
-    
-      // レスポンシブ対応
-      function updateScrollTriggers() {
-        ScrollTrigger.getAll().forEach(st => st.refresh());
-      }
-    
-      window.addEventListener('resize', updateScrollTriggers);
-    </script>
-
-</body>
+  </body>
 </html>
