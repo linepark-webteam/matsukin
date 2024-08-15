@@ -78,7 +78,7 @@
 
     .image-stack {
       position: relative;
-      width: 50%;
+      width: 40%;
       height: 100%;
     }
 
@@ -145,8 +145,8 @@
       flex-direction: column;
       justify-content: center;
       color: #333;
-      opacity: 0;
-      transition: opacity 0.5s ease;
+      /* opacity: 0;
+      transition: opacity 0.5s ease; */
     }
 
     .intro-text.active {
@@ -394,63 +394,69 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger);
 
-      const images = gsap.utils.toArray(".img-container-items");
-      const introTexts = gsap.utils.toArray(".intro-text");
-      const introTextContainer = document.querySelector('.intro-text-container');
+        const images = gsap.utils.toArray(".img-container-items");
+        const introTexts = gsap.utils.toArray(".intro-text");
+        const introTextContainer = document.querySelector('.intro-text-container');
 
-      images.forEach((img) => {
-        gsap.set(img, { opacity: 1 });
-        img.classList.add('inactive'); // 初期状態で全ての画像を非アクティブに設定
-      });
-
-      introTexts.forEach((text, i) => {
-        ScrollTrigger.create({
-          trigger: text,
-          start: "top center",
-          end: "bottom center",
-          onEnter: () => {
-            gsap.to(text, { opacity: 1 });
-
-            images.forEach((img, index) => {
-              if (index === i) {
-                img.classList.add('active');
-                img.classList.remove('inactive');
-              } else {
-                img.classList.remove('active');
-                img.classList.add('inactive');
-              }
-            });
-          },
-          onLeave: () => {
-            gsap.to(text, { opacity: 0 });
-          },
-          onEnterBack: () => {
-            gsap.to(text, { opacity: 1 });
-
-            images.forEach((img, index) => {
-              if (index === i) {
-                img.classList.add('active');
-                img.classList.remove('inactive');
-              } else {
-                img.classList.remove('active');
-                img.classList.add('inactive');
-              }
-            });
-          },
-          onLeaveBack: () => {
-            gsap.to(text, { opacity: 0 });
-          },
-          scroller: introTextContainer,
+        images.forEach((img) => {
+            gsap.set(img, { opacity: 1 });
+            img.classList.add('inactive'); // 初期状態で全ての画像を非アクティブに設定
         });
-      });
 
-      window.addEventListener("resize", () => {
-        ScrollTrigger.refresh();
-      });
+        introTexts.forEach((text, i) => {
+            ScrollTrigger.create({
+                trigger: text,
+                start: "top center",
+                end: "bottom center",
+                onEnter: () => {
+                    gsap.to(text, { opacity: 1 });
+
+                    images.forEach((img, index) => {
+                        if (index === i) {
+                            gsap.to(img, { opacity: 1, duration: 0.5 });
+                            img.classList.add('active');
+                            img.classList.remove('inactive');
+                        } else {
+                            gsap.to(img, { opacity: 0.5, duration: 0.5 }); // 非アクティブな画像も少し透けた状態で表示
+                            img.classList.remove('active');
+                            img.classList.add('inactive');
+                        }
+                    });
+                },
+                onLeave: () => {
+                    gsap.to(text, { opacity: 0 });
+                },
+                onEnterBack: () => {
+                    gsap.to(text, { opacity: 1 });
+
+                    images.forEach((img, index) => {
+                        if (index === i) {
+                            gsap.to(img, { opacity: 1, duration: 0.5 });
+                            img.classList.add('active');
+                            img.classList.remove('inactive');
+                        } else {
+                            gsap.to(img, { opacity: 0.5, duration: 0.5 }); // 非アクティブな画像も少し透けた状態で表示
+                            img.classList.remove('active');
+                            img.classList.add('inactive');
+                        }
+                    });
+                },
+                onLeaveBack: () => {
+                    gsap.to(text, { opacity: 0 });
+                },
+                scroller: introTextContainer,
+            });
+        });
+
+        window.addEventListener("resize", () => {
+            ScrollTrigger.refresh();
+        });
     });
-  </script>
+</script>
+
+
 
 </body>
 
