@@ -76,7 +76,7 @@
       height: 100vh;
     }
 
-    .image-stack {
+    .img-stack {
       position: relative;
       width: 40%;
       height: 100%;
@@ -90,9 +90,7 @@
       height: auto;
       object-fit: cover;
       transform-style: preserve-3d;
-      /* transition: transform 0.5s ease, opacity 0.5s ease; */
       opacity: 0;
-      /* 初期状態では非表示 */
     }
 
     .img-container-items.active {
@@ -188,21 +186,26 @@
         height: 70svh;
       }
 
-      .image-stack,
+      .img-stack,
       .intro-text-container {
         position: absolute;
-        width: 80%;
+        width: 60%;
         z-index: 4;
         height: 50vh;
-        background-color: rgba(255, 255, 255, .5);
       }
 
       .intro-text {
-        height: 70vh;
+        position: relative;
+        background-color: rgba(255, 255, 255, .5);
+        padding: 0;
+        margin-top: 10svh;
+        height: auto;
         align-items: center;
         text-align: center;
-        position: relative;
         z-index: 5;
+      }
+      .spacer {
+        height: 50svh;
       }
     }
   </style>
@@ -237,7 +240,7 @@
                 <a class="nav-link fw-bold me-3" href="../introduction/">事業紹介</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link fw-bold" href="../products/">取扱製品</a>
+                <a class="nav-link fw-bold" href="../works/">作品紹介</a>
               </li>
             </ul>
           </div>
@@ -290,7 +293,7 @@
         <section class="row d-flex justify-content-center">
           <div class="product-container">
             <div class="content-wrapper">
-              <div class="image-stack">
+              <div class="img-stack">
                 <img class="img-container-items" src="../img/narrow-image1.png" alt="" />
                 <img class="img-container-items" src="../img/narrow-image2.png" alt="" />
                 <img class="img-container-items" src="../img/narrow-image3.png" alt="" />
@@ -338,6 +341,7 @@
                     rem ad ullam in!
                   </p>
                 </div>
+                <div class="spacer"></div>
               </div>
             </div>
           </div>
@@ -372,8 +376,8 @@
               </a>
             </div>
             <div class="content-text footer-link">
-              <a href="../products/">
-                <p class="fs-lg-4 fs-6 fw-bold">取扱製品</p>
+              <a href="../works/">
+                <p class="fs-lg-4 fs-6 fw-bold">作品紹介</p>
               </a>
             </div>
           </div>
@@ -413,21 +417,49 @@
   <script src="https://cdn.jsdelivr.net/npm/vivus/dist/vivus.min.js"></script>
   <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <!-- GSAP ScrollTrigger CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <!-- GSAP ScrollToPlugin CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+
   <!-- MyScript -->
   <script src="../js/base.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
       const images = gsap.utils.toArray(".img-container-items");
       const introTexts = gsap.utils.toArray(".intro-text");
       const introTextContainer = document.querySelector('.intro-text-container');
+      let autoScrollActive = true;
 
       images.forEach((img) => {
         gsap.set(img, { opacity: 1 });
         img.classList.add('inactive'); // 初期状態で全ての画像を非アクティブに設定
+      });
+
+      // オートスクロール機能の実装
+      let autoScroll = gsap.to(introTextContainer, {
+        scrollTo: { y: "max", autoKill: false }, // 'scrollTo' オプションの修正
+        duration: 30,
+        ease: "none",
+        onComplete: () => { autoScrollActive = false; }
+      });
+
+      // ユーザー操作を検知し、オートスクロールを停止
+      introTextContainer.addEventListener('wheel', () => {
+        if (autoScrollActive) {
+          autoScroll.kill();
+          autoScrollActive = false;
+        }
+      });
+
+      introTextContainer.addEventListener('touchstart', () => {
+        if (autoScrollActive) {
+          autoScroll.kill();
+          autoScrollActive = false;
+        }
       });
 
       introTexts.forEach((text, i) => {
@@ -451,7 +483,7 @@
             });
           },
           onLeave: () => {
-            gsap.to(text, { opacity: 0 });
+            gsap.to(text, { opacity: 1 });
           },
           onEnterBack: () => {
             gsap.to(text, { opacity: 1 });
@@ -480,9 +512,6 @@
       });
     });
   </script>
-
-
-
 </body>
 
 </html>
