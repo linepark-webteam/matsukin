@@ -1,12 +1,12 @@
 // ユーティリティ関数
 const util = {
   splitTextIntoSpans: (element) => {
-    const text = element.textContent;
-    element.innerHTML = "";
-    text.split("").forEach((char) => {
-      const span = document.createElement("span");
-      span.textContent = char === " " ? "\u00A0" : char;
-      span.classList.add("letter");
+    const text = element.textContent.trim().replace(/\s+/g, ' ');
+    element.innerHTML = '';
+    text.split('').forEach((char) => {
+      const span = document.createElement('span');
+      span.textContent = char === ' ' ? ' ' : char; // &nbsp;を使用せずに通常の空白を使用
+      span.classList.add('letter');
       element.appendChild(span);
     });
   },
@@ -122,7 +122,8 @@ const animations = {
       if (newDuration !== duration) {
         duration = newDuration;
         if (!animationStarted) {
-          vivus.reset().setDuration(duration);
+          vivus.reset();  // reset() メソッドを呼び出す
+          vivus.setDuration(duration);  // setDuration() を別の行で呼び出す
         }
       }
     });
