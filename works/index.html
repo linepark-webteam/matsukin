@@ -49,6 +49,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .parallax-image, .parallax-text {
+  transition: transform 0.3s ease-out;
+}
+  </style>
 </head>
 
 <body>
@@ -133,35 +138,36 @@
         <section class="row d-flex justify-content-center">
           <div class="works-container">
             <div class="content-wrapper">
-              <div class="d-flex flex-column flex-md-row align-items-center align-items-lg-start justify-content-around mx-auto my-5">
-                <div class="col-10 col-md-6"
-                >
-                  <img class="col-12" src="../img/works-img00.png" alt="">
+              <div class="">
+                <div class="d-flex justify-content-around col-12 mb-3 parallax-image">
+                  <img class="rounded col-4 u-fade-in" src="../img/works-img00.png" alt="">
+                <div class="col-6 col-md-6 parallax-text">
+                  <p class="u-fade-in">身近なものから、アートまで</p>
+                  <p class="u-fade-in">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi dolor exercitationem voluptatum. Ducimus doloribus ullam est rerum praesentium! Doloremque suscipit dolores sed accusamus eos sequi illum deleniti, alias ipsam! Animi!</p>
+                  <p class="u-fade-in">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi dolor exercitationem voluptatum. Ducimus doloribus ullam est rerum praesentium! Doloremque suscipit dolores sed accusamus eos sequi illum deleniti, alias ipsam! Animi!</p>
                 </div>
-                <p class="col-10 col-md-4">
-                  身近なものから、アートまで<br>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi dolor exercitationem voluptatum. Ducimus doloribus ullam est rerum praesentium! Doloremque suscipit dolores sed accusamus eos sequi illum deleniti, alias ipsam! Animi!</p>
+              </div>
               </div>
 
               <div class="works-img-container">
                 <div class="">
-                  <div class="d-flex justify-content-around col-12 mb-3">
-                    <img class="col-4 h-auto" src="../img/works-img01.png" alt="">
-                    <p class="col-6">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ipsum maxime qui, ut error quasi quae obcaecati ad veritatis nostrum nulla fugit sit, nisi explicabo labore laborum! Numquam, ab corporis.
-                    </p>
+                  <div class="d-flex justify-content-around col-12 mb-3 parallax-image">
+                    <img class="rounded col-4 h-auto u-fade-in" src="../img/dice.jpg" alt="">
+                    <div class="col-6">
+                      <p class="u-fade-in">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ipsum maxime qui, ut error quasi quae obcaecati ad veritatis nostrum nulla fugit sit, nisi explicabo labore laborum! Numquam, ab corporis.</p>
+                    </div>
                   </div>
                   <div class="d-flex justify-content-around col-12 mb-3">
-                    <img class="col-4 h-auto" src="../img/works-img02.png" alt="">
-                    <p class="col-6">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ipsum maxime qui, ut error quasi quae obcaecati ad veritatis nostrum nulla fugit sit, nisi explicabo labore laborum! Numquam, ab corporis.
-                    </p>
+                    <img class="rounded col-4 h-auto u-fade-in" src="../img/garbage-box.jpg" alt="">
+                    <div class="col-6">
+                      <p class="u-fade-in">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ipsum maxime qui, ut error quasi quae obcaecati ad veritatis nostrum nulla fugit sit, nisi explicabo labore laborum! Numquam, ab corporis.</p>
+                    </div>
                   </div>
                   <div class="d-flex justify-content-around col-12">
-                    <img class="col-4 h-auto" src="../img/works-img03.png" alt="">
-                    <p class="col-6">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ipsum maxime qui, ut error quasi quae obcaecati ad veritatis nostrum nulla fugit sit, nisi explicabo labore laborum! Numquam, ab corporis.
-                    </p>
+                    <img class="rounded col-4 h-auto u-fade-in" src="../img/works-img03.png" alt="">
+                    <div class="col-6">
+                      <p class="u-fade-in">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ipsum maxime qui, ut error quasi quae obcaecati ad veritatis nostrum nulla fugit sit, nisi explicabo labore laborum! Numquam, ab corporis.</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -241,6 +247,28 @@
   <script src="https://cdn.jsdelivr.net/npm/vivus/dist/vivus.min.js"></script>
   <!-- MyScript -->
   <script src="../js/base.js"></script>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // スクロール時のイベントリスナー
+    window.addEventListener('scroll', function () {
+        const scrolled = window.scrollY;
+        const images = document.querySelectorAll('.parallax-image');
+        const texts = document.querySelectorAll('.parallax-text');
+
+        // 画像のパララックス効果
+        images.forEach((image) => {
+            image.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
+        });
+
+        // テキストのパララックス効果
+        texts.forEach((text) => {
+            text.style.transform = 'translateY(' + (scrolled * 0.6) + 'px)';
+        });
+    });
+});
+
+  </script>
 </body>
 
 </html>
