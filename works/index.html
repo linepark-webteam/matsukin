@@ -40,8 +40,7 @@
   <link rel="stylesheet" href="../css/animation.css" />
 
   <link rel="stylesheet" href="../css/common.css" />
-  <!-- ↓ メインとなるスタイルシート -->
-  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/works.css" />
 
   <title>取扱製品</title>
 
@@ -49,46 +48,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <style>
-    .spacer {
-      height: 30svh;
-    }
-
-    .img-container {
-      position: relative;
-      aspect-ratio: 60 / 60;
-    }
-
-    .first-img {
-      width: 33%;
-      position: absolute;
-      top: 10%;
-      left: 0;
-      z-index: 2;
-    }
-
-    .second-img {
-      width: 33%;
-      position: absolute;
-      top: 40%;
-      left: 22%;
-      z-index: 1;
-    }
-
-    .third-img {
-      width: 33%;
-      position: absolute;
-      top: 60%;
-      left: 50%;
-      z-index: 0;
-    }
-
-    .parallax-image,
-    .parallax-text {
-      transition: transform 0.3s ease-out;
-    }
-    
-  </style>
 </head>
 
 <body>
@@ -173,11 +132,10 @@
         <section class="row d-flex justify-content-center">
           <div class="works-container">
             <div class="content-wrapper">
-              <div class="">
-                <div class="d-flex justify-content-around col-12 mb-3 first-parallax-image">
-                  <img class="rounded col-4 u-fade-in" src="../img/works-img00.png" alt="">
-                  <div class="col-6 col-md-6 first-parallax-text">
-                    <p class="u-fade-in">身近なものから、アートまで</p>
+                <div class="d-flex flex-column flex-lg-row align-items-center justify-content-around col-12 mb-3 first-parallax-image">
+                  <img class="rounded col-10 col-lg-4 u-fade-in" src="../img/works-img00.png" alt="">
+                  <div class="col-10 col-lg-6 first-parallax-text">
+                    <p class=" u-fade-in">身近なものから、アートまで</p>
                     <p class="u-fade-in">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi dolor
                       exercitationem voluptatum. Ducimus doloribus ullam est rerum praesentium! Doloremque suscipit
                       dolores sed accusamus eos sequi illum deleniti, alias ipsam! Animi!</p>
@@ -191,13 +149,13 @@
               <div class="spacer"></div>
 
               <div class="works-container">
-                  <div class="d-flex align-items-center justify-content-around col-12 mb-3">
-                    <div class="img-container col-6">
+                  <div class="d-flex flex-column flex-lg-row align-items-center justify-content-around col-12 mb-3">
+                    <div class="img-container col-10 col-lg-6">
                       <img class="first-img rounded col-3  h-auto u-fade-in" src="../img/dice.jpg" alt="">
                       <img class="second-img rounded col-3 h-auto u-fade-in" src="../img/garbage-box.jpg" alt="">
                       <img class="rounded third-img col-3 h-auto u-fade-in" src="../img/works-img03.png" alt="">
                     </div>
-                    <div class="col-6">
+                    <div class="col-10 col-lg-6">
                       <p class="u-fade-in">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam ipsum maxime
                         qui, ut error quasi quae obcaecati ad veritatis nostrum nulla fugit sit, nisi explicabo labore
                         laborum! Numquam, ab corporis.</p>
@@ -212,10 +170,9 @@
 
             </div>
           </div>
-      </div>
+
       </section>
-    </div>
-    </div>
+
   </main>
 
   <!-- PageTopへ戻るボタン -->
@@ -284,29 +241,7 @@
   <!-- Vivus(SVG Animation)ライブラリ CDN -->
   <script src="https://cdn.jsdelivr.net/npm/vivus/dist/vivus.min.js"></script>
   <!-- MyScript -->
-  <script src="../js/base.js"></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // スクロール時のイベントリスナー
-      window.addEventListener('scroll', function () {
-        const scrolled = window.scrollY;
-
-        // first-parallax-image にパララックス効果を適用
-        const firstImage = document.querySelector('.first-parallax-image');
-        if (firstImage) {
-          firstImage.style.transform = 'translateY(' + (scrolled * 0.2) + 'px)';
-        }
-
-        // first-parallax-text にパララックス効果を適用
-        const firstText = document.querySelector('.first-parallax-text');
-        if (firstText) {
-          firstText.style.transform = 'translateY(' + (scrolled * 0.1) + 'px)';
-        }
-      });
-    });
-
-  </script>
+  <script src="../js/works.js"></script>
 </body>
 
 </html>
